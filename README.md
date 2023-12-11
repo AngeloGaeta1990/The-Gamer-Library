@@ -17,19 +17,21 @@ The Gamer Library isn't just a solo venture; it's a platform for building commun
 
 Embark on a new chapter of gaming with The Gamer Library — where your gaming history is celebrated, connections are forged, and communities thrive. Join The Gamer Library and redefine the way you experience and share your love for gaming!
 
-
 ## Table of Contents
 
+- [The Gamer Library](#the-gamer-library)
   - [Site Overview](#site-overview)
   - [Table of Contents](#table-of-contents)
-  - [Planning Phase](#planning-phase)
-    - [Strategy plane](#strategy-plane)
-    - [Strategy plane](#scope-plane)
+  - [Planning phase](#planning-phase)
+    - [**Strategy plane**](#strategy-plane)
+    - [Scope plane](#scope-plane)
 
------
+---
+
 ## Planning phase
 
 ### **Strategy plane**
+
 he Gamer Library, a dynamic web app, distinguishes itself by providing a culturally rich and relevant gaming experience. Users can intuitively track and catalog their gaming journey through a web app interface designed for modern gamers. What sets The Gamer Library apart is the fusion of intuitive tracking features and a user-friendly web app interface, offering more than a traditional game library; it provides a comprehensive gaming experience.
 
 Tech considerations encompass responsive design, integration capabilities with various gaming platforms, and a robust backend infrastructure for scalability. Its technology aligns seamlessly with the preferences of modern gamers accustomed to web apps.
@@ -47,11 +49,11 @@ In a landscape filled with competitors, The Gamer Library distinguishes itself b
 | Keep track of games                               | 5          | 5                     |
 | Import data from Metacritics and Game database API| 3          | 4                     |
 | Share game list with friends                      | 5          | 1                     |
-
-
+H
 ![Strategy plan chart](/docs_images/strategy_plan_plot.png)
 
 ### Scope plane
+
 This project harnesses the power of Agile development methodologies. Given the solitary nature of development, GitHub emerges as the platform of choice for efficiently managing user stories, epics, and issues.
 
 **Sprint 1 Objectives**:
@@ -65,12 +67,28 @@ In the inaugural sprint, the focus is on empowering users with fundamental featu
 
     Establish the foundation of a robust relational database, meticulously designed to handle user and game data. This step is crucial for laying the groundwork that supports future functionalities and enhances data management.
 
-
 By prioritizing these objectives in the initial sprint, the project sets a strong foundation for subsequent phases, ensuring a streamlined development process and a user-centric gaming experience.
-
 
 - **Structure plane**
 
+How is the coentent organized in menus
+consinstency in colors, labels,
+apply changes only when releavant
+add error feedback, page not found
+provide link to take user back to safety
+Stucturre non strictly linear
+Information architecture Nested list
+
 - **Skeleton plane**
 
+DO not put too much elements in one page
+add searching fpr leywprds
+divide content in multiple pages
+nanvigation trough icons
+create wireframe
+
 - **Surface plane**
+font contrast
+contrast font and background
+contrast between different section in colors
+keep consitancy
