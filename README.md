@@ -105,7 +105,8 @@ keep consitancy
 **11/12/2023**
 Add user stories template
 add labels
-add user storied
+add user stories
 add sprint 1
 add wireframe
 update feasibility importance plot
+start django project
