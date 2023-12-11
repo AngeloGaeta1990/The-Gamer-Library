@@ -23,14 +23,16 @@ Embark on a new chapter of gaming with The Gamer Library — where your gaming h
   - [Site Overview](#site-overview)
   - [Table of Contents](#table-of-contents)
   - [Planning phase](#planning-phase)
-    - [**Strategy plane**](#strategy-plane)
+    - [Strategy plane](#strategy-plane)
     - [Scope plane](#scope-plane)
+  - [Bugs](#bugs)
+  - [Diary](#diary)
 
 ---
 
 ## Planning phase
 
-### **Strategy plane**
+### Strategy plane
 
 he Gamer Library, a dynamic web app, distinguishes itself by providing a culturally rich and relevant gaming experience. Users can intuitively track and catalog their gaming journey through a web app interface designed for modern gamers. What sets The Gamer Library apart is the fusion of intuitive tracking features and a user-friendly web app interface, offering more than a traditional game library; it provides a comprehensive gaming experience.
 
@@ -49,7 +51,8 @@ In a landscape filled with competitors, The Gamer Library distinguishes itself b
 | Keep track of games                               | 5          | 5                     |
 | Import data from Metacritics and Game database API| 3          | 4                     |
 | Share game list with friends                      | 5          | 1                     |
-H
+| Create wishlists                                  | 3          | 4                     |
+
 ![Strategy plan chart](/docs_images/strategy_plan_plot.png)
 
 ### Scope plane
@@ -87,8 +90,22 @@ divide content in multiple pages
 nanvigation trough icons
 create wireframe
 
+![Wireframe](/docs_images/Wireframe.png)
+
 - **Surface plane**
 font contrast
 contrast font and background
 contrast between different section in colors
 keep consitancy
+
+## Bugs
+
+## Diary
+
+**11/12/2023**
+Add user stories template
+add labels
+add user storied
+add sprint 1
+add wireframe
+update feasibility importance plot
