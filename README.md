@@ -150,6 +150,22 @@ keep consitancy
       os.environ["LOCALHOST"]= "secret_string"
       ```
 
+1. **Error**:
+
+   ```cmd
+    django.core.exceptions.ImproperlyConfigured: In order to use cloudinary storage, you need to provide CLOUDINARY_STORAGE dictionary with CLOUD_NAME, API_SECRET and API_KEY in the settings or set CLOUDINARY_URL variable (or CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET variables).
+    !Error while running '$ python manage.py collectstatic --noinput'.
+    See traceback above for details.
+    You may need to update application code to resolve this error.
+    Or, you can disable collectstatic for this application:
+   ```
+
+    **Cause**: Cloudinary settings are not set properly
+
+      ```python
+      os.environ["LOCALHOST"]= ["secret_string"]
+      ```
+
 ## Diary
 
 - **11/12/2023**
