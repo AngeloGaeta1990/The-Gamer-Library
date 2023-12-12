@@ -53,7 +53,7 @@ In a landscape filled with competitors, The Gamer Library distinguishes itself b
 | Share game list with friends                      | 5          | 1                     |
 | Create wishlists                                  | 3          | 4                     |
 
-![Strategy plan chart](/docs_images/strategy_plan_plot.png)
+![Strategy plan chart](/docs/images/strategy_plan_plot.png)
 
 ### Scope plane
 
@@ -90,7 +90,7 @@ divide content in multiple pages
 nanvigation trough icons
 create wireframe
 
-![Wireframe](/docs_images/Wireframe.png)
+![Wireframe](/docs/images/Wireframe.png)
 
 - **Surface plane**
 font contrast
@@ -98,15 +98,68 @@ contrast font and background
 contrast between different section in colors
 keep consitancy
 
+---
+
 ## Bugs
+
+1. **Error**:
+  
+    ```cmd
+    File "<frozen importlib._bootstrap_external>", line 1074, in get_code
+    File "<frozen importlib._bootstrap_external>", line 1004, in source_to_code
+    File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+    File "C:\Users\Mary9\OneDrive\Documenti\angelo\The-Gamer-Library\gamer_library\settings.py", line 21
+      TEMPLATES_DIR os.path.join(BASE_DIR, 'templates')
+    SyntaxError: invalid syntax
+    ```
+
+    **Cause** missing = in:
+
+    ```python
+
+      SECRET_KEY os.environ.get('SECRET_KEY')
+    ```
+
+    **Solution** added = in setting .py , code is now:
+
+    ```python
+
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    ```
+
+1. **Error**:
+
+   ```cmd
+    File "C:\Users\Mary9\OneDrive\Documenti\angelo\The-Gamer-Library\env.py", line 6, in <module>
+      os.environ["LOCALHOST"]= ["127.0.0.1"]
+      ~~~~~~~~~~^^^^^^^^^^^^^
+    File "<frozen os>", line 684, in __setitem__
+    File "<frozen os>", line 744, in check_str
+   TypeError: str expected, not list
+   ```
+  
+    **Cause**: variable LOCALHOST was set as a list rather than as a string
+
+      ```python
+      os.environ["LOCALHOST"]= ["secret_string"]
+      ```
+
+    **Solution**: turned list into string
+
+      ```python
+      os.environ["LOCALHOST"]= "secret_string"
+      ```
 
 ## Diary
 
-**11/12/2023**
-Add user stories template
-add labels
-add user stories
-add sprint 1
-add wireframe
-update feasibility importance plot
-start django project
+- **11/12/2023**
+  Add user stories template
+  add labels
+  add user stories
+  add sprint 1
+  add wireframe
+  update feasibility importance plot
+  start django project
+
+- **12/12/2023**
+  

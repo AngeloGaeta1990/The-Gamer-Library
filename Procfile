@@ -1,0 +1,1 @@
+web: gunicorn gamer_library.wsgi
