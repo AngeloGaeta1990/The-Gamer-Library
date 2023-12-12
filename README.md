@@ -160,11 +160,29 @@ keep consitancy
     Or, you can disable collectstatic for this application:
    ```
 
-    **Cause**: Cloudinary settings are not set properly
+    **Cause**: Cloudinary settings were set as
 
       ```python
-      os.environ["LOCALHOST"]= ["secret_string"]
+      os.environ["CLOUDINARY_URL"]= "my_cloudinary_url"
       ```
+
+    **Solution**: added in settings.py :
+
+    ```python
+        CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+        'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+        'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+    }
+    ```
+
+    and the related key in env.py
+
+    ```python
+    os.environ["CLOUDINARY_CLOUD_NAME"] = "my_cloud_name"
+    os.environ["CLOUDINARY_API_KEY"] = "my_API_key"
+    os.environ["CLOUDINARY_API_SECRET"] = "my_API_secret_key"
+    ```
 
 1. **Error**:
 
