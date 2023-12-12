@@ -152,7 +152,7 @@ keep consitancy
 
 1. **Error**:
 
-   ```cmd
+   ```bash
     django.core.exceptions.ImproperlyConfigured: In order to use cloudinary storage, you need to provide CLOUDINARY_STORAGE dictionary with CLOUD_NAME, API_SECRET and API_KEY in the settings or set CLOUDINARY_URL variable (or CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET variables).
     !Error while running '$ python manage.py collectstatic --noinput'.
     See traceback above for details.
@@ -166,6 +166,28 @@ keep consitancy
       os.environ["LOCALHOST"]= ["secret_string"]
       ```
 
+1. **Error**:
+
+    ```bash
+        File "/app/.heroku/python/lib/python3.12/site-packages/cloudinary/utils.py", line 740, in build_distribution_domain
+              raise ValueError("Must supply cloud_name in tag or in configuration")
+          ValueError: Must supply cloud_name in tag or in configuration
+    !     Error while running '$ python manage.py collectstatic --noinput'.
+          See traceback above for details.
+          You may need to update application code to resolve this error.
+          Or, you can disable collectstatic for this application:
+              $ heroku config:set DISABLE_COLLECTSTATIC=1
+          https://devcenter.heroku.com/articles/django-assets
+    !     Push rejected, failed to compile Python app.
+    !     Push failed
+    ```
+
+    **Cause**: DISABLE_COLLECTSTATIC was named incorrectly in heroku, it was DISABLE_COLLEC
+    STATIC =1
+
+    **Solution** deleted config var DISABLE_COLLEC
+    STATIC =1 and added  DISABLE_COLLECTSTATIC=1
+  
 ## Diary
 
 - **11/12/2023**
