@@ -92,6 +92,10 @@ create wireframe
 
 ![Wireframe](/docs/images/Wireframe.png)
 
+database schema
+
+![Database_schema](/docs/images/gamer_library_database_schema.png)
+
 - **Surface plane**
 font contrast
 contrast font and background
@@ -203,7 +207,7 @@ keep consitancy
     **Cause**: DISABLE_COLLECTSTATIC was named incorrectly in heroku, it was DISABLE_COLLEC
     STATIC =1
 
-    **Solution** deleted config var DISABLE_COLLEC
+    **Solution**: deleted config var DISABLE_COLLEC
     STATIC =1 and added  DISABLE_COLLECTSTATIC=1
   
 ## Diary
@@ -218,4 +222,12 @@ keep consitancy
   start django project
 
 - **12/12/2023**
+  set up early deployment
+  documented bugs
+  created and connected to postgresql
+  connect to cloudinary
+  successfull deployment on heroku
+
+- **15/12/2023**
+  database schema creation
   
