@@ -209,7 +209,80 @@ keep consitancy
 
     **Solution**: deleted config var DISABLE_COLLEC
     STATIC =1 and added  DISABLE_COLLECTSTATIC=1
+
+1. **Error**:
+    many to many relation is not visible in admin panel
+
+   **Cause**:
+    many to many rleation have been created using cross-tables
+    user-games, user-wishlist
+
+    **Solution**:
+      used ManyToManyField rather than cross table
+
+1. **Error**:
+    Many to many relation does not take into consideration game custom fields such as user score and user review
+
+    **Cause**:
+    Use of many-to-many relation rather than one-to-many
+
+    **Solution**:
+    changed many to many relation into one to many in the following:
+    user-games is now one to many
+    user-wishlists is now one to many
+    added plaltform table
+    user-platform is one to many
+    platform-games is one to many
+    platform-wishlists os one to man
+
+1. **Error**:
+
+    ```cmd
+      ERRORS:
+      <class 'library.admin.PlatformAdmin'>: (admin.E020) The value of 'filter_horizontal[0]' must be a many-to-many field.
+      <class 'library.admin.PlatformAdmin'>: (admin.E020) The value of 'filter_horizontal[1]' must be a many-to-many field.
+      <class 'library.admin.UserProfileAdmin'>: (admin.E013) The value of 'filter_horizontal[0]' cannot include the ManyToManyField 'friends', because that field manually specifies a relationship model.
+      <class 'library.admin.UserProfileAdmin'>: (admin.E020) The value of 'filter_horizontal[1]' must be a many-to-many field.
+      <class 'library.admin.UserProfileAdmin'>: (admin.E020) The value of 'filter_horizontal[2]' must be a many-to-many field.
+      <class 'library.admin.UserProfileAdmin'>: (admin.E020) The value of 'filter_horizontal[3]' must be a many-to-many field.
+      library.Platform.games: (fields.E303) Reverse query name for 'library.Platform.games' clashes with field name 'library.Game.platform'.
+              HINT: Rename field 'library.Game.platform', or add/change a related_name argument to the definition for field 'library.Platform.games'.
+      library.Platform.wishlists: (fields.E303) Reverse query name for 'library.Platform.wishlists' clashes with field name 'library.WishList.platform'.
+              HINT: Rename field 'library.WishList.platform', or add/change a related_name argument to the definition for field 'library.Platform.wishlists'.
+   ```
+
+   **Cause**
+   filter orizontal was set in `UserProfile` for `games`, `whishlists` and `platforms` model although they the releation between user profile and  `games`, `whishlists` and `platforms` was one to many.
+   filter orizontlal was set also for `FriendList` model but friendlist model has trough attribute
+
+    ```python
+    filter_horizontal = ('friends', 'games', 'wishlists', 'platforms')
+    ```
   
+    The error also complaints about a clash between the foreign key used in the `Platform model`
+
+    ```python
+    class Platform(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    platform_name = models.CharField(max_length=255)
+    platform_image = models.ImageField(null=True,  blank=True)
+    games = models.ForeignKey('Game', on_delete=models.CASCADE, blank=True)
+    wishlists = models.ForeignKey('WishList', on_delete=models.CASCADE,  blank=True)
+    ```
+  
+    **Solution**
+    filrer orizantal was removed in `admin.py` for `UserProfile` model
+    related name attribute added to platform model for the foreign keys
+
+    ```python
+    class Platform(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    platform_name = models.CharField(max_length=255)
+    platform_image = models.ImageField(null=True,  blank=True)
+    games = models.ForeignKey('Game', on_delete=models.CASCADE, blank=True, related_name='games' )
+    wishlists = models.ForeignKey('WishList', on_delete=models.CASCADE,  blank=True, related_name='wish_list')
+    ```
+
 ## Diary
 
 - **11/12/2023**
@@ -235,4 +308,14 @@ keep consitancy
 - **16/12/2023**
   add manytomany relation on database
   deletion and recreation of database
+
+- **17/12/2023**
+  changed many to many relation into one to many in the following:
+  user-games is now one to many
+  user-wishlists is now one to many
+  added plaltform table
+  user-platform is one to many
+  platform-games is one to many
+  platform-wishlists os one to many
+
   

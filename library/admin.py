@@ -1,35 +1,41 @@
 from django.contrib import admin
-from .models import UserProfile, Game, WishList, FriendList
+from .models import UserProfile, Game, WishList, Platform, FriendList
 
 # Register your models here.
 
 @admin.register(UserProfile)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'get_friends', 'get_games', 'get_wishlist')
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email')
+    search_fields = ('username', 'email')
 
-    def get_friends(self, obj):
-        return ', '.join([friend.username for friend in obj.friends.all()])
-    get_friends.short_description = 'Friends'
-
-    def get_games(self, obj):
-        return ', '.join([game.game_name for game in obj.games.all()])
-    get_games.short_description = 'Played Games'
-
-    def get_wishlist(self, obj):
-        return ', '.join([wishlist.game_name for wishlist in obj.wishlist.all()])
-    get_wishlist.short_description = 'Wishlist'
 
 @admin.register(Game)
 class GameAdmin(admin.ModelAdmin):
-    list_display = ('game_name', 'user_score', 'metacritic_score', 'release_date','completion_date', 'developer', 'platform',)
-    filter_horizontal = ('players',)
+    list_display = ('game_name', 'user_score', 'metacritic_score', 'release_date', 'completion_date', 'developer', 'get_platform')
+    search_fields = ('game_name', 'developer', 'platform')
+    list_filter = ('platform',)
+
+    def get_platform(self, obj):
+        return obj.platform.platform_name if obj.platform else None
+
+    get_platform.short_description = 'Platform'
+
+@admin.register(Platform)
+class PlatformAdmin(admin.ModelAdmin):
+    list_display = ('platform_name',)
+    search_fields = ('platform_name',)
 
 @admin.register(WishList)
 class WishListAdmin(admin.ModelAdmin):
-    list_display = ('game_name', 'release_date', 'developer', 'platform')
-    filter_horizontal = ('players',)
+    list_display = ('game_name', 'release_date', 'developer', 'get_platform')
+    search_fields = ('game_name', 'developer', 'platform')
+
+    def get_platform(self, obj):
+        return obj.platform.platform_name if obj.platform else None
+
+    get_platform.short_description = 'Platform'
 
 @admin.register(FriendList)
 class FriendListAdmin(admin.ModelAdmin):
     list_display = ('user', 'friend')
-
+    search_fields = ('user__username', 'friend__username')
