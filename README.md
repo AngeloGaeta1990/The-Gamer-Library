@@ -283,6 +283,57 @@ keep consitancy
     wishlists = models.ForeignKey('WishList', on_delete=models.CASCADE,  blank=True, related_name='wish_list')
     ```
 
+1. **Error**:
+
+   ```cmd
+    IntegrityError at /admin/library/platform/add/
+    null value in column "games_id" of relation "library_platform" violates not-null constraint
+    DETAIL:  Failing row contains (c64c5653-4b10-4f1c-a68d-cf1754346e90, Game Pass, , null, null, null).
+    Request Method:POST
+    Django Version:5.0
+    Exception Type:IntegrityError
+    Exception Value:
+    null value in column "games_id" of relation "library_platform" violates not-null constraint
+    DETAIL:  Failing row contains (c64c5653-4b10-4f1c-a68d-cf1754346e90, Game Pass, , null, null, null).
+    Exception Location:
+   ```
+
+   **Cause**:
+    Games is Foreign key for platfrom and is not set to null=true
+
+    **Solution**:
+    Added null= True to the game and wish list ForeignKey
+
+    ```python
+    games = models.ForeignKey(Game, on_delete=models.CASCADE, null=True, blank=True)
+    ```
+
+1. **Error**:
+    The template platform_list.html does not show platform created
+
+    **Cause**:
+    Platform attributes were called incorrectly in .html template
+
+    ```html
+      <h1>Platforms list</h1>
+      {% for platform in object_list %}
+        <h2>{{platform.name}}</h2>
+        <p>{{plaform.model}}</p>
+      {% endfor %}
+    ```
+
+    **Solution**:
+    Corrected platform instance attribute name in .html template
+
+    ```html
+     <h1>Platforms list</h1>
+      {% for platform in object_list %}
+        <h2>{{platform.platform_name}}</h2>
+        <p>{{platform.platform_model}}</p>
+      {% endfor %}
+    
+    ```
+
 ## Diary
 
 - **11/12/2023**
@@ -318,4 +369,3 @@ keep consitancy
   platform-games is one to many
   platform-wishlists os one to many
 
-  

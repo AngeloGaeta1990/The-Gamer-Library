@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Platform
 
 
 # Create your views here.
-def index(request):
-    return HttpResponse("Hello, world!")
+class PlatformList(generic.ListView):
+    queryset = Platform.objects.all()
+    template_name = "platform_list.html"

@@ -60,8 +60,8 @@ class Platform(models.Model):
     platform_name = models.CharField(max_length=255)
     platform_image = models.ImageField(null=True,  blank=True)
     platform_model = models.CharField(max_length=255, null=True,  blank=True)
-    games = models.ForeignKey('Game', on_delete=models.CASCADE, blank=True, related_name='games' )
-    wishlists = models.ForeignKey('WishList', on_delete=models.CASCADE,  blank=True, related_name='wish_list')
+    games = models.ForeignKey('Game', on_delete=models.CASCADE, blank=True, null=True, related_name='games' )
+    wishlists = models.ForeignKey('WishList', on_delete=models.CASCADE,  blank=True, null=True, related_name='wish_list')
 
     ordering = ["platform_name"]
 
