@@ -26,6 +26,7 @@ class Game(models.Model):
     genres = models.CharField(max_length=255,  blank=True, null=True)
     release_date = models.DateField(null=True,  blank=True)
     completion_date = models.DateField(null=True, auto_now_add=True,  blank=True)
+    hours_spent = models.IntegerField(null=True, blank=True)
     developer = models.CharField(max_length=255, null=True,  blank=True)
     platform = models.CharField(max_length=255, null=True,  blank=True)
 
@@ -58,6 +59,7 @@ class Platform(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     platform_name = models.CharField(max_length=255)
     platform_image = models.ImageField(null=True,  blank=True)
+    platform_model = models.CharField(max_length=255, null=True,  blank=True)
     games = models.ForeignKey('Game', on_delete=models.CASCADE, blank=True, related_name='games' )
     wishlists = models.ForeignKey('WishList', on_delete=models.CASCADE,  blank=True, related_name='wish_list')
 
