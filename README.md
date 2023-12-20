@@ -336,41 +336,46 @@ keep consitancy
 
 ## Diary
 
-- **11/12/2023**
-  Add user stories template
-  add labels
-  add user stories
-  add sprint 1
-  add wireframe
-  update feasibility importance plot
-  start django project
+- ### Sprint1
+  
+  - **11/12/2023**
+    Add user stories template
+    add labels
+    add user stories
+    add sprint 1
+    add wireframe
+    update feasibility importance plot
+    start django project
 
-- **12/12/2023**
-  set up early deployment
-  documented bugs
-  created and connected to postgresql
-  connect to cloudinary
-  successfull deployment on heroku
+  - **12/12/2023**
+    set up early deployment
+    documented bugs
+    created and connected to postgresql
+    connect to cloudinary
+    successfull deployment on heroku
 
-- **15/12/2023**
-  database schema creation
-  database implementation
+  - **15/12/2023**
+    database schema creation
+    database implementation
 
-- **16/12/2023**
-  add manytomany relation on database
-  deletion and recreation of database
+  - **16/12/2023**
+    add manytomany relation on database
+    deletion and recreation of database
 
-- **17/12/2023**
-  changed many to many relation into one to many in the following:
-  user-games is now one to many
-  user-wishlists is now one to many
-  added plaltform table
-  user-platform is one to many
-  platform-games is one to many
-  platform-wishlists os one to many
+  - **17/12/2023**
+    changed many to many relation into one to many in the following:
+    user-games is now one to many
+    user-wishlists is now one to many
+    added plaltform table
+    user-platform is one to many
+    platform-games is one to many
+    platform-wishlists os one to many
 
-- **19/12/2023**
-   add basic view and url
-   allows to see the list of platforms available
-   added template html to visualize platforms list
+  - **19/12/2023**
+     add basic view and url
+     allows to see the list of platforms available
+     added template html to visualize platforms list
 
+  - **20/12/2023**
+     add summernote
+     add fixture

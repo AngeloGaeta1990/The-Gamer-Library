@@ -16,6 +16,7 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.username
 
+
 class Game(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     game_name = models.CharField(max_length=255)
@@ -55,6 +56,8 @@ class WishList(models.Model):
     def __str__(self):
         return self.game_name
 
+#TODO check if it possible to create PC, console and Service subclass
+#TODO add plan and hardware specs
 class Platform(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     platform_name = models.CharField(max_length=255)

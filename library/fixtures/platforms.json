@@ -1,0 +1,76 @@
+[
+    {
+        "model": "library.platform",
+        "pk": null,
+        "fields": {
+            "platform_name": "Game pass",
+            "platform_model": "Ultimate"
+        }
+    },
+    {
+        "model": "library.platform",
+        "pk": null,
+        "fields": {
+            "platform_name": "Xbox",
+            "platform_model": "Series S"
+        }
+    },
+    {
+        "model": "library.platform",
+        "pk": null,
+        "fields": {
+            "platform_name": "Playstation 4",
+            "platform_model": "Pro"
+        }
+        
+    },
+    {
+        "model": "library.platform",
+        "pk": null,
+        "fields": {
+            "platform_name": "Nintendo Switch",
+            "platform_model": "OLED"
+        }
+    },
+    {
+        "model": "library.platform",
+        "pk": null,
+        "fields": {
+            "platform_name": "Steam deck",
+            "platform_model": "512 GB standard"
+        }
+    },
+    {
+        
+        "model": "library.platform",
+        "pk": null,
+        "fields": {
+            "platform_name": "Pc",
+            "platform_model": "Fierc PC"
+        }
+       
+    },
+    {
+        "model": "library.platform",
+        "pk": null,
+        "fields": {
+            "platform_name": "Steam"
+        }
+        
+    },
+    {
+        "model": "library.platform",
+        "pk": null,
+        "fields": {
+            "platform_name": "Epic Games"
+        }
+    },
+    {
+        "model": "library.platform",
+        "pk": null,
+        "fields": {
+            "platform_name": "Playstation Plus",
+            "platform_model": "Premium"         
+        }
+    }
+]
