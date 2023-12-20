@@ -1,7 +1,22 @@
 from django.contrib import admin
 from .models import UserProfile, Game, WishList, Platform, FriendList
+from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
+
+@admin.register(Game)
+class GameAdmin(SummernoteModelAdmin):
+    list_display = ('game_name', 'user_score', 'metacritic_score', 'release_date', 'completion_date', 'developer', 'get_platform')
+    search_fields = ['game_name']
+    list_filter = ('platform',)
+    summernote_fields = ('user_review',)
+
+    def get_platform(self, obj):
+        return obj.platform.platform_name if obj.platform else None
+
+    get_platform.short_description = 'Platform'
+
+
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
@@ -9,16 +24,16 @@ class UserProfileAdmin(admin.ModelAdmin):
     search_fields = ('username', 'email')
 
 
-@admin.register(Game)
-class GameAdmin(admin.ModelAdmin):
-    list_display = ('game_name', 'user_score', 'metacritic_score', 'release_date', 'completion_date', 'developer', 'get_platform')
-    search_fields = ('game_name', 'developer', 'platform')
-    list_filter = ('platform',)
+# @admin.register(Game)
+# class GameAdmin(admin.ModelAdmin):
+#     list_display = ('game_name', 'user_score', 'metacritic_score', 'release_date', 'completion_date', 'developer', 'get_platform')
+#     search_fields = ('game_name', 'developer', 'platform')
+#     list_filter = ('platform',)
 
-    def get_platform(self, obj):
-        return obj.platform.platform_name if obj.platform else None
+#     def get_platform(self, obj):
+#         return obj.platform.platform_name if obj.platform else None
 
-    get_platform.short_description = 'Platform'
+#     get_platform.short_description = 'Platform'
 
 @admin.register(Platform)
 class PlatformAdmin(admin.ModelAdmin):

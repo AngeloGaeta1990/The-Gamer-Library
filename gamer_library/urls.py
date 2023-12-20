@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('library.urls'), name='library-urls'),
+    #TODO order alphabetically
     path('admin/', admin.site.urls),
+    path('summernote/', include('django_summernote.urls')),
+    path('', include('library.urls'), name='library-urls'),
 ]

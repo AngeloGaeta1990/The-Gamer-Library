@@ -369,3 +369,8 @@ keep consitancy
   platform-games is one to many
   platform-wishlists os one to many
 
+- **19/12/2023**
+   add basic view and url
+   allows to see the list of platforms available
+   added template html to visualize platforms list
+

@@ -5,5 +5,5 @@ from .models import Platform
 
 # Create your views here.
 class PlatformList(generic.ListView):
-    queryset = Platform.objects.all()
+    queryset = Platform.objects.all().order_by("platform_name")
     template_name = "platform_list.html"
