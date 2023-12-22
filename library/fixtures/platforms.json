@@ -1,76 +1,162 @@
 [
     {
-        "model": "library.platform",
-        "pk": null,
+        "model": "library.Platform",
+        "pk": 1,
         "fields": {
-            "platform_name": "Game pass",
-            "platform_model": "Ultimate"
+            "name": "Game pass",
+            "image": null,
+            "category": "service"
         }
     },
     {
-        "model": "library.platform",
-        "pk": null,
+        "model": "library.ServicePlatform",
+        "pk": 1,
         "fields": {
-            "platform_name": "Xbox",
-            "platform_model": "Series S"
+            "platform_ptr": 1,
+            "plan": "Ultimate",
+            "subscription_fee": 9.99,
+            "category": "service"
         }
     },
     {
-        "model": "library.platform",
-        "pk": null,
+        "model": "library.Platform",
+        "pk": 2,
         "fields": {
-            "platform_name": "Playstation 4",
-            "platform_model": "Pro"
-        }
-        
-    },
-    {
-        "model": "library.platform",
-        "pk": null,
-        "fields": {
-            "platform_name": "Nintendo Switch",
-            "platform_model": "OLED"
+            "name": "Xbox",
+            "image": null,
+            "category": "console"
         }
     },
     {
-        "model": "library.platform",
-        "pk": null,
+        "model": "library.ConsolePlatform",
+        "pk": 2,
         "fields": {
-            "platform_name": "Steam deck",
-            "platform_model": "512 GB standard"
+            "platform_ptr": 2,
+            "model": "Series S",
+            "category": "console"
         }
     },
     {
-        
-        "model": "library.platform",
-        "pk": null,
+        "model": "library.Platform",
+        "pk": 3,
         "fields": {
-            "platform_name": "Pc",
-            "platform_model": "Fierc PC"
-        }
-       
-    },
-    {
-        "model": "library.platform",
-        "pk": null,
-        "fields": {
-            "platform_name": "Steam"
-        }
-        
-    },
-    {
-        "model": "library.platform",
-        "pk": null,
-        "fields": {
-            "platform_name": "Epic Games"
+            "name": "Playstation 4",
+            "image": null,
+            "category": "console"
         }
     },
     {
-        "model": "library.platform",
-        "pk": null,
+        "model": "library.ConsolePlatform",
+        "pk": 3,
         "fields": {
-            "platform_name": "Playstation Plus",
-            "platform_model": "Premium"         
+            "platform_ptr": 3,
+            "model": "Pro",
+            "category": "console"
+        }
+    },
+    {
+        "model": "library.Platform",
+        "pk": 4,
+        "fields": {
+            "name": "Nintendo Switch",
+            "image": null,
+            "category": "console"
+        }
+    },
+    {
+        "model": "library.ConsolePlatform",
+        "pk": 4,
+        "fields": {
+            "platform_ptr": 4,
+            "model": "OLED",
+            "category": "console"
+        }
+    },
+    {
+        "model": "library.Platform",
+        "pk": 5,
+        "fields": {
+            "name": "Steam deck",
+            "image": null,
+            "category": "pc"
+        }
+    },
+    {
+        "model": "library.PCPlatform",
+        "pk": 5,
+        "fields": {
+            "platform_ptr": 5,
+            "category": "pc"
+        }
+    },
+    {
+        "model": "library.Platform",
+        "pk": 6,
+        "fields": {
+            "name": "Desktop gaming PC",
+            "image": null,
+            "category": "pc"
+        }
+    },
+    {
+        "model": "library.PCPlatform",
+        "pk": 6,
+        "fields": {
+            "platform_ptr": 6,
+            "gpu": "Nvidia 3080 RTX",
+            "category": "pc"
+        }
+    },
+    {
+        "model": "library.Platform",
+        "pk": 7,
+        "fields": {
+            "name": "Steam",
+            "image": null,
+            "category": "service"
+        }
+    },
+    {
+        "model": "library.ServicePlatform",
+        "pk": 7,
+        "fields": {
+            "platform_ptr": 7,
+            "category": "service"
+        }
+    },
+    {
+        "model": "library.Platform",
+        "pk": 8,
+        "fields": {
+            "name": "Epic Games",
+            "image": null,
+            "category": "service"
+        }
+    },
+    {
+        "model": "library.ServicePlatform",
+        "pk": 8,
+        "fields": {
+            "platform_ptr": 8,
+            "category": "service"
+        }
+    },
+    {
+        "model": "library.Platform",
+        "pk": 9,
+        "fields": {
+            "name": "Playstation Plus",
+            "image": null,
+            "category": "service"
+        }
+    },
+    {
+        "model": "library.ServicePlatform",
+        "pk": 9,
+        "fields": {
+            "platform_ptr": 9,
+            "plan": "Premium",
+            "category": "service"
         }
     }
 ]

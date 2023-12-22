@@ -379,3 +379,6 @@ keep consitancy
   - **20/12/2023**
      add summernote
      add fixture
+
+  - **21/12/2023**
+    reshape model adding platform subclasses
