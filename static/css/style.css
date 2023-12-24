@@ -1,0 +1,15 @@
+/* styles.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:ital@1&display=swap');
+
+
+/*______________________ Base.html______________________*/
+
+body {
+    font-family:'Roboto', sans-serif;}
+
+
+.project_name {
+    font-family: 'Press Start 2P', sans-serif;
+}
+

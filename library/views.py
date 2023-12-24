@@ -6,7 +6,7 @@ from .models import Platform
 # Create your views here.
 class PlatformList(generic.ListView):
     context_object_name = 'platforms'
-    template_name = "platform_list.html"
+    template_name = "base.html"
 
     def get_queryset(self):
         # Query all platform instances, including subclasses
