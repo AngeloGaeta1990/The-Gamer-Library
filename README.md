@@ -336,7 +336,7 @@ keep consitancy
 
 ## Diary
 
-- ### Sprint1
+- ### Sprint 1
   
   - **11/12/2023**
     Add user stories template
@@ -382,3 +382,10 @@ keep consitancy
 
   - **21/12/2023**
     reshape model adding platform subclasses
+
+  - **25/12/2023**
+     created base.html
+     add boostrap
+     add fontawesome
+
+- ### Sprint 2  

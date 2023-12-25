@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'django_summernote',
+    'fontawesomefree',
     'library',
 ]
 

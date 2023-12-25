@@ -1,15 +1,67 @@
 /* styles.css */
 
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;900&display=swap');
+
+
+/*______________________ General______________________*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Set minimum height to 100% of the viewport height */
+    margin: 0; /* Remove default margin */
+}
+
 
 
 /*______________________ Base.html______________________*/
-
-body {
-    font-family:'Roboto', sans-serif;}
 
 
 .project_name {
     font-family: 'Press Start 2P', sans-serif;
 }
 
+nav {
+    animation: borderAnimation 30s infinite; /* Choose your desired color, #28a745 is Bootstrap's success color */
+    border-radius: 5px; /* Optional: Add border radius for rounded corners */
+    margin-bottom: 20px; /* Optional: Adjust the margin as needed */
+    border-width: 7px;
+    border-style: solid;
+}
+
+@keyframes borderAnimation {
+    0% { border-color: #ff0000; } /* Red */
+    25% { border-color: #00ff00; } /* Green */
+    50% { border-color: #0000ff; } /* Blue */
+    75% { border-color: #ffff00; } /* Yellow */
+    100% { border-color: #ff00ff; } /* Magenta */
+}
+
+main {
+    flex: 1; /* Allow main content to take remaining height */
+}
+
+footer {
+    margin: 0;
+    flex-shrink: 0; /* Do not shrink the footer */
+    background-color: #000; /* Set background color to black */
+    color: #fff; /* Set text color to white */
+    padding: 20px; /* Add padding for better appearance */
+    font-size: larger;
+
+}
+
+.white-text{
+    color: #fafafa;
+}
+
+.fa-github {
+    margin-right: 30px; /* Adjust the value as needed */
+}
