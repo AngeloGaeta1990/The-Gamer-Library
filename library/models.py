@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from django.core.validators import MaxValueValidator
+from colorfield.fields import ColorField
 
 # Create your models here.
 # class CustomUser(AbstractUser):
@@ -71,6 +72,8 @@ class Platform(models.Model):
     image = models.ImageField(null=True,  blank=True)
     games = models.ForeignKey('Game', on_delete=models.CASCADE, blank=True, null=True, related_name='platform_games' )
     wishlists = models.ForeignKey('WishList', on_delete=models.CASCADE,  blank=True, null=True, related_name='platform_wish_list')
+    box_color = ColorField(null=True,  blank=True)
+    font_color = ColorField(null=True,  blank=True, default='#000000')
     
     class Meta:
         ordering = ["name"]
@@ -85,10 +88,17 @@ class PCPlatform(Platform):
         ('MacOS', 'MacOS'),
         ('Android', 'Android')
     ]
+
+    DISK_TYPE_CHOICES = [
+        ('HDD', 'HDD'),
+        ('SSD', 'SSD')
+    ]
     operative_systems = models.CharField(max_length=50, choices=OPERATIVE_SYSTEMS_CHOICES)
     gpu = models.CharField(max_length=255, null=True,  blank=True)
     cpu = models.CharField(max_length=255, null=True,  blank=True)
     ram = models.IntegerField(null=True, blank=True)
+    disk_size = models.IntegerField(null=True, blank=True)
+    disk_type =  models.CharField(max_length=10, choices= DISK_TYPE_CHOICES, null=True, blank=True)
   
 
 
