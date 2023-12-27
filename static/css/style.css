@@ -24,9 +24,6 @@ body {
 /*______________________ Base.html______________________*/
 
 
-.project_name {
-    font-family: 'Press Start 2P', sans-serif;
-}
 
 nav {
     animation: borderAnimation 30s infinite; /* Choose your desired color, #28a745 is Bootstrap's success color */
@@ -49,7 +46,7 @@ main {
 }
 
 footer {
-    margin: 0;
+    margin-top: 40px;
     flex-shrink: 0; /* Do not shrink the footer */
     background-color: #000; /* Set background color to black */
     color: #fff; /* Set text color to white */
@@ -79,3 +76,42 @@ footer {
     border: 1px solid #000; /* Specify the color and style of the border */
 }
 
+.start-to-play-font {
+   font-family: 'Press Start 2P', sans-serif;
+}
+
+.platform-image {
+    height: 80px;
+    width: 80px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.plaform-name-spacing {
+    margin: 5px;
+    padding: 5px;
+}
+
+
+.games-count {
+    margin-left: 10px;
+    font-weight: bold;
+  }
+
+  .game-details {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  .game-image {
+    max-width: 200px;
+    max-height: 200px;
+    margin-right: 10px;
+  }
+
+  .game-info {
+    flex-grow: 1;
+  }

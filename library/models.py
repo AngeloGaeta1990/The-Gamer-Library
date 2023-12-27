@@ -21,21 +21,21 @@ class Game(models.Model):
     name = models.CharField(max_length=255)
     user_score = models.IntegerField(null=True,  blank=True, validators=[MaxValueValidator(100)])
     metacritic_score = models.IntegerField( null=True,  blank=True, validators=[MaxValueValidator(100)])
-    game_image = models.ImageField(null=True,  blank=True)
+    image = models.ImageField(null=True,  blank=True)
     user_review = models.TextField(null=True,  blank=True)
     genres = models.CharField(max_length=255,  blank=True, null=True)
     release_date = models.DateField(null=True,  blank=True)
     completion_date = models.DateField(null=True, auto_now_add=True,  blank=True)
     hours_spent = models.IntegerField(null=True, blank=True)
     developer = models.CharField(max_length=255, null=True,  blank=True)
-    platform = models.ForeignKey('Platform',  on_delete=models.SET_NULL, blank=True, null=True, )
+    platform = models.ForeignKey('Platform',  on_delete=models.SET_NULL, blank=True, null=True, related_name='games_platform')
 
     class Meta:
         unique_together = ('name', 'platform')
         ordering = ["platform"]
 
     def __str__(self):
-        return self.game_name
+        return self.name
 
 
 class WishList(models.Model):
@@ -70,10 +70,8 @@ class Platform(models.Model):
     name = models.CharField(max_length=255)
     category = models.CharField(max_length=10, choices=PLATFORM_CHOICES, null=False, blank=False)
     image = models.ImageField(null=True,  blank=True)
-    games = models.ForeignKey('Game', on_delete=models.CASCADE, blank=True, null=True, related_name='platform_games' )
-    wishlists = models.ForeignKey('WishList', on_delete=models.CASCADE,  blank=True, null=True, related_name='platform_wish_list')
     box_color = ColorField(null=True,  blank=True)
-    font_color = ColorField(null=True,  blank=True, default='#000000')
+    font_color = ColorField(null=True,  blank=True, default='#fafafa')
     
     class Meta:
         ordering = ["name"]

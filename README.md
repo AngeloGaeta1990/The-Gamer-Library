@@ -388,4 +388,12 @@ keep consitancy
      add boostrap
      add fontawesome
 
-- ### Sprint 2  
+- ### Sprint 2
+
+  - **26/12/2023**
+  - add index.html
+  - add javascript and jquery
+
+- **27/12/2023**
+- add game list to index.html
+- remove foreign key from platform model

@@ -4,17 +4,37 @@
 
 {% block content %}
 <div class="container no-margin full-width">
-    {% for platform in object_list %}
+  {% for platform in object_list %}
     <div class="row">
       <div class="col-12">
         <div class="dropdown mt-3 h-100 w-100">
-          <button class="btn btn-secondary dropdown-toggle btn-block h-100 w-100 no-margin btn-border platform-button" data-boxcolor="{{platform.box_color}}" data-fontcolor="{{platform.font_color}}" type="button" id="platformDropdown{{ forloop.counter }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ platform.name }}
+          <button class="btn btn-secondary dropdown-toggle btn-block h-100 w-100 no-margin btn-border platform-button start-to-play-font" data-boxcolor="{{platform.box_color}}" data-fontcolor="{{platform.font_color}}" type="button" id="platformDropdown{{ forloop.counter }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="d-flex align-items-center">
+              {% if platform.image %}
+                <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="platform-image mr-2">
+              {% endif %}
+              <div class="mr-3 plaform-name-spacing">
+                {{ platform.name }}
+                <span class="games-count"> {{ platform.game_count }}</span>
+              </div>
+            </div>
           </button>
           <div class="dropdown-menu full-width" aria-labelledby="platformDropdown{{ forloop.counter }}">
-            {% for game in platform.games %}
-              <a class="dropdown-item" href="#">{{ game }}</a>
-            {% endfor %}
+            {% if platform.games_platform.all %}
+              {% for game in platform.games_platform.all %}
+                <div class="game-details">
+                  {% if game.image %}
+                    <img src="{{ game.image.url }}" alt="{{ game.name }} Image" class="game-image mr-2">
+                  {% endif %}
+                  <div class="game-info">
+                    <p class="game-name">{{ game.name }}</p>
+                    <p class="user-score">User Score: {{ game.user_score }}</p>
+                  </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <p>No games available</p>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -24,5 +44,6 @@
 
 <script src="../../../static/js/jquery-3.7.1.min.js"></script>
 <script src="{% static '../../../../../static/js/script.js' %}"></script>
+
 
 {% endblock %}

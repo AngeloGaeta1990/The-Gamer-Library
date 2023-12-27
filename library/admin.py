@@ -6,13 +6,13 @@ from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Game)
 class GameAdmin(SummernoteModelAdmin):
-    list_display = ('name', 'user_score', 'metacritic_score', 'release_date', 'completion_date', 'developer', 'get_platform')
+    list_display = ('name', 'user_score', 'metacritic_score',"id", 'release_date', 'completion_date', 'developer', 'get_platform')
     search_fields = ['name']
-    list_filter = ('platform',)
+    list_filter = ['id','platform', 'platform__id']
     summernote_fields = ('user_review',)
 
     def get_platform(self, obj):
-        return obj.platform.platform_name if obj.platform else None
+        return obj.platform.name if obj.platform else None
 
     get_platform.short_description = 'Platform'
 
@@ -37,37 +37,37 @@ class GameAdmin(SummernoteModelAdmin):
 
 @admin.register(Platform)
 class PlatformAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'games')
+    list_display = ('name',"id", 'category')
     search_fields = ['name']
-    list_filter = ['category']
+    list_filter = ['id','category']
 
 
 
 @admin.register(PCPlatform)
 class PCPlatformAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'operative_systems', 'gpu', 'cpu', 'ram')
+    list_display = ('name','id',  'category', 'operative_systems', 'gpu', 'cpu', 'ram')
     search_fields = ['name']
 
 @admin.register(ConsolePlatform)
 class ConsolePlatformAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'model')
+    list_display = ( 'name','id', 'category', 'model')
     search_fields = ['name']
     # Add other configurations as needed
 
 @admin.register(ServicePlatform)
 class ServicePlatformAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'subscription_fee', 'plan')
+    list_display = ('name', 'id','category', 'subscription_fee', 'plan')
     search_fields = ['name']
     # Add other configurations as needed
 
 @admin.register(MobilePlatform)
 class MobilePlatformAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'brand', 'operative_systems')
+    list_display = ('name', 'id','category', 'brand', 'operative_systems')
     search_fields = ['name']
 
 @admin.register(WishList)
 class WishListAdmin(admin.ModelAdmin):
-    list_display = ('game_name', 'release_date', 'developer', 'get_platform')
+    list_display = ('game_name','id','release_date', 'developer', 'get_platform')
     search_fields = ('game_name', 'developer', 'game_platform')
 
     def get_platform(self, obj):
