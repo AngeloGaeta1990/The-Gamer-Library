@@ -8,6 +8,7 @@ from. models import Game
 class PlatformList(generic.ListView):
     context_object_name = 'platforms'
     template_name = "library/index.html"
+    # paginate_by = 6
 
     def get_queryset(self):
         # Query all platform instances, including subclasses

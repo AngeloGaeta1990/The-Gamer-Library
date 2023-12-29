@@ -24,7 +24,7 @@
               {% for game in platform.games_platform.all %}
                 <div class="game-details">
                   {% if game.image %}
-                    <img src="{{ game.image.url }}" alt="{{ game.name }} Image" class="game-image mr-2">
+                    <img src="{{game.image.url }}" alt="{{ game.name }} Image" class="game-image mr-2">
                   {% endif %}
                   <div class="game-info">
                     <p class="game-name">{{ game.name }}</p>
@@ -41,9 +41,5 @@
     </div>
   {% endfor %}
 </div>
-
-<script src="../../../static/js/jquery-3.7.1.min.js"></script>
-<script src="{% static '../../../../../static/js/script.js' %}"></script>
-
 
 {% endblock %}

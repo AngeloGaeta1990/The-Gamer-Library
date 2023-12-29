@@ -21,7 +21,7 @@ class Game(models.Model):
     name = models.CharField(max_length=255)
     user_score = models.IntegerField(null=True,  blank=True, validators=[MaxValueValidator(100)])
     metacritic_score = models.IntegerField( null=True,  blank=True, validators=[MaxValueValidator(100)])
-    image = models.ImageField(null=True,  blank=True)
+    image = models.ImageField(upload_to='library/game_images', null=True,  blank=True)
     user_review = models.TextField(null=True,  blank=True)
     genres = models.CharField(max_length=255,  blank=True, null=True)
     release_date = models.DateField(null=True,  blank=True)
@@ -41,7 +41,7 @@ class Game(models.Model):
 class WishList(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     game_name = models.CharField(max_length=255)
-    game_image = models.ImageField(null=True,  blank=True)
+    game_image = models.ImageField( upload_to='library/wishlist_images', null=True,  blank=True)
     game_genres = models.CharField(max_length=255, null=True,  blank=True)
     stores = models.CharField(max_length=255, null=True,  blank=True)
     release_date = models.DateField(null=True,  blank=True)
@@ -69,7 +69,7 @@ class Platform(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
     category = models.CharField(max_length=10, choices=PLATFORM_CHOICES, null=False, blank=False)
-    image = models.ImageField(null=True,  blank=True)
+    image = models.ImageField( upload_to='library/platform_images', null=True,  blank=True)
     box_color = ColorField(null=True,  blank=True)
     font_color = ColorField(null=True,  blank=True, default='#fafafa')
     
