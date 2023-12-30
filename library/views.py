@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.db import models
 from .models import Platform
@@ -15,4 +15,26 @@ class PlatformList(generic.ListView):
         # return Platform.objects.all()
         return Platform.objects.annotate(game_count=models.Count('games_platform')).all()
 
+def platform_detail(request, slug):
+    """
+    Display an individual :model:`libray.Library`.
+
+    **Context**
+
+    ``Platform``
+        An instance of :model:`library.Platform`.
+
+    **Template:**
+
+    :template:`library/platform_detail.html`
+    """
+    queryset = Platform.objects.all()
+    # queryset = Platform.objects.filter(category="pc")
+    platform = get_object_or_404(queryset, slug=slug)
+    games = platform.games_platform.all()
+    return render(
+        request,
+        "library/platform_detail.html",
+        {"platform": platform, "games": games},
+    )
         

@@ -395,5 +395,15 @@ keep consitancy
   - add javascript and jquery
 
 - **27/12/2023**
-- add game list to index.html
-- remove foreign key from platform model
+  - add game list to index.html
+  - remove foreign key from platform model
+
+- **28/12/2023**
+  - move static files from cloudinary to collectstic
+  - add whitenoise
+  
+- **29/12/2023**
+  - add view function for platform detail.html
+  - add platform detail .html
+  - add slug field to platforms
+  - add style to platform detail.html

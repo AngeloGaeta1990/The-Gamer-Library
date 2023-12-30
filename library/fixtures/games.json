@@ -1,0 +1,64 @@
+[
+    {
+        "model": "library.Game",
+        "pk": 1,
+        "fields": {
+            "name": "The Witcher 3: Wild Hunt",
+            "user_score": 90,
+            "image": "library/game_images/witcher3.jpg",
+            "genres": "Action RPG",
+            "release_date": "2015-05-19",
+            "completion_date": "2023-01-01",
+            "hours_spent": 50,
+            "developer": "CD Projekt",
+            "platform": 6
+        }
+    },
+    {
+        "model": "library.Game",
+        "pk": 2,
+        "fields": {
+            "name": "Baldur's Gate 3",
+            "user_score": 100,
+            "image": "library/game_images/baldurs_gate_3.avif",
+            "user_review": "A masterpiece!",
+            "genres": "RPG",
+            "release_date": "2023-08-03",
+            "completion_date": "2023-01-05",
+            "hours_spent": 350,
+            "developer": "Larian Studios",
+            "platform": 6
+        }
+    },
+    {
+        "model": "library.Game",
+        "pk": 3,
+        "fields": {
+            "name": "Lies of P",
+            "user_score": 70,
+            "image": "library/game_images/lies_of_p.jpg",
+            "genres": "Action RPG",
+            "release_date": "2023-09-19",
+            "completion_date": null,
+            "hours_spent": null,
+            "developer": "Neowiz Games",
+            "platform": 1
+        }
+    },
+
+    {
+        "model": "library.Game",
+        "pk": 4,
+        "fields": {
+            "name": "Hi-Fi Rush",
+            "user_score": 85,
+            "image": "library/game_images/hi_fi_rush.jpg",
+            "genres": "Action",
+            "release_date": "2023-09-19",
+            "completion_date": null,
+            "hours_spent": 40,
+            "developer": "Tango Gameworks",
+            "platform": 1
+        }
+    }
+]

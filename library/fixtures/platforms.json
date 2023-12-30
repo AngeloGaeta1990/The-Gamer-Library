@@ -4,8 +4,9 @@
         "pk": 1,
         "fields": {
             "name": "Game pass",
-            "image": null,
-            "category": "service"
+            "image": "library/platform_images/game_pass.png",
+            "category": "service",
+            "slug": "game-pass"
         }
     },
     {
@@ -15,7 +16,8 @@
             "platform_ptr": 1,
             "plan": "Ultimate",
             "subscription_fee": 9.99,
-            "category": "service"
+            "category": "service",
+            "slug": "game-pass-service"
         }
     },
     {
@@ -24,7 +26,8 @@
         "fields": {
             "name": "Xbox",
             "image": null,
-            "category": "console"
+            "category": "console",
+            "slug": "xbox"
         }
     },
     {
@@ -33,7 +36,8 @@
         "fields": {
             "platform_ptr": 2,
             "model": "Series S",
-            "category": "console"
+            "category": "console",
+            "slug": "xbox-console"
         }
     },
     {
@@ -42,7 +46,8 @@
         "fields": {
             "name": "Playstation 4",
             "image": null,
-            "category": "console"
+            "category": "console",
+            "slug": "playstation-4"
         }
     },
     {
@@ -51,7 +56,8 @@
         "fields": {
             "platform_ptr": 3,
             "model": "Pro",
-            "category": "console"
+            "category": "console",
+            "slug": "playstation-4-console"
         }
     },
     {
@@ -59,8 +65,9 @@
         "pk": 4,
         "fields": {
             "name": "Nintendo Switch",
-            "image": null,
-            "category": "console"
+            "image": "library/platform_images/switch.png",
+            "category": "console",
+            "slug": "nintendo-switch"
         }
     },
     {
@@ -69,7 +76,8 @@
         "fields": {
             "platform_ptr": 4,
             "model": "OLED",
-            "category": "console"
+            "category": "console",
+            "slug": "nintendo-switch-console"
         }
     },
     {
@@ -78,7 +86,8 @@
         "fields": {
             "name": "Steam deck",
             "image": null,
-            "category": "pc"
+            "category": "pc",
+            "slug": "steam-deck"
         }
     },
     {
@@ -86,7 +95,8 @@
         "pk": 5,
         "fields": {
             "platform_ptr": 5,
-            "category": "pc"
+            "category": "pc",
+            "slug": "steam-deck-pc"
         }
     },
     {
@@ -95,7 +105,8 @@
         "fields": {
             "name": "Desktop gaming PC",
             "image": null,
-            "category": "pc"
+            "category": "pc",
+            "slug": "desktop-gaming-pc"
         }
     },
     {
@@ -104,7 +115,8 @@
         "fields": {
             "platform_ptr": 6,
             "gpu": "Nvidia 3080 RTX",
-            "category": "pc"
+            "category": "pc",
+            "slug": "desktop-gaming-pc-pc"
         }
     },
     {
@@ -113,7 +125,8 @@
         "fields": {
             "name": "Steam",
             "image": null,
-            "category": "service"
+            "category": "service",
+            "slug": "steam"
         }
     },
     {
@@ -121,7 +134,8 @@
         "pk": 7,
         "fields": {
             "platform_ptr": 7,
-            "category": "service"
+            "category": "service",
+            "slug": "steam-service"
         }
     },
     {
@@ -130,7 +144,8 @@
         "fields": {
             "name": "Epic Games",
             "image": null,
-            "category": "service"
+            "category": "service",
+            "slug": "epic-games"
         }
     },
     {
@@ -138,7 +153,8 @@
         "pk": 8,
         "fields": {
             "platform_ptr": 8,
-            "category": "service"
+            "category": "service",
+            "slug": "epic-games-service"
         }
     },
     {
@@ -147,7 +163,8 @@
         "fields": {
             "name": "Playstation Plus",
             "image": null,
-            "category": "service"
+            "category": "service",
+            "slug":"playstation-plus"
         }
     },
     {
@@ -156,7 +173,8 @@
         "fields": {
             "platform_ptr": 9,
             "plan": "Premium",
-            "category": "service"
+            "category": "service",
+            "slug":"playstation-plus-service"
         }
     }
 ]

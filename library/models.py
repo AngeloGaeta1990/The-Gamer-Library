@@ -67,7 +67,8 @@ class Platform(models.Model):
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(max_length=255, unique=True)
     category = models.CharField(max_length=10, choices=PLATFORM_CHOICES, null=False, blank=False)
     image = models.ImageField( upload_to='library/platform_images', null=True,  blank=True)
     box_color = ColorField(null=True,  blank=True)
@@ -97,10 +98,9 @@ class PCPlatform(Platform):
     ram = models.IntegerField(null=True, blank=True)
     disk_size = models.IntegerField(null=True, blank=True)
     disk_type =  models.CharField(max_length=10, choices= DISK_TYPE_CHOICES, null=True, blank=True)
-  
 
 
-    
+
 class ConsolePlatform(Platform):
 
     model = models.CharField(max_length=255, null=True,  blank=True)
@@ -111,8 +111,7 @@ class ServicePlatform(Platform):
     subscription_fee = models.DecimalField(max_digits=5, decimal_places=2,  null=True,  blank=True)
     plan = models.CharField(max_length=255, null=True,  blank=True)
 
-
-
+ 
 class MobilePlatform(Platform):
     OPERATIVE_SYSTEMS_CHOICES = [
         ('OS', 'OS'),
