@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'fontawesomefree',
     'colorfield',
+    'about',
     'library',
 ]
 

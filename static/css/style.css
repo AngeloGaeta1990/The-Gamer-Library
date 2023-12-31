@@ -159,3 +159,22 @@ footer {
 .pd-games-header {
     padding-left: 15px; /* Adjust the padding as needed */
 }
+
+/*______________________ about.html______________________*/
+
+/* Image Section */
+.about-image-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Text Section */
+.about-text-section {
+    background-color: black; /* Black background for the text section */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+

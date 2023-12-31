@@ -407,3 +407,5 @@ keep consitancy
   - add platform detail .html
   - add slug field to platforms
   - add style to platform detail.html
+  - updates fixtures
+  

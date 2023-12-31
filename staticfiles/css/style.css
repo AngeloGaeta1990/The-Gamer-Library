@@ -115,3 +115,66 @@ footer {
 .game-info {
     flex-grow: 1;
   }
+
+.no-highlight {
+    color: inherit; /* Inherit the font color from the parent element */
+    text-decoration: none; /* Remove the underline */
+}
+
+.no-highlight:hover,
+.no-highlight:focus {
+    text-decoration: none; /* Remove the underline on hover/focus */
+    background-color: transparent !important; /* Remove any background color */
+    color: inherit !important; /* Inherit the font color on hover/focus */
+}
+
+.no-highlight:hover,
+.no-highlight:active {
+    font-weight: bold; /* Set the font weight to bold on click */
+}
+
+/*______________________ Platform_detail.html______________________*/
+
+.pd-container {
+    text-align: left;
+    margin-top: 5rem;
+}
+
+.pd-platform-image {
+    max-width: 60%;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.pd-games-container {
+    margin-top: 2rem;
+    padding: 10px;
+}
+
+.pd-game-image {
+    width: 100%;
+    height: auto
+}
+
+.pd-games-header {
+    padding-left: 15px; /* Adjust the padding as needed */
+}
+
+/*______________________ about.html______________________*/
+
+/* Image Section */
+.about-image-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Text Section */
+.about-text-section {
+    background-color: black; /* Black background for the text section */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+

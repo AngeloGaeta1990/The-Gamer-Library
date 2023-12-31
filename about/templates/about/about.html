@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <!-- Image Row -->
+    <div class="row">
+        <div class="col-md-12 about-image-section">
+            <img src="{{ bio.image.url }}" alt="{{ bio.title }}" class="img-fluid">
+        </div>
+    </div>
+
+    <!-- Text Row -->
+    <div class="row">
+        <div class="col-md-12 about-text-section">
+            <div class="container h-100">
+                <div class="row h-100 align-items-end">
+                    <div class="col-md-12">
+                        <div class="about-text-container">
+                            <h1 class="display-4">{{ bio.title }}</h1>
+                            <p class="lead">{{ bio.description | safe }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
