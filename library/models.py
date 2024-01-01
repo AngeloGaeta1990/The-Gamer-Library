@@ -37,6 +37,16 @@ class Game(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        # Generate or set the UUID when the instance is first created
+        if not self.id:
+            self.id = uuid.uuid4()
+        
+        # Generate or set the slug based on the name field
+        self.slug = self.name.lower().replace(' ', '-')
+
+        super().save(*args, **kwargs)
+
 
 class WishList(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -79,6 +89,16 @@ class Platform(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        # Generate or set the UUID when the instance is first created
+        if not self.id:
+            self.id = uuid.uuid4()
+        
+        # Generate or set the slug based on the name field
+        self.slug = self.name.lower().replace(' ', '-')
+
+        super().save(*args, **kwargs)
 
 class PCPlatform(Platform):
     OPERATIVE_SYSTEMS_CHOICES = [

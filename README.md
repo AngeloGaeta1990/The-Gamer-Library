@@ -334,6 +334,57 @@ keep consitancy
     
     ```
 
+1. **Error**
+
+   ```cmd
+      TemplateDoesNotExist at /add_platform/
+      add_platform.html
+      Request Method:GET
+      Django Version:5.0
+      Exception Type:TemplateDoesNotExist
+      Exception Value:
+      add_platform.html
+   ```
+
+   **Cause**
+   Template file name was missing from add `platform view`
+
+   **Solution**
+   Added add platform template to add platform view:
+
+   ```python
+      def add_platform(request):
+        platform_form = AddPlatformForm()
+
+        if request.method == 'POST':
+            platform_form = AddPlatformForm(request.POST)
+            if platform_form.is_valid():
+                platform_form.save()
+                # Add any additional logic or redirect here
+                return redirect('')
+
+        return render(request,
+                      'library/add_platform.html',
+                      {'platform_form': platform_form})
+   ```
+
+1. **Error**
+
+   ```cmd
+      UnboundLocalError at /add_game/
+      cannot access local variable 'add_platform_form' where it is not associated with a value
+      Request Method:GET
+      Django Version:5.0
+      Exception Type:UnboundLocalError
+      Exception Value:
+      cannot access local variable 'add_platform_form' where it is not associated with a value
+      Raised during:library.views.add_platform
+      Python Version:3.11.4
+      Python Path:
+   ```
+
+   **Cause**
+
 ## Diary
 
 - ### Sprint 1
@@ -419,4 +470,8 @@ keep consitancy
   - add authentication
   - add authentication templates
   - add authentication draft style
-  
+
+- **01/01/2024**
+  - Part C of crud
+  - add form.py
+  - add form templates, urls and views to add platforms and games
