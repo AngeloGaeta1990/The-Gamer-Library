@@ -17,6 +17,7 @@ body {
     flex-direction: column;
     min-height: 100vh; /* Set minimum height to 100% of the viewport height */
     margin: 0; /* Remove default margin */
+    background-color: #141422;
 }
 
 
@@ -31,7 +32,10 @@ nav {
     margin-bottom: 20px; /* Optional: Adjust the margin as needed */
     border-width: 7px;
     border-style: solid;
+    background-color: rgb(24, 0, 72);
+    
 }
+
 
 @keyframes borderAnimation {
     0% { border-color: #ff0000; } /* Red */
@@ -48,7 +52,7 @@ main {
 footer {
     margin-top: 40px;
     flex-shrink: 0; /* Do not shrink the footer */
-    background-color: #000; /* Set background color to black */
+    background-color: #141422; /* Set background color to black */
     color: #fff; /* Set text color to white */
     padding: 20px; /* Add padding for better appearance */
     font-size: larger;
@@ -171,10 +175,17 @@ footer {
 
 /* Text Section */
 .about-text-section {
-    background-color: black; /* Black background for the text section */
+    background-color: #141422; /* Black background for the text section */
     color: white;
     padding: 20px;
     text-align: center;
 }
 
+/*______________________ login.html______________________*/
 
+.login-background {
+    background: #141422;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    color: rgb(240, 255, 255);
+}
