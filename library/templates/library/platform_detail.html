@@ -3,36 +3,33 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid p-0">
-    <!-- Image Section -->
-    <div class="row">
-        <div class="col-md-12 about-background">
-            <div class="about-overlay"></div>
-            <div class="container h-100">
-                <div class="row h-100 align-items-end">
-                    <div class="col-md-12 text-box">
-                        <div class="about-rgb-lights">
-                            <h1 class="display-4">{{ bio.title }}</h1>
-                            <!-- Add Bootstrap responsive image class -->
-                            <img src="{{ bio.image.url }}" alt="{{ bio.title }}" class="img-fluid mb-4">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="container pd-container" data-platformcolor="{{ platform.box_color }}" data-platformfontcolor="{{ platform.font_color }}">
+    <div class="text-center">
+    <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="img-fluid pd-platform-image mb-4">
+    <h2 class="mb-4">{{ platform.name }} Games</h2>
     </div>
 
-    <!-- Text Section -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="about-text-section">
-                <div class="about-text-container">
-                    <h1 class="display-4">{{ bio.title }}</h1>
-                    <p class="lead">{{ bio.description | safe }}</p>
-                </div>
-            </div>
+    <h3>Platform Attributes</h3>
+    <h2>{{ coder }}</h2>
+    <p>Category: {{ platform.category }}</p>
+
+    {% if platform.category == 'pc' %}
+        <p>RAM: {{ platform.ram }}</p>
+        <p>GPU: {{ platform.gpu }}</p>
+        <p>Disk Size: {{ platform.disk_size }}</p>
+    {% elif platform.category == 'service' %}
+        <p>Subscription Fee: ${{ platform.subscription_fee }}</p>
+        <p>Plan: {{ platform.plan }}</p>
+    {% endif %}
+    <!-- Add more platform attributes as needed -->
+</div>
+
+<h3 class="mt-4 mb-3 pd-games-header">Games Played</h3>
+<div class="row justify-content-center pd-games-container">
+    {% for game in games %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+            <img src="{{ game.image.url }}" alt="{{ game.name }} Image" class="img-fluid pd-game-image">
         </div>
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}
-

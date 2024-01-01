@@ -408,4 +408,15 @@ keep consitancy
   - add slug field to platforms
   - add style to platform detail.html
   - updates fixtures
+
+- **30/12/2023**
+  - add about app
+  - add about url, views, settings model
+  - add about template
+  - style about template
+  
+- **31/12/2023**
+  - add authentication
+  - add authentication templates
+  - add authentication draft style
   
