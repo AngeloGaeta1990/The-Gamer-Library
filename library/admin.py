@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Game, WishList, Platform, PCPlatform, ConsolePlatform, ServicePlatform, MobilePlatform
 from django_summernote.admin import SummernoteModelAdmin
+from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
 
@@ -19,8 +20,8 @@ class GameAdmin(SummernoteModelAdmin):
 
 
 # @admin.register(CustomUser)
-# class CustomUserAdmin(BaseUserAdmin):
-#     list_display = ('username', 'email')
+# class CustomUserAdmin(UserAdmin):
+#     list_display = ('username', 'email', 'birth_date', 'is_active', 'is_staff', 'is_superuser')
 #     search_fields = ('username', 'email')
 
 

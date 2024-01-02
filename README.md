@@ -475,3 +475,6 @@ keep consitancy
   - Part C of crud
   - add form.py
   - add form templates, urls and views to add platforms and games
+  
+- **02/01/2024**
+  - add User foreign key to platform model 

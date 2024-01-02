@@ -4,6 +4,7 @@
         "pk": 1,
         "fields": {
             "name": "The Witcher 3: Wild Hunt",
+            "slug":"the-witcher-3-wild-hunt",
             "user_score": 90,
             "image": "library/game_images/witcher3.jpg",
             "genres": "Action RPG",
@@ -19,6 +20,7 @@
         "pk": 2,
         "fields": {
             "name": "Baldur's Gate 3",
+            "slug": "balur-s-gate-3",
             "user_score": 100,
             "image": "library/game_images/baldurs_gate_3.avif",
             "user_review": "A masterpiece!",
@@ -35,6 +37,7 @@
         "pk": 3,
         "fields": {
             "name": "Lies of P",
+            "slug": "lies-of-p",
             "user_score": 70,
             "image": "library/game_images/lies_of_p.jpg",
             "genres": "Action RPG",
@@ -51,6 +54,7 @@
         "pk": 4,
         "fields": {
             "name": "Hi-Fi Rush",
+            "slug": "hi-fi-rush",
             "user_score": 85,
             "image": "library/game_images/hi_fi_rush.jpg",
             "genres": "Action",

@@ -2,22 +2,28 @@ import uuid
 from django.db import models
 from django.core.validators import MaxValueValidator
 from colorfield.fields import ColorField
+from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import get_user_model
+from django.conf import settings
 
-# Create your models here.
+
+
 # class CustomUser(AbstractUser):
+#     # Add your custom fields here
 #     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-#     email = models.EmailField(max_length = 255)
-#     friends = models.ManyToManyField('self', through='FriendList', symmetrical=False, related_name='user_friends')
-#     games = models.ForeignKey('Game',  on_delete=models.CASCADE, blank=True)
-#     wishlists = models.ForeignKey('WishList',  on_delete=models.CASCADE, blank=True)
-#     platforms = models.ForeignKey('Platform', on_delete=models.CASCADE, blank= True)
+#     birth_date = models.DateField(null=True, blank=True)
+#     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+
 
 #     def __str__(self):
 #         return self.username
 
-    
+
+
 class Game(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.SlugField(max_length=255, unique=True, blank=True)
     name = models.CharField(max_length=255)
     user_score = models.IntegerField(null=True,  blank=True, validators=[MaxValueValidator(100)])
     metacritic_score = models.IntegerField( null=True,  blank=True, validators=[MaxValueValidator(100)])
@@ -28,7 +34,8 @@ class Game(models.Model):
     completion_date = models.DateField(null=True, auto_now_add=True,  blank=True)
     hours_spent = models.IntegerField(null=True, blank=True)
     developer = models.CharField(max_length=255, null=True,  blank=True)
-    platform = models.ForeignKey('Platform',  on_delete=models.SET_NULL, blank=True, null=True, related_name='games_platform')
+    platform = models.ForeignKey('Platform', on_delete=models.SET_NULL, blank=True, null=True, related_name='games')
+    
 
     class Meta:
         unique_together = ('name', 'platform')
@@ -41,21 +48,24 @@ class Game(models.Model):
         # Generate or set the UUID when the instance is first created
         if not self.id:
             self.id = uuid.uuid4()
-        
-        # Generate or set the slug based on the name field
-        self.slug = self.name.lower().replace(' ', '-')
+
+        # Generate or set the slug only if it's not already set
+        if not self.slug:
+            self.slug = self.name.lower().replace(' ', '-')
 
         super().save(*args, **kwargs)
 
 
+
 class WishList(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.SlugField(max_length=255, unique=True, blank=True)
     game_name = models.CharField(max_length=255)
     game_image = models.ImageField( upload_to='library/wishlist_images', null=True,  blank=True)
     game_genres = models.CharField(max_length=255, null=True,  blank=True)
     stores = models.CharField(max_length=255, null=True,  blank=True)
     release_date = models.DateField(null=True,  blank=True)
-    game_platform = models.ForeignKey('Platform',  on_delete=models.SET_NULL, blank=True, null=True, related_name='wishlists_platform')
+    game_platform = models.ForeignKey('Platform',  on_delete=models.SET_NULL, blank=True, null=True, related_name='wishlists')
     developer = models.CharField(max_length=255, null=True,  blank=True)
 
     class Meta:
@@ -83,6 +93,7 @@ class Platform(models.Model):
     image = models.ImageField( upload_to='library/platform_images', null=True,  blank=True)
     box_color = ColorField(null=True,  blank=True)
     font_color = ColorField(null=True,  blank=True, default='#fafafa')
+    user = models.ForeignKey(User,  on_delete=models.CASCADE, blank=True, null=True, related_name='platform')
     
     class Meta:
         ordering = ["name"]
@@ -94,9 +105,10 @@ class Platform(models.Model):
         # Generate or set the UUID when the instance is first created
         if not self.id:
             self.id = uuid.uuid4()
-        
-        # Generate or set the slug based on the name field
-        self.slug = self.name.lower().replace(' ', '-')
+
+        # Generate or set the slug only if it's not already set
+        if not self.slug:
+            self.slug = self.name.lower().replace(' ', '-')
 
         super().save(*args, **kwargs)
 

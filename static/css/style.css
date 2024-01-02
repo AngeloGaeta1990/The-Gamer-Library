@@ -45,6 +45,11 @@ nav {
     100% { border-color: #ff00ff; } /* Magenta */
 }
 
+.white-btn {
+    background-color: white;
+    color: black; /* You can adjust the text color as needed */
+  }
+
 main {
     flex: 1; /* Allow main content to take remaining height */
 }

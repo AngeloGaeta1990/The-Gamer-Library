@@ -1,4 +1,5 @@
 [
+
     {
         "model": "library.Platform",
         "pk": 1,
@@ -6,7 +7,8 @@
             "name": "Game pass",
             "image": "library/platform_images/game_pass.png",
             "category": "service",
-            "slug": "game-pass"
+            "slug": "game-pass",
+            "user":1
         }
     },
     {

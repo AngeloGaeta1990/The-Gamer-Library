@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.db import models
+from django.contrib import messages
 from .models import Platform
 from .models import Game
 from .forms import AddPlatformForm, AddGameForm
@@ -15,7 +16,7 @@ class PlatformList(generic.ListView):
     def get_queryset(self):
         # Query all platform instances, including subclasses
         # return Platform.objects.all()
-        return Platform.objects.annotate(game_count=models.Count('games_platform')).all()
+        return Platform.objects.annotate(game_count=models.Count('games')).all()
 
 def platform_detail(request, slug):
     """
@@ -48,8 +49,12 @@ def add_platform(request):
     if request.method == 'POST':
          add_platform_form = AddPlatformForm(request.POST)
          if add_platform_form.is_valid():
-            add_gameplatform_form.save()
+            add_platform_form.save()
             # Add any additional logic or redirect here
+            messages.add_message(
+             request, messages.SUCCESS,
+                'new platform added'
+    )
             return redirect('home')
 
     return render(request,
