@@ -21,8 +21,8 @@
             </div>
           </button>
           <div class="dropdown-menu full-width" aria-labelledby="platformDropdown{{ forloop.counter }}">
-            {% if platform.games_platform.all %}
-              {% for game in platform.games_platform.all %}
+            {% if platform.games.all %}
+              {% for game in platform.games.all %}
                 <div class="game-details">
                   {% if game.image %}
                     <img src="{{game.image.url }}" alt="{{ game.name }} Image" class="game-image mr-2">

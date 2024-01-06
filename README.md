@@ -371,19 +371,30 @@ keep consitancy
 1. **Error**
 
    ```cmd
-      UnboundLocalError at /add_game/
-      cannot access local variable 'add_platform_form' where it is not associated with a value
-      Request Method:GET
-      Django Version:5.0
-      Exception Type:UnboundLocalError
-      Exception Value:
-      cannot access local variable 'add_platform_form' where it is not associated with a value
-      Raised during:library.views.add_platform
-      Python Version:3.11.4
-      Python Path:
+    django.db.utils.ProgrammingError: Problem installing fixture ': Could not load library.Platform(pk=00000000-0000-0000-0000-000000000001): column "user_id" of relation "library_platform" does not exist
+    LINE 1: ...g', "box_color" = NULL, "font_color" = '#fafafa', "user_id" ...
    ```
 
    **Cause**
+   Database was corrupted
+
+   **Solution**
+   reset database on elephant sql
+
+1. **Error**
+
+   ```cmd
+   django.urls.exceptions.NoReverseMatch: Reverse for 'collaborate' not found. 'collaborate' is not a valid view function or pattern name.
+   ```
+
+   **Cause**
+   url was missing in url.py
+
+   **Solution**
+
+   ```python
+      path('collaborate/', views.collaborate, name='collaborate'),
+   ```
 
 ## Diary
 
@@ -477,4 +488,4 @@ keep consitancy
   - add form templates, urls and views to add platforms and games
   
 - **02/01/2024**
-  - add User foreign key to platform model 
+  - add User foreign key to platform model

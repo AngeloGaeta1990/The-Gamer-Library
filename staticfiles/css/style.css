@@ -166,10 +166,13 @@ footer {
 
 /*______________________ about.html______________________*/
 
+#about-container {
+    min-height: 80vh;
+}
+
 /* Image Section */
 .about-image-section img {
     width: 100%;
-    height: auto;
     display: block;
 }
 

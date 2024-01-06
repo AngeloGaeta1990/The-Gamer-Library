@@ -34,7 +34,7 @@ def platform_detail(request, slug):
     queryset = Platform.objects.all()
     # queryset = Platform.objects.filter(category="pc")
     platform = get_object_or_404(queryset, slug=slug)
-    games = platform.games_platform.all()
+    games = platform.games.all()
     # platform_form = AddPlatformForm()
     return render(
         request,
@@ -67,6 +67,7 @@ def add_game(request):
     if request.method == 'POST':
         add_game_form  = AddGameForm(request.POST)
         if add_game_form.is_valid():
+            #TODO add videogames database API to get data and fill the form
             add_game_form.save()
             # Add any additional logic or redirect here
             return redirect('home')
