@@ -93,7 +93,7 @@ class Platform(models.Model):
     image = models.ImageField( upload_to='library/platform_images', null=True,  blank=True)
     box_color = ColorField(null=True,  blank=True)
     font_color = ColorField(null=True,  blank=True, default='#fafafa')
-    user = models.ForeignKey(User,  on_delete=models.CASCADE, blank=True, null=True, related_name='platform')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='platform')
     
     class Meta:
         ordering = ["name"]

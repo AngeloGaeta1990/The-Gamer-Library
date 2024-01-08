@@ -1,10 +1,12 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views import generic
 from django.db import models
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from .models import Platform
 from .models import Game
-from .forms import AddPlatformForm, AddGameForm
+from .forms import AddPlatformForm, EditPlatformForm, AddGameForm
+from .forms import EditPCPlatformForm, EditConsolePlatformForm, EditServicePlatformForm, EditMobilePlatformForm, EditPlatformForm
 
 
 # Create your views here.
@@ -60,6 +62,40 @@ def add_platform(request):
     return render(request,
                   'library/add_platform.html',
                   {'add_platform_form': add_platform_form})
+
+
+def edit_platform(request, slug, platform_id):
+    """
+    view to edit comments
+    """
+    platform = get_object_or_404(Platform, slug=slug, id=platform_id)
+    edit_platformForm = EditPlatformForm('POST')
+    # if platform.category == 'pc':
+    #     form_class = EditPCPlatformForm
+    # elif platform.category == 'console':
+    #     form_class = EditConsolePlatformForm
+    # elif platform.category == 'service':
+    #     form_class = EditServicePlatformForm
+    # elif platform.category == 'mobile':
+    #     form_class = EditMobilePlatformForm
+    # else:
+    #     form_class = EditPlatformForm
+
+    if request.method == 'POST':
+        # form = form_class(request.POST, instance=platform)
+        # if form.is_valid():
+        # form.save()
+        edit_platform_form = EditPlatformForm(request.POST)
+        
+        if edit_platform_form.is_valid():
+            
+            edit_platform_form.save()
+            # Redirect or do something
+    else:
+          edit_platform_form = EditPlatformForm(instance=platform)
+    #     form = form_class(instance=platform)
+
+    return render(request, 'library/edit_platform.html', {'form':edit_platform_form , 'platform': platform})
 
 def add_game(request):
     add_game_form = AddGameForm()

@@ -38,7 +38,7 @@ class GameAdmin(SummernoteModelAdmin):
 
 @admin.register(Platform)
 class PlatformAdmin(admin.ModelAdmin):
-    list_display = ('name','slug','category',"id", )
+    list_display = ('name','slug','category',"id")
     search_fields = ['name']
     prepopulated_fields = {'slug': ('name',)}
     list_filter = ['id','category']

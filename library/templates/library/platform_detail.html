@@ -33,4 +33,9 @@
         </div>
     {% endfor %}
 </div>
+
+<div class="text-center">
+    <a href="{% url 'edit_platform' platform.slug platform.id%}" class="btn btn-primary">Edit Platform</a>
+</div>
+
 {% endblock %}

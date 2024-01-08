@@ -29,7 +29,8 @@
             "name": "Xbox",
             "image": null,
             "category": "console",
-            "slug": "xbox"
+            "slug": "xbox",
+            "user":1
         }
     },
     {
@@ -49,7 +50,8 @@
             "name": "Playstation 4",
             "image": null,
             "category": "console",
-            "slug": "playstation-4"
+            "slug": "playstation-4",
+            "user":1
         }
     },
     {
@@ -69,7 +71,8 @@
             "name": "Nintendo Switch",
             "image": "library/platform_images/switch.png",
             "category": "console",
-            "slug": "nintendo-switch"
+            "slug": "nintendo-switch",
+            "user":1
         }
     },
     {
@@ -80,6 +83,7 @@
             "model": "OLED",
             "category": "console",
             "slug": "nintendo-switch-console"
+            
         }
     },
     {
@@ -89,7 +93,8 @@
             "name": "Steam deck",
             "image": null,
             "category": "pc",
-            "slug": "steam-deck"
+            "slug": "steam-deck",
+            "user":1
         }
     },
     {
@@ -108,7 +113,8 @@
             "name": "Desktop gaming PC",
             "image": null,
             "category": "pc",
-            "slug": "desktop-gaming-pc"
+            "slug": "desktop-gaming-pc",
+            "user":1
         }
     },
     {
@@ -128,7 +134,8 @@
             "name": "Steam",
             "image": null,
             "category": "service",
-            "slug": "steam"
+            "slug": "steam",
+            "user":1
         }
     },
     {
@@ -147,7 +154,8 @@
             "name": "Epic Games",
             "image": null,
             "category": "service",
-            "slug": "epic-games"
+            "slug": "epic-games",
+            "user":1
         }
     },
     {
@@ -166,7 +174,8 @@
             "name": "Playstation Plus",
             "image": null,
             "category": "service",
-            "slug":"playstation-plus"
+            "slug":"playstation-plus",
+            "user":1
         }
     },
     {

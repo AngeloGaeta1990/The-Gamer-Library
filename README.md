@@ -489,3 +489,6 @@ keep consitancy
   
 - **02/01/2024**
   - add User foreign key to platform model
+
+- **06/01/2024**
+  - add collaborate form
