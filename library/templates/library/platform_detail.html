@@ -6,7 +6,9 @@
 {% block content %}
 <div class="container pd-container" data-platformcolor="{{ platform.box_color }}" data-platformfontcolor="{{ platform.font_color }}">
     <div class="text-center">
+    {% if platform.image %}
     <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="img-fluid pd-platform-image mb-4">
+    {% endif %}
     <h2 class="mb-4">{{ platform.name }} Games</h2>
     </div>
 
@@ -35,7 +37,31 @@
 </div>
 
 <div class="text-center">
-    <a href="{% url 'edit_platform' platform.slug platform.id%}" class="btn btn-primary">Edit Platform</a>
+    <a href="{% url 'edit_platform' platform.slug platform.id%}" class="btn btn-primary">Edit</a>
 </div>
 
-{% endblock %}
+<div class="text-center white-text">
+    <button class="btn btn-delete btn-danger white-text" id="deleteButton">Delete</button>
+ </div>
+
+ <!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete platform?</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this platform? This action cannot be undone.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {% endblock %}

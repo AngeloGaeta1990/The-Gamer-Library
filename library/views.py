@@ -68,34 +68,38 @@ def edit_platform(request, slug, platform_id):
     """
     view to edit comments
     """
-    platform = get_object_or_404(Platform, slug=slug, id=platform_id)
-    edit_platformForm = EditPlatformForm('POST')
-    # if platform.category == 'pc':
-    #     form_class = EditPCPlatformForm
-    # elif platform.category == 'console':
-    #     form_class = EditConsolePlatformForm
-    # elif platform.category == 'service':
-    #     form_class = EditServicePlatformForm
-    # elif platform.category == 'mobile':
-    #     form_class = EditMobilePlatformForm
-    # else:
-    #     form_class = EditPlatformForm
+    platform = get_object_or_404(Platform, pk=platform_id)
+    if platform.category == 'pc':
+        form_class = EditPCPlatformForm
+    elif platform.category == 'console':
+        form_class = EditConsolePlatformForm
+    elif platform.category == 'service':
+        form_class = EditServicePlatformForm
+    elif platform.category == 'mobile':
+        form_class = EditMobilePlatformForm
+    else:
+        form_class = EditPlatformForm
+
+    edit_platform_form = form_class(data=request.POST, instance=platform)
 
     if request.method == 'POST':
-        # form = form_class(request.POST, instance=platform)
-        # if form.is_valid():
-        # form.save()
-        edit_platform_form = EditPlatformForm(request.POST)
-        
-        if edit_platform_form.is_valid():
-            
-            edit_platform_form.save()
-            # Redirect or do something
-    else:
-          edit_platform_form = EditPlatformForm(instance=platform)
-    #     form = form_class(instance=platform)
 
-    return render(request, 'library/edit_platform.html', {'form':edit_platform_form , 'platform': platform})
+        if dit_platform_form.is_valid():
+            form.save()
+    else:
+          edit_platform_form = form_class(instance=platform)
+
+    return render(request, 'library/edit_platform.html', {'edit_platform_form':edit_platform_form , 'platform': platform})
+
+def delete_platform(request, slug, platform_id):
+    """
+    view to delete platform
+    """
+    platform = get_object_or_404(Platform, pk=platform_id)
+    platform.delete()
+    messages.add_message(request, messages.SUCCESS, 'Platform deleted!')
+    return HttpResponseRedirect(reverse('platform_detail', args=[slug]))
+    
 
 def add_game(request):
     add_game_form = AddGameForm()

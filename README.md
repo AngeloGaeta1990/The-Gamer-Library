@@ -396,6 +396,35 @@ keep consitancy
       path('collaborate/', views.collaborate, name='collaborate'),
    ```
 
+1. **Error**
+
+   ```cmd
+    UnboundLocalError at /game-pass/edit_platform/00000000-0000-0000-0000-000000000001/
+    cannot access local variable 'platform' where it is not associated with a value
+    Request Method:GET
+    Request URL:http://127.0.0.1:8000/game-pass/edit_platform/00000000-0000-0000-0000-000000000001/
+    Django Version:5.0
+    Exception Type:UnboundLocalError
+    Exception Value:
+    cannot access local variable 'platform' where it is not associated with a value
+    Raised during:library.views.edit_platform
+    Python Version:3.11.4
+   ```
+
+    **Cause**
+    In view.py form was named `edit_platform_form` but variable `form` was called in html template
+
+    **Solution**
+    named form as `edit_platfotm_form` in views.py and called variable `edit_platfotm_form` in html
+
+    ```html
+    <form method="post"  class='white-text' action="{% url 'edit_platform' platform.slug platform.id%}">
+      {% csrf_token %}
+      {{ edit_platform_form|crispy }}
+      <button type="submit">Save</button>
+    </form>
+    ```
+
 ## Diary
 
 - ### Sprint 1
@@ -492,3 +521,12 @@ keep consitancy
 
 - **06/01/2024**
   - add collaborate form
+
+- ### Sprint 3
+
+- **09/01/2024**
+  - add edit platform url and view draft
+  
+- **10/01/2024**
+    allow platform editing
+    allow platoform deliting

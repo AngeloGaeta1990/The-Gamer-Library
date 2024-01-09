@@ -6,7 +6,7 @@
 {% block content %}
 
 
-<form method="post" action="{% url 'edit_platform' platform.slug platform.id%}">
+<form method="post"  class='white-text' action="{% url 'edit_platform' platform.slug platform.id%}">
     {% csrf_token %}
     {{ edit_platform_form|crispy }}
     <button type="submit">Save</button>
