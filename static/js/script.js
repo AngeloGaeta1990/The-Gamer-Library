@@ -27,3 +27,17 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    const submitButton = $("#submitButton");
+    const deleteModal = new bootstrap.Modal($("#deleteModal")[0]);
+    const deleteButtons = $(".btn-delete");
+    const deleteConfirm = $("#deleteConfirm");
+
+    deleteButtons.on("click", function (e) {
+        console.log("Button clicked")
+        let platformId = $(this).data("platformid");
+        console.log("Platform:Id", platformId)
+        deleteConfirm.attr("href", `delete_platform/${platformId}`);
+        deleteModal.show();
+    });
+});

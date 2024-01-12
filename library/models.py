@@ -77,6 +77,8 @@ class WishList(models.Model):
 
 #TODO check if it possible to create PC, console and Service subclass
 #TODO add plan and hardware specs
+
+
 class Platform(models.Model):
 
     PLATFORM_CHOICES = [
@@ -90,7 +92,7 @@ class Platform(models.Model):
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
     category = models.CharField(max_length=10, choices=PLATFORM_CHOICES, null=False, blank=False)
-    image = models.ImageField( upload_to='library/platform_images', null=True,  blank=True)
+    image = models.ImageField( upload_to='library/platform_images', null=True, blank=True)
     box_color = ColorField(null=True,  blank=True)
     font_color = ColorField(null=True,  blank=True, default='#fafafa')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='platform')

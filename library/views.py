@@ -98,7 +98,7 @@ def delete_platform(request, slug, platform_id):
     platform = get_object_or_404(Platform, pk=platform_id)
     platform.delete()
     messages.add_message(request, messages.SUCCESS, 'Platform deleted!')
-    return HttpResponseRedirect(reverse('platform_detail', args=[slug]))
+    return HttpResponseRedirect(reverse('home'))
     
 
 def add_game(request):

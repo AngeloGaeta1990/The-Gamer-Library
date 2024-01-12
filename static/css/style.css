@@ -68,6 +68,10 @@ footer {
     color: #fafafa;
 }
 
+.black-text{
+    color: #000;
+}
+
 .fa-github {
     margin-right: 30px; /* Adjust the value as needed */
 }

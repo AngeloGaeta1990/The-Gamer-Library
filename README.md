@@ -424,6 +424,28 @@ keep consitancy
       <button type="submit">Save</button>
     </form>
     ```
+  
+1. **Error**
+
+    ```cmd
+    Page not found (404)
+    No Platform matches the given query.
+    Request Method:GET
+    Request URL:http://127.0.0.1:8000/steam/undefined
+    Raised by:library.views.platform_detail
+    ```
+
+    **Cause**
+    `platform.id` was assigned as a attribute to the modal button rather than to the delete button
+
+    **Solution**
+    added `platform.id` to the delete button element
+
+    ```html
+    <div class="text-center white-text">
+      <button class="btn btn-delete btn-danger white-text" data-platformid="{{ platform.id }}" id="deleteButton">Delete</button>
+    </div>
+    ```
 
 ## Diary
 
