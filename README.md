@@ -550,5 +550,8 @@ keep consitancy
   - add edit platform url and view draft
   
 - **10/01/2024**
-    allow platform editing
-    allow platoform deliting
+  - allow platform editing
+  - allow platform deliting
+
+- **12/01/2024**
+ - add modal for platform delition

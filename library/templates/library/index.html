@@ -14,7 +14,6 @@
                 <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="platform-image mr-2">
               {% endif %}
               <div class="mr-3 plaform-name-spacing">
-                <!-- {{ platform.name }} -->
                 <a href="{% url 'platform_detail' platform.slug %}" class="platform-link no-highlight">{{ platform.name }}</a>
                 <span class="games-count"> {{ platform.game_count }}</span>
               </div>
