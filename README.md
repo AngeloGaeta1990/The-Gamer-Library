@@ -604,7 +604,14 @@ keep consitancy
   
 - **10/01/2024**
   - allow platform editing
-  - allow platform deliting
+  - allow platform deleting
 
 - **12/01/2024**
- - add modal for platform delition
+  - add modal for platform deletion
+
+- **13/01/2024**
+  - adapt code to pep8
+
+- **14/01/2024**
+  - add cloudinary for media storage
+  - start draft testing unit

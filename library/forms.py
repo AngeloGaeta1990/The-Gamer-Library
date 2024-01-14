@@ -3,7 +3,6 @@ from .models import (Platform, PCPlatform, ConsolePlatform, ServicePlatform,
                      MobilePlatform, Game)
 
 
-
 class AddPlatformForm(forms.ModelForm):
     class Meta:
         model = Platform
