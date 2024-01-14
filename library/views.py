@@ -54,14 +54,12 @@ def add_platform(request):
             add_platform_form.save()
             messages.add_message(request, messages.SUCCESS,
                                  'new platform added')
-            return redirect('home')
-
     return render(request,
                   'library/add_platform.html',
                   {'add_platform_form': add_platform_form})
 
 
-def edit_platform(request, platform_id):
+def edit_platform(request, slug, platform_id):
     """
     view to edit comments
     """
@@ -83,6 +81,8 @@ def edit_platform(request, platform_id):
 
         if edit_platform_form.is_valid():
             edit_platform_form.save()
+            messages.add_message(request, messages.SUCCESS, 'Platform edited!')
+            return HttpResponseRedirect(reverse('home'))
     else:
         edit_platform_form = form_class(instance=platform)
 

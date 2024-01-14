@@ -447,6 +447,59 @@ keep consitancy
     </div>
     ```
 
+1. **Error**
+
+    ```cmd
+    library\Lib\site-packages\django\utils\module_loading.py", line 25, in import_string
+    module_path, class_name = dotted_path.rsplit(".", 1)
+                              ^^^^^^^^^^^^^^^^^^
+    AttributeError: 'tuple' object has no attribute 'rsplit'
+    ```
+
+    **Cause**
+    Application of pep8 rule in `setting.py`:
+
+    ```python
+        AUTH_PASSWORD_VALIDATORS = [
+        {
+            'NAME': ('django.contrib.auth.password_validation.'
+                    'UserAttributeSimilarityValidator'),
+        },
+        {
+            'NAME': ('django.contrib.auth.password_validation.'
+                    'MinimumLengthValidator'),
+        },
+        {
+            'NAME': ('django.contrib.auth.password_validation.'
+                    'CommonPasswordValidator'),
+        },
+        {
+            'NAME': ('django.contrib.auth.password_validation.'
+                    'NumericPasswordValidator',)
+        },
+    ]
+    ```
+
+    **Solution**
+    To restore default in settings.py solved the issue:
+
+    ```python
+      AUTH_PASSWORD_VALIDATORS = [
+      {
+          'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+      },
+      {
+          'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+      },
+      {
+          'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+      },
+      {
+          'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+      },
+    ]
+    ```
+
 ## Diary
 
 - ### Sprint 1

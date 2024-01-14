@@ -1,8 +1,9 @@
 import uuid
 from django.db import models
 from django.core.validators import MaxValueValidator
-from colorfield.fields import ColorField
 from django.contrib.auth.models import User
+from colorfield.fields import ColorField
+from cloudinary.models import CloudinaryField
 
 
 class Game(models.Model):
@@ -13,8 +14,8 @@ class Game(models.Model):
                                      validators=[MaxValueValidator(100)])
     metacritic_score = models.IntegerField(null=True, blank=True,
                                            validators=[MaxValueValidator(100)])
-    image = models.ImageField(upload_to='library/game_images', null=True,
-                              blank=True)
+    image = CloudinaryField('image', null=True, blank=True,
+                            default='placeholder')
     user_review = models.TextField(null=True, blank=True)
     genres = models.CharField(max_length=255, blank=True, null=True)
     release_date = models.DateField(null=True, blank=True)
@@ -48,8 +49,8 @@ class WishList(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     game_name = models.CharField(max_length=255)
-    game_image = models.ImageField(upload_to='library/wishlist_images',
-                                   null=True, blank=True)
+    game_image = CloudinaryField('image', null=True, blank=True,
+                                 default='placeholder')
     game_genres = models.CharField(max_length=255, null=True, blank=True)
     stores = models.CharField(max_length=255, null=True, blank=True)
     release_date = models.DateField(null=True, blank=True)
@@ -80,8 +81,8 @@ class Platform(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
     category = models.CharField(max_length=10, choices=PLATFORM_CHOICES,
                                 null=False, blank=False)
-    image = models.ImageField(upload_to='library/platform_images', null=True,
-                              blank=True)
+    image = CloudinaryField('image', null=True, blank=True,
+                            default='placeholder')
     box_color = ColorField(null=True, blank=True)
     font_color = ColorField(null=True, blank=True, default='#fafafa')
     user = models.ForeignKey(User, on_delete=models.CASCADE,

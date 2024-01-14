@@ -1,8 +1,7 @@
 {% extends "base.html" %}
-
 {% load static %}
-
 {% block content %}
+
 <div class="container no-margin full-width">
   {% for platform in object_list %}
     <div class="row">
@@ -10,7 +9,9 @@
         <div class="dropdown mt-3 h-100 w-100">
           <button class="btn btn-secondary dropdown-toggle btn-block h-100 w-100 no-margin btn-border platform-button start-to-play-font" data-boxcolor="{{platform.box_color}}" data-fontcolor="{{platform.font_color}}" type="button" id="platformDropdown{{ forloop.counter }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="d-flex align-items-center">
-              {% if platform.image %}
+              {% if "placeholder" in platform.image.url %}
+               <img src="{% static 'images/library/platform_images/default_platform.jpg' %}" alt="{{ platform.name }} Image" class="platform-image mr-2"> 
+              {% else %}
                 <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="platform-image mr-2">
               {% endif %}
               <div class="mr-3 plaform-name-spacing">

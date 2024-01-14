@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .models import Bio
-from .forms import CollaborateForm
 from django.contrib import messages
 from django.shortcuts import redirect
+from .models import Bio
+from .forms import CollaborateForm
 
 
 # Create your views here.

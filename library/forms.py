@@ -1,6 +1,7 @@
+from django import forms
 from .models import (Platform, PCPlatform, ConsolePlatform, ServicePlatform,
                      MobilePlatform, Game)
-from django import forms
+
 
 
 class AddPlatformForm(forms.ModelForm):

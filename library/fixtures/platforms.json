@@ -5,7 +5,7 @@
         "pk": 1,
         "fields": {
             "name": "Game pass",
-            "image": "library/platform_images/game_pass.png",
+            "image": "https://res.cloudinary.com/datoqbvx5/image/upload/v1/library/platform_images/game_pass.png",
             "category": "service",
             "slug": "game-pass",
             "user":1
