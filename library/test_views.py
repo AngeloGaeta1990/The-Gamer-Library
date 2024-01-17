@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.test import TestCase
-from .forms import AddPlatformForm
 from .models import Platform
+
 
 class TestLibraryViews(TestCase):
 
@@ -13,13 +13,30 @@ class TestLibraryViews(TestCase):
             email="test@test.com"
         )
         self.platform = Platform(name="Test PC", user=self.user,
-                         slug="test-pc")
+                                 slug="test-pc", category="PC")
         self.platform.save()
 
     def test_render_platform_detail_page(self):
         response = self.client.get(reverse(
-            'platform_detail', args=['platform-name']))
+            'platform_detail', args=[self.platform.slug]))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"platform name", response.content)
-        self.assertIn(b"platform category", response.content)
-        
+        self.assertIn(b"Test PC", response.content)
+        self.assertIn(b"PC", response.content)
+
+    def test_add_platform_(self):
+        """Test for posting a platform on a post"""
+        self.client.login(
+            username="myUsername", password="myPassword")
+        platform_data = {
+            "name": "Test PC",
+            "user": self.user.id,
+            "slug": "test-pc",
+            "category": "PC"
+        }
+        response = self.client.post(reverse(
+            'platform_detail', args=['self.platform.slug']), platform_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            b'new platform added',
+            response.content
+        )

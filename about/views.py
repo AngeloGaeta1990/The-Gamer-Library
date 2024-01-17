@@ -33,5 +33,5 @@ def collaborate(request):
                 request, messages.SUCCESS, 'collaboration request sent')
             return redirect('home')
     return render(request,
-                  'about/about.html',
+                  'about/collaborate.html',
                   {'collaborate_form': collaborate_form})

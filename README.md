@@ -615,3 +615,6 @@ keep consitancy
 - **14/01/2024**
   - add cloudinary for media storage
   - start draft testing unit
+
+- **17/01/2024**
+  - add unit testing for about and library app

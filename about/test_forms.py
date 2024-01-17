@@ -20,7 +20,8 @@ class TestCollaborateForm(TestCase):
             'email': 'test@test.com',
             'message': 'Hello!'
         })
-        self.assertFalse(form.is_valid(), msg="Form is valid even if name is missing")
+        self.assertFalse(form.is_valid(), msg="Form is valid even if name is"
+                         "missing")
 
     def test_form_missing_email(self):
         """ Test for is invalid if email is missing"""
@@ -29,7 +30,8 @@ class TestCollaborateForm(TestCase):
             'email': '',
             'message': 'Hello!'
         })
-        self.assertFalse(form.is_valid(), msg="Form is valid even if e-mail is missing")
+        self.assertFalse(form.is_valid(), msg="Form is valid even if e-mail is"
+                         "missing")
 
     def test_form_missing_message(self):
         """ Test for is invalid if email is missing"""
@@ -38,4 +40,5 @@ class TestCollaborateForm(TestCase):
             'email': 'test@test.com',
             'message': ''
         })
-        self.assertFalse(form.is_valid(), msg="Form is valid even if message is missing")
+        self.assertFalse(form.is_valid(), msg="Form is valid even if message"
+                         "is missing")
