@@ -3,6 +3,7 @@ from django.views import generic
 from django.db import models
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from .models import Platform
 from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
                     EditPCPlatformForm, EditConsolePlatformForm,
@@ -46,14 +47,21 @@ def platform_detail(request, slug):
     )
 
 
+@login_required
 def add_platform(request):
-    add_platform_form = AddPlatformForm()
     if request.method == 'POST':
         add_platform_form = AddPlatformForm(request.POST)
         if add_platform_form.is_valid():
-            add_platform_form.save()
+            add_platform_form.save(user=request.user)
             messages.add_message(request, messages.SUCCESS,
                                  'new platform added')
+            return redirect('home')
+        else:
+            messages.error(request, 'Error adding the platform. Please check'
+                           'the form.')
+    else:
+        add_platform_form = AddPlatformForm()
+
     return render(request,
                   'library/add_platform.html',
                   {'add_platform_form': add_platform_form})
@@ -91,7 +99,7 @@ def edit_platform(request, slug, platform_id):
                    'platform': platform})
 
 
-def delete_platform(request, platform_id):
+def delete_platform(request, slug, platform_id):
     """
     view to delete platform
     """

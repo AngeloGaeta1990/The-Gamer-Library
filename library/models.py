@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from django.core.validators import MaxValueValidator
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from colorfield.fields import ColorField
 from cloudinary.models import CloudinaryField
 
@@ -98,11 +99,13 @@ class Platform(models.Model):
         # Generate or set the UUID when the instance is first created
         if not self.id:
             self.id = uuid.uuid4()
-
         # Generate or set the slug only if it's not already set
         if not self.slug:
             self.slug = self.name.lower().replace(' ', '-')
-
+        if not self.user_id:
+            self.user = kwargs.pop('user', None)
+            if self.user is None:
+                self.user = get_user_model().objects.first()
         super().save(*args, **kwargs)
 
 

@@ -8,6 +8,14 @@ class AddPlatformForm(forms.ModelForm):
         model = Platform
         fields = ('name', 'category')
 
+    def save(self, commit=True, user=None):
+        instance = super().save(commit=False)
+        if user:
+            instance.user = user
+        if commit:
+            instance.save()
+        return instance
+
 
 class EditPlatformForm(forms.ModelForm):
     class Meta:

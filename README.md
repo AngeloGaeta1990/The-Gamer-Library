@@ -500,6 +500,50 @@ keep consitancy
     ]
     ```
 
+1. **Error**
+     Adding a new platform returns error:
+
+    ```cmd
+      django.db.utils.IntegrityError: null value in column "user_id" of relation "library_platform" violates not-null constraint
+      DETAIL: Failing row contains (4b4415a6-8d18-47c0-addf-9d15235bdb82, test, test, pc, placeholder, null, #fafafa, null).
+    ```
+
+   **Cause**
+    Platform model has been update so that user is a foreign key of platform, therefore when a new platform is added a user is required
+
+    **Solution**
+    `login_required` decorator has been added to the view and user is passed during the form save function
+
+    ```python
+      @login_required
+      def add_platform(request):
+      if request.method == 'POST':
+          add_platform_form = AddPlatformForm(request.POST)
+          if add_platform_form.is_valid():
+              add_platform_form.save(user=request.user)
+              messages.add_message(request, messages.SUCCESS,
+                                  'new platform added')
+              return redirect('home')
+          else:
+              messages.error(request, 'Error adding the platform. Please check'
+                            'the form.')
+      else:
+          add_platform_form = AddPlatformForm()
+
+      return render(request,
+                    'library/add_platform.html',
+                    {'add_platform_form': add_platform_form})
+    
+    ```
+  
+1. **Error**
+
+     ```cmd
+     TypeError at /3r23r23r/delete_platform/6463b2fe-6a98-43ec-9817-9bbc33b30222/
+     delete_platform() got an unexpected keyword argument 'slug'
+     ```
+
+  **Cause**
 ## Diary
 
 - ### Sprint 1
