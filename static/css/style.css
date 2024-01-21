@@ -100,11 +100,15 @@ footer {
     padding: 5px;
 }
 
-.plaform-name-spacing {
+.platform-name-spacing {
     margin: 5px;
     padding: 5px;
 }
 
+.buttons-spacing {
+    padding: 5px;
+    margin: 10px;
+}
 
 .games-count {
     margin-left: 10px;
@@ -193,8 +197,12 @@ footer {
 /*______________________ login.html______________________*/
 
 .login-background {
-    background: #141422;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-font-smoothing: antialiased;
-    color: rgb(240, 255, 255);
+    background-image: url('../images/library/login/mejores-juegos-historia-gq-3030288.webp');
+    background-size: cover; /* or 'contain' depending on your preference */
+    background-repeat: no-repeat;
+    /* Additional properties to control the position and other styles */
+    background-position: center center;
+    background-attachment: fixed; 
+    /* height: 40vh;
+    width: 100vw;       */
 }

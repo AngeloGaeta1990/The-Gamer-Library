@@ -544,6 +544,14 @@ keep consitancy
      ```
 
   **Cause**
+   Url to delete platform required 'slug' as parameter but slug was removed from delete_platform view
+
+   **View**
+   Added url back to delete_platform view
+
+1. **Error**
+   
+
 ## Diary
 
 - ### Sprint 1
@@ -662,3 +670,6 @@ keep consitancy
 
 - **17/01/2024**
   - add unit testing for about and library app
+
+- **18/01/2024**
+    fix platform addition and deletion after adding user

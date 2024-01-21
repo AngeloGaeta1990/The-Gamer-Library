@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from .models import Platform
 from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
                     EditPCPlatformForm, EditConsolePlatformForm,
@@ -11,6 +12,7 @@ from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
 
 
 # Create your views here.
+@method_decorator(login_required(login_url='accounts/login/'), name='dispatch')
 class PlatformList(generic.ListView):
     context_object_name = 'platforms'
     template_name = "library/index.html"
@@ -19,7 +21,7 @@ class PlatformList(generic.ListView):
     def get_queryset(self):
         # Query all platform instances, including subclasses
         # return Platform.objects.all()
-        return Platform.objects.annotate(
+        return Platform.objects.filter(user=self.request.user).annotate(
             game_count=models.Count('games')).all()
 
 

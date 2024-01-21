@@ -2,46 +2,79 @@
 {% load static %}
 {% block content %}
 
-
+{% if user.is_authenticated %}
 <div class="container no-margin full-width">
-  {% for platform in object_list %}
-    <div class="row">
-      <div class="col-12">
-        <div class="dropdown mt-3 h-100 w-100">
-          <button class="btn btn-secondary dropdown-toggle btn-block h-100 w-100 no-margin btn-border platform-button start-to-play-font" data-boxcolor="{{platform.box_color}}" data-fontcolor="{{platform.font_color}}" type="button" id="platformDropdown{{ forloop.counter }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  {% for platform in platforms %}
+    {% if platform.user == request.user %}
+      <div class="row">
+        <div class="col-12">
+          <div class="platform-rectangle mt-3 mb-3 p-3 white-text">
             <div class="d-flex align-items-center">
               {% if "placeholder" in platform.image.url %}
-               <img src="{% static 'images/library/platform_images/default_platform.jpg' %}" alt="{{ platform.name }} Image" class="platform-image mr-2"> 
+                <img src="{% static 'images/library/platform_images/default_platform.jpg' %}" alt="{{ platform.name }} Image" class="platform-image mr-3"> 
               {% else %}
-                <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="platform-image mr-2">
+                <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="platform-image mr-3">
               {% endif %}
-              <div class="mr-3 plaform-name-spacing">
+              <div class="mr-3 platform-name-spacing">
                 <a href="{% url 'platform_detail' platform.slug %}" class="platform-link no-highlight">{{ platform.name }}</a>
                 <span class="games-count"> {{ platform.game_count }}</span>
               </div>
-            </div>
-          </button>
-          <div class="dropdown-menu full-width" aria-labelledby="platformDropdown{{ forloop.counter }}">
-            {% if platform.games.all %}
-              {% for game in platform.games.all %}
-                <div class="game-details">
-                  {% if game.image %}
-                    <img src="{{game.image.url }}" alt="{{ game.name }} Image" class="game-image mr-2">
-                  {% endif %}
-                  <div class="game-info">
-                    <p class="game-name">{{ game.name }}</p>
-                    <p class="user-score">User Score: {{ game.user_score }}</p>
+              <div class="ml-auto">
+                <div class="accordion" id="gamesAccordion{{ forloop.counter }}">
+                  <button class="btn btn-primary btn-sm buttons-spacing dropdown-toggle" data-toggle="dropdown" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGames{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseGames{{ forloop.counter }}">
+                    Expand
+                  </button>
+                  <button class="btn btn-danger btn-sm ml-2 delete-button buttons-spacing" data-toggle="modal" data-target="#deletePlatformModal{{ forloop.counter }}">
+                    Delete
+                  </button>
+                  <div class="collapse dropdown-menu" id="collapseGames{{ forloop.counter }}">
+                    <div class="card card-body dropdown-item">
+                      {% if platform.games.all %}
+                        {% for game in platform.games.all %}
+                          <div class="game-details black-text">
+                            {% if game.image %}
+                              <img src="{{game.image.url }}" alt="{{ game.name }} Image" class="game-image mr-2">
+                            {% endif %}
+                            <div class="game-info">
+                              <p class="game-name">{{ game.name }}</p>
+                              <p class="user-score">User Score: {{ game.user_score }}</p>
+                            </div>
+                          </div>
+                        {% endfor %}
+                      {% else %}
+                        <p class= "black-text">No games available</p>
+                      {% endif %}
+                    </div>
                   </div>
                 </div>
-              {% endfor %}
-            {% else %}
-              <p>No games available</p>
-            {% endif %}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <!-- Delete Platform Modal -->
+      <div class="modal fade" id="deletePlatformModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="deletePlatformModalLabel{{ forloop.counter }}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deletePlatformModalLabel{{ forloop.counter }}">Confirm Deletion</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to delete the platform "{{ platform.name }}"?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <a href="{% url 'delete_platform' platform.slug platform.id %}" class="btn btn-danger">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
   {% endfor %}
 </div>
 
+{% endif %}
 {% endblock %}
