@@ -20,15 +20,14 @@
                 <span class="games-count"> {{ platform.game_count }}</span>
               </div>
               <div class="ml-auto">
-                <div class="accordion" id="gamesAccordion{{ forloop.counter }}">
-                  <button class="btn btn-primary btn-sm buttons-spacing dropdown-toggle" data-toggle="dropdown" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGames{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseGames{{ forloop.counter }}">
+                  <button class="btn btn-primary btn-sm buttons-spacing dropdown-toggle"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseGames{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseGames{{ forloop.counter }}">
                     Expand
                   </button>
-                  <button class="btn btn-danger btn-sm ml-2 delete-button buttons-spacing" data-toggle="modal" data-target="#deletePlatformModal{{ forloop.counter }}">
+                  <button class="btn btn-danger btn-sm ml-2 delete-button buttons-spacing" data-bs-toggle="modal" data-bs-target="#deletePlatformModal{{ forloop.counter }}">
                     Delete
                   </button>
-                  <div class="collapse dropdown-menu" id="collapseGames{{ forloop.counter }}">
-                    <div class="card card-body dropdown-item">
+                  <div class="collapse" id="collapseGames{{ forloop.counter }}">
+                    <div class="card card-body">
                       {% if platform.games.all %}
                         {% for game in platform.games.all %}
                           <div class="game-details black-text">
@@ -66,7 +65,7 @@
               Are you sure you want to delete the platform "{{ platform.name }}"?
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
               <a href="{% url 'delete_platform' platform.slug platform.id %}" class="btn btn-danger">Delete</a>
             </div>
           </div>
@@ -75,6 +74,5 @@
     {% endif %}
   {% endfor %}
 </div>
-
 {% endif %}
 {% endblock %}

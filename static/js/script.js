@@ -28,16 +28,11 @@ $(document).ready(function () {
     const deleteConfirm = $("#deleteConfirm");
 
     deleteButtons.on("click", function (e) {
-        console.log("Button clicked");
         let platformId = $(this).data("platformid");
-        console.log("Platform:Id", platformId);
         deleteConfirm.attr("href", `delete_platform/${platformId}`);
         deleteModal.show();
     });
 
     // // Toggle visibility of game details box
-    // $('.btn-primary').on('click', function () {
-    //     var collapse = $(this).siblings('.collapse');
-    //     collapse.collapse('toggle');
-    // });
+    
 });

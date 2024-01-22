@@ -550,7 +550,24 @@ keep consitancy
    Added url back to delete_platform view
 
 1. **Error**
-   
+  Expand button is expanding on `index.html` is expanding but collapsing
+
+  **Cause**
+  Interference between bootstrap imported in `base.html`
+
+  ```html
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+  ```
+
+  **Solution**
+   kept Boostrap bundle which includes popper and Bootstrap and removed lines the other two lines
+
+   ```html
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+   ```
 
 ## Diary
 
@@ -673,3 +690,13 @@ keep consitancy
 
 - **18/01/2024**
     fix platform addition and deletion after adding user
+
+- **21/01/2024**
+    reshape index.html
+
+- ### Sprint 4
+  
+- **22/01/2024**
+   fix delete button on index.html
+   fix expand button on index.html
+  
