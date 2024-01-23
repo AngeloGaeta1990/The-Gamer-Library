@@ -3,6 +3,7 @@ from django.views import generic
 from django.db import models
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Platform
@@ -25,7 +26,7 @@ class PlatformList(generic.ListView):
             game_count=models.Count('games')).all()
 
 
-def platform_detail(request, slug):
+def platform_detail(request, user_id, slug):
     """
     Display an individual :model:`library.Library`.
 
@@ -38,15 +39,20 @@ def platform_detail(request, slug):
 
     :template:`library/platform_detail.html`
     """
-    queryset = Platform.objects.all()
-    platform = get_object_or_404(queryset, slug=slug)
-    games = platform.games.all()
-    return render(
-        request,
-        "library/platform_detail.html",
-        {"platform": platform,
-         "games": games},
-    )
+    user = request.user
+    queryset = Platform.objects.filter(user=user)
+    platforms = queryset.filter(slug=slug)
+
+    if platforms.exists():
+        platform = platforms.first()
+        games = platform.games.all()
+        return render(
+            request,
+            "library/platform_detail.html",
+            {"platform": platform, "games": games},
+        )
+    else:
+        raise Http404("Platform not found")
 
 
 @login_required
@@ -54,13 +60,15 @@ def add_platform(request):
     if request.method == 'POST':
         add_platform_form = AddPlatformForm(request.POST)
         if add_platform_form.is_valid():
-            add_platform_form.save(user=request.user)
+            platform = add_platform_form.save(commit=False)
+            platform.user = request.user
+            platform.save()
             messages.add_message(request, messages.SUCCESS,
                                  'new platform added')
             return redirect('home')
         else:
             messages.error(request, 'Error adding the platform. Please check'
-                           'the form.')
+                           ' the form.')
     else:
         add_platform_form = AddPlatformForm()
 
@@ -69,7 +77,7 @@ def add_platform(request):
                   {'add_platform_form': add_platform_form})
 
 
-def edit_platform(request, slug, platform_id):
+def edit_platform(request, user_id, slug, platform_id):
     """
     view to edit comments
     """
@@ -101,7 +109,7 @@ def edit_platform(request, slug, platform_id):
                    'platform': platform})
 
 
-def delete_platform(request, slug, platform_id):
+def delete_platform(request, user_id, slug, platform_id):
     """
     view to delete platform
     """
@@ -112,9 +120,9 @@ def delete_platform(request, slug, platform_id):
 
 
 def add_game(request):
-    add_game_form = AddGameForm()
+    add_game_form = AddGameForm(user=request.user)
     if request.method == 'POST':
-        add_game_form = AddGameForm(request.POST)
+        add_game_form = AddGameForm(request.user, request.POST)
         if add_game_form.is_valid():
             # TODO add videogames database API to get data and fill the form
             add_game_form.save()

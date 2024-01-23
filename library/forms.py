@@ -8,14 +8,6 @@ class AddPlatformForm(forms.ModelForm):
         model = Platform
         fields = ('name', 'category')
 
-    def save(self, commit=True, user=None):
-        instance = super().save(commit=False)
-        if user:
-            instance.user = user
-        if commit:
-            instance.save()
-        return instance
-
 
 class EditPlatformForm(forms.ModelForm):
     class Meta:
@@ -53,3 +45,8 @@ class AddGameForm(forms.ModelForm):
     class Meta:
         model = Game
         fields = ('name', 'platform')
+
+    def __init__(self, user, *args, **kwargs):
+        super(AddGameForm, self).__init__(*args, **kwargs)
+        # Filter platforms based on the current user
+        self.fields['platform'].queryset = Platform.objects.filter(user=user)

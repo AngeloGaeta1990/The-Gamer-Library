@@ -37,7 +37,7 @@
 </div>
 
 <div class="text-center">
-    <a href="{% url 'edit_platform' platform.slug platform.id%}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'edit_platform' request.user.id platform.slug platform.id%}" class="btn btn-primary">Edit</a>
 </div>
 
 <div class="text-center white-text">

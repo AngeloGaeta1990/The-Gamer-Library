@@ -568,6 +568,50 @@ keep consitancy
    ```html
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
    ```
+  
+1. **Error**
+     If a user tries to add a `platform` with the same name of the platform of another user gets error:
+
+     ```cmd
+     IntegrityError at /add_platform/
+    duplicate key value violates unique constraint "library_platform_slug_key"
+      DETAIL:  Key (slug)=(test) already exists.
+    ```
+
+    **Cause**
+    URL for `platform details`, `add platform` and `remove platform` is designed to include only slug, which will be the same if two user Add the same platform name.
+
+    **Solution**
+    Added `user id` to the url for `platform details`, `add platform` and `remove platform`
+
+    ```python
+    urlpatterns = [
+        path('', views.PlatformList.as_view(), name='home'),
+        path('add_game/', views.add_game, name='add_game'),
+        path('add_platform/', views.add_platform, name='add_platform'),
+        path('<int:user_id>/<slug:slug>/', views.platform_detail,
+            name='platform_detail'),
+        path('<int:user_id>/<slug:slug>/edit_platform/<uuid:platform_id>/',
+            views.edit_platform, name='edit_platform'),
+        path('<int:user_id>/<slug:slug>/delete_platform/<uuid:platform_id>/',
+            views.delete_platform, name='delete_platform'),
+    ```
+
+1. **Error**
+   Different users can see platforms of other users, when adding a game to platform
+
+   **Cause**
+   Platforms were not filtered in forms.py for add game form
+
+   **Solution**
+   Added a filter to restrict view to only user owned platform in add_game form
+
+   ```python
+   def __init__(self, user, *args, **kwargs):
+        super(AddGameForm, self).__init__(*args, **kwargs)
+        # Filter platforms based on the current user
+        self.fields['platform'].queryset = Platform.objects.filter(user=user)
+   ```
 
 ## Diary
 

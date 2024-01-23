@@ -2,14 +2,13 @@ import uuid
 from django.db import models
 from django.core.validators import MaxValueValidator
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
 from colorfield.fields import ColorField
 from cloudinary.models import CloudinaryField
 
 
 class Game(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    slug = models.SlugField(max_length=255, unique=True, blank=True)
+    slug = models.SlugField(max_length=255, blank=True)
     name = models.CharField(max_length=255)
     user_score = models.IntegerField(null=True, blank=True,
                                      validators=[MaxValueValidator(100)])
@@ -48,7 +47,7 @@ class Game(models.Model):
 
 class WishList(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    slug = models.SlugField(max_length=255, unique=True, blank=True)
+    slug = models.SlugField(max_length=255, blank=True)
     game_name = models.CharField(max_length=255)
     game_image = CloudinaryField('image', null=True, blank=True,
                                  default='placeholder')
@@ -62,7 +61,7 @@ class WishList(models.Model):
 
     class Meta:
         unique_together = ('game_name', 'game_platform')
-        ordering = ["game_platform"]
+        ordering = ["game_name"]
 
     def __str__(self):
         return self.game_name
@@ -78,8 +77,8 @@ class Platform(models.Model):
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, unique=True)
-    slug = models.SlugField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255,)
     category = models.CharField(max_length=10, choices=PLATFORM_CHOICES,
                                 null=False, blank=False)
     image = CloudinaryField('image', null=True, blank=True,
@@ -90,10 +89,26 @@ class Platform(models.Model):
                              related_name='platform')
 
     class Meta:
+        unique_together = ('name', 'user')
         ordering = ["name"]
 
     def __str__(self):
         return self.name
+
+    # def create_unique_slug(self, name):
+    #     # Combine user and game name to create a unique identifier
+    #     identifier = f"{self.user.username}-{name}"
+
+    #     # Use Django's slugify to convert the identifier to a slug
+    #     slug = slugify(identifier)
+
+    #     # Check if the slug is already used
+    #     existing_slugs = Game.objects.filter(slug__startswith=slug)
+    #     if existing_slugs.exists():
+    #         # If slug is already used, append a number to make it unique
+    #         slug = f"{slug}-{existing_slugs.count() + 1}"
+
+    #     return slug
 
     def save(self, *args, **kwargs):
         # Generate or set the UUID when the instance is first created
@@ -102,10 +117,6 @@ class Platform(models.Model):
         # Generate or set the slug only if it's not already set
         if not self.slug:
             self.slug = self.name.lower().replace(' ', '-')
-        if not self.user_id:
-            self.user = kwargs.pop('user', None)
-            if self.user is None:
-                self.user = get_user_model().objects.first()
         super().save(*args, **kwargs)
 
 
