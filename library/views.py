@@ -58,17 +58,21 @@ def platform_detail(request, user_id, slug):
 @login_required
 def add_platform(request):
     if request.method == 'POST':
-        add_platform_form = AddPlatformForm(request.POST)
+        add_platform_form = AddPlatformForm(request.POST, request.FILES)
         if add_platform_form.is_valid():
-            platform = add_platform_form.save(commit=False)
-            platform.user = request.user
-            platform.save()
-            messages.add_message(request, messages.SUCCESS,
-                                 'new platform added')
-            return redirect('home')
-        else:
-            messages.error(request, 'Error adding the platform. Please check'
-                           ' the form.')
+            platform_name = add_platform_form.cleaned_data['name']
+            if Platform.objects.filter(name=platform_name,
+                                       user=request.user).exists():
+                add_platform_form.add_error('name', 'This platform already'
+                                            ' exists.')
+            else:
+                platform = add_platform_form.save(commit=False)
+                platform.user = request.user
+                platform.save()
+                messages.add_message(request, messages.SUCCESS,
+                                     'new platform added')
+                return redirect('home')
+
     else:
         add_platform_form = AddPlatformForm()
 
@@ -93,7 +97,8 @@ def edit_platform(request, user_id, slug, platform_id):
     else:
         form_class = EditPlatformForm
 
-    edit_platform_form = form_class(data=request.POST, instance=platform)
+    edit_platform_form = form_class(request.POST,
+                                    request.FILES, instance=platform)
 
     if request.method == 'POST':
 

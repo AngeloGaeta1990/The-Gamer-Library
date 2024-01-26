@@ -6,9 +6,9 @@ from .models import (Platform, PCPlatform, ConsolePlatform, ServicePlatform,
 class AddPlatformForm(forms.ModelForm):
     class Meta:
         model = Platform
-        fields = ('name', 'category')
+        fields = ('name', 'category', 'image')
 
-
+   
 class EditPlatformForm(forms.ModelForm):
     class Meta:
         model = Platform

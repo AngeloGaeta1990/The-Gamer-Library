@@ -8,22 +8,31 @@ $(document).ready(function () {
         // Apply platform color to body
         $('body').css('background-color', platformColor);
         $('body').css('color', platformFontColor);
-    }
         // Apply styles to other elements as needed
         // ...
+    }
 
+    // Expand buttons on the library/index.html page
+    
+    // Apply styles to platform buttons on the library/index.html page
     $('.platform-button').each(function () {
         let boxColor = $(this).data('boxcolor');
         let fontColor = $(this).data('fontcolor');
         $(this).css('background-color', boxColor);
         $(this).css('color', fontColor);
-
-        // Add click event handler for each platform button
-        $(this).on('click', function () {
-            // Toggle the visibility of the corresponding game menu
-            let dropdownMenu = $(this).next('.dropdown-menu');
-            dropdownMenu.toggle();
-        });
     });
-});
 
+    // Delete buttons on the library/index.html page
+    const deleteModal = new bootstrap.Modal($("#deleteModal")[0]);
+    const deleteButtons = $(".btn-delete");
+    const deleteConfirm = $("#deleteConfirm");
+
+    deleteButtons.on("click", function (e) {
+        let platformId = $(this).data("platformid");
+        deleteConfirm.attr("href", `delete_platform/${platformId}`);
+        deleteModal.show();
+    });
+
+    // // Toggle visibility of game details box
+    
+});

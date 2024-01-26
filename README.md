@@ -613,6 +613,31 @@ keep consitancy
         self.fields['platform'].queryset = Platform.objects.filter(user=user)
    ```
 
+1. **Error**
+   Images are not uploaded to Cloudindary when uploaded via form
+
+   **Cause**
+  Form in html template and view were missing relevant fields
+
+   **Solution**
+
+  ```python
+  @login_required
+  def add_platform(request):
+      if request.method == 'POST':
+          add_platform_form = AddPlatformForm(request.POST, request.FILES)
+          if add_platform_form.is_valid():
+              platform_name = add_platform_form.cleaned_data['name']
+  ```
+
+  ```html
+    <form method="post" class="white-text" enctype="multipart/form-data" action="{% url 'add_platform' %}">
+      {% csrf_token %}
+      {{ add_platform_form|crispy }}
+      <button type="submit" class="btn btn-primary">Add Platform</button>
+  </form>
+  ```
+
 ## Diary
 
 - ### Sprint 1

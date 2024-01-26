@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<form method="post" class="white-text" action="{% url 'add_platform' %}">
+<form method="post" class="white-text" enctype="multipart/form-data" action="{% url 'add_platform' %}">
     {% csrf_token %}
     {{ add_platform_form|crispy }}
     <button type="submit" class="btn btn-primary">Add Platform</button>

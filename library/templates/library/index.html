@@ -4,10 +4,10 @@
 
 {% if user.is_authenticated %}
 <div class="container no-margin full-width">
-  {% for platform in platforms %}
-    {% if platform.user == request.user %}
-      <div class="row">
-        <div class="col-12">
+  <div class="row">
+    {% for platform in platforms %}
+      {% if platform.user == request.user %}
+        <div class="col-12 col-md-6 col-lg-4">
           <div class="platform-rectangle mt-3 mb-3 p-3 white-text platform-button" data-boxcolor="{{platform.box_color}}" data-fontcolor="{{platform.font_color}}">
             <div class="d-flex align-items-center">
               {% if "placeholder" in platform.image.url %}
@@ -20,59 +20,40 @@
                 <span class="games-count"> {{ platform.game_count }}</span>
               </div>
               <div class="ml-auto">
-                  <button class="btn btn-primary btn-sm buttons-spacing"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseGames{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseGames{{ forloop.counter }}">
-                    <i class="fa-solid fa-caret-down"></i>
-                  </button>
-                  <button class="btn btn-danger btn-sm ml-2 delete-button buttons-spacing" data-bs-toggle="modal" data-bs-target="#deletePlatformModal{{ forloop.counter }}">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                  <div class="collapse" id="collapseGames{{ forloop.counter }}">
-                    <div class="card card-body">
-                      {% if platform.games.all %}
-                        {% for game in platform.games.all %}
-                          <div class="game-details black-text">
-                            {% if game.image %}
-                              <img src="{{game.image.url }}" alt="{{ game.name }} Image" class="game-image mr-2">
-                            {% endif %}
-                            <div class="game-info">
-                              <p class="game-name">{{ game.name }}</p>
-                              <p class="user-score">User Score: {{ game.user_score }}</p>
-                            </div>
+                <button class="btn btn-primary btn-sm buttons-spacing" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGames{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseGames{{ forloop.counter }}">
+                  <i class="fa-solid fa-caret-down"></i>
+                </button>
+                <button class="btn btn-danger btn-sm ml-2 delete-button buttons-spacing" data-bs-toggle="modal" data-bs-target="#deletePlatformModal{{ forloop.counter }}">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+                <div class="collapse" id="collapseGames{{ forloop.counter }}">
+                  <div class="card card-body">
+                    {% if platform.games.all %}
+                      {% for game in platform.games.all %}
+                        <div class="game-details black-text">
+                          {% if  "placeholder" in game.image.url %}
+                            <img src="{% static 'images/library/game_images/default_game.png' %}" alt="{{ game.name }} Image" class="game-image mr-3"> 
+                          {% else %}
+                            <img src="{{game.image.url }}" alt="{{ game.name }} Image" class="game-image mr-2">
+                          {% endif %}
+                          <div class="game-info">
+                            <p class="game-name">{{ game.name }}</p>
+                            <p class="user-score">User Score: {{ game.user_score }}</p>
                           </div>
-                        {% endfor %}
-                      {% else %}
-                        <p class= "black-text">No games available</p>
-                      {% endif %}
-                    </div>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <p class="black-text">No games available</p>
+                    {% endif %}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Delete Platform Modal -->
-      <div class="modal fade" id="deletePlatformModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="deletePlatformModalLabel{{ forloop.counter }}" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="deletePlatformModalLabel{{ forloop.counter }}">Confirm Deletion</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Are you sure you want to delete the platform "{{ platform.name }}"?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <a href="{% url 'delete_platform' request.user.id platform.slug platform.id %}" class="btn btn-danger">Delete</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endif %}
-  {% endfor %}
+      {% endif %}
+    {% endfor %}
+  </div>
 </div>
 {% endif %}
 {% endblock %}
