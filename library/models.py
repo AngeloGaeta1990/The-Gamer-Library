@@ -76,51 +76,6 @@ class Platform(models.Model):
         ('mobile', 'Mobile')
     ]
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255,)
-    category = models.CharField(max_length=10, choices=PLATFORM_CHOICES,
-                                null=False, blank=False)
-    image = CloudinaryField('image', null=True, blank=True,
-                            default='placeholder')
-    box_color = ColorField(null=True, blank=True)
-    font_color = ColorField(null=True, blank=True, default='#fafafa')
-    user = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name='platform')
-
-    class Meta:
-        unique_together = ('name', 'user')
-        ordering = ["name"]
-
-    def __str__(self):
-        return self.name
-
-    # def create_unique_slug(self, name):
-    #     # Combine user and game name to create a unique identifier
-    #     identifier = f"{self.user.username}-{name}"
-
-    #     # Use Django's slugify to convert the identifier to a slug
-    #     slug = slugify(identifier)
-
-    #     # Check if the slug is already used
-    #     existing_slugs = Game.objects.filter(slug__startswith=slug)
-    #     if existing_slugs.exists():
-    #         # If slug is already used, append a number to make it unique
-    #         slug = f"{slug}-{existing_slugs.count() + 1}"
-
-    #     return slug
-
-    def save(self, *args, **kwargs):
-        # Generate or set the UUID when the instance is first created
-        if not self.id:
-            self.id = uuid.uuid4()
-        # Generate or set the slug only if it's not already set
-        if not self.slug:
-            self.slug = self.name.lower().replace(' ', '-')
-        super().save(*args, **kwargs)
-
-
-class PCPlatform(Platform):
     OPERATIVE_SYSTEMS_CHOICES = [
         ('Windows', 'Windows'),
         ('Linux', 'Linux'),
@@ -132,38 +87,61 @@ class PCPlatform(Platform):
         ('HDD', 'HDD'),
         ('SSD', 'SSD')
     ]
+
+    OPERATIVE_MOBILE_SYSTEMS_CHOICES = [
+        ('iOS', 'iOS'),
+        ('Android', 'Android')
+    ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255,)
+    category = models.CharField(max_length=10, choices=PLATFORM_CHOICES,
+                                null=False, blank=False)
+    image = CloudinaryField('image', null=True, blank=True,
+                            default='placeholder')
+    box_color = ColorField(null=True, blank=True)
+    font_color = ColorField(null=True, blank=True, default='#fafafa')
+    # PC exclusive
     operative_systems = models.CharField(max_length=50,
-                                         choices=OPERATIVE_SYSTEMS_CHOICES)
+                                         choices=OPERATIVE_SYSTEMS_CHOICES,
+                                         null=True, blank=True)
     gpu = models.CharField(max_length=255, null=True, blank=True)
     cpu = models.CharField(max_length=255, null=True, blank=True)
     ram = models.IntegerField(null=True, blank=True)
     disk_size = models.IntegerField(null=True, blank=True)
     disk_type = models.CharField(max_length=10, choices=DISK_TYPE_CHOICES,
                                  null=True, blank=True)
-
-
-class ConsolePlatform(Platform):
-
+    # Console exclusive
     model = models.CharField(max_length=255, null=True,  blank=True)
-
-
-class ServicePlatform(Platform):
-
+    # Service exclusive
     subscription_fee = models.DecimalField(max_digits=5, decimal_places=2,
                                            null=True,  blank=True)
     plan = models.CharField(max_length=255, null=True,  blank=True)
-
-
-class MobilePlatform(Platform):
-    OPERATIVE_SYSTEMS_CHOICES = [
-        ('OS', 'OS'),
-        ('Android', 'Android')
-    ]
-
+    # Mobile exclusive
     brand = models.CharField(max_length=255, null=True,  blank=True)
     operative_systems = models.CharField(max_length=50,
-                                         choices=OPERATIVE_SYSTEMS_CHOICES)
+                                         choices=OPERATIVE_SYSTEMS_CHOICES,
+                                         null=True,  blank=True)
+    # Foreign key
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='platform')
 
+    class Meta:
+        unique_together = ('name', 'user')
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        # Generate or set the UUID when the instance is first created
+        if not self.id:
+            self.id = uuid.uuid4()
+        # Generate or set the slug only if it's not already set
+        if not self.slug:
+            self.slug = self.name.lower().replace(' ', '-')
+        super().save(*args, **kwargs)
 
 # class FriendList(models.Model):
 #     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,

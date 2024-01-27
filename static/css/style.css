@@ -126,7 +126,7 @@ footer {
 .game-image {
     max-width: 200px;
     max-height: 200px;
-    margin-right: 10px;
+    margin: 10px;
   }
 
 .game-info {
@@ -169,12 +169,13 @@ footer {
 }
 
 .pd-game-image {
-    width: 100%;
-    height: auto
+    width: 600px;
+    height: auto;
 }
 
-.pd-games-header {
-    padding-left: 15px; /* Adjust the padding as needed */
+.pd-game-name {
+    font-size: 40px; /* Adjust the font size as needed */
+    font-family:'Roboto', sans-serif;
 }
 
 /*______________________ about.html______________________*/

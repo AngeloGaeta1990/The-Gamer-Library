@@ -758,14 +758,18 @@ keep consitancy
   - add unit testing for about and library app
 
 - **18/01/2024**
-    fix platform addition and deletion after adding user
+  - fix platform addition and deletion after adding user
 
 - **21/01/2024**
-    reshape index.html
+  - reshape index.html
 
 - ### Sprint 4
   
 - **22/01/2024**
-   fix delete button on index.html
-   fix expand button on index.html
+  - fix delete button on index.html
+  - fix expand button on index.html
+
+- **27/01/2024**
+  - removed subclasses from platform model
+  - improved platform_detail.html 
   

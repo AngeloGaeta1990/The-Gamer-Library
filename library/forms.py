@@ -1,6 +1,5 @@
 from django import forms
-from .models import (Platform, PCPlatform, ConsolePlatform, ServicePlatform,
-                     MobilePlatform, Game)
+from .models import Platform, Game
 
 
 class AddPlatformForm(forms.ModelForm):
@@ -8,7 +7,7 @@ class AddPlatformForm(forms.ModelForm):
         model = Platform
         fields = ('name', 'category', 'image')
 
-   
+
 class EditPlatformForm(forms.ModelForm):
     class Meta:
         model = Platform
@@ -17,7 +16,7 @@ class EditPlatformForm(forms.ModelForm):
 
 class EditPCPlatformForm(EditPlatformForm):
     class Meta(EditPlatformForm.Meta):
-        model = PCPlatform
+        model = Platform
         fields = EditPlatformForm.Meta.fields + ('operative_systems', 'gpu',
                                                  'cpu', 'ram', 'disk_size',
                                                  'disk_type')
@@ -25,19 +24,19 @@ class EditPCPlatformForm(EditPlatformForm):
 
 class EditConsolePlatformForm(EditPlatformForm):
     class Meta(EditPlatformForm.Meta):
-        model = ConsolePlatform
+        model = Platform
         fields = EditPlatformForm.Meta.fields + ('model',)
 
 
 class EditServicePlatformForm(EditPlatformForm):
     class Meta(EditPlatformForm.Meta):
-        model = ServicePlatform
+        model = Platform
         fields = EditPlatformForm.Meta.fields + ('subscription_fee', 'plan')
 
 
 class EditMobilePlatformForm(EditPlatformForm):
     class Meta(EditPlatformForm.Meta):
-        model = MobilePlatform
+        model = Platform
         fields = EditPlatformForm.Meta.fields + ('brand', 'operative_systems')
 
 
