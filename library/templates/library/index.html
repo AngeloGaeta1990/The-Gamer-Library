@@ -37,7 +37,7 @@
                             <img src="{{game.image.url }}" alt="{{ game.name }} Image" class="game-image mr-2">
                           {% endif %}
                           <div class="game-info">
-                            <p class="game-name">{{ game.name }}</p>
+                            <a href="{% url 'game_detail' request.user.id platform.slug game.slug %}" class="platform-link no-highlight">{{ game.name }}</a>
                             <p class="user-score">User Score: {{ game.user_score }}</p>
                           </div>
                         </div>
@@ -66,7 +66,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <a href="{% url 'delete_platform' request.user.id platform.slug platform.id %}" class="btn btn-danger">Delete</a>
+              <a href="{% url 'delete_platform' request.user.id platform.slug %}" class="btn btn-danger">Delete</a>
             </div>
           </div>
         </div>

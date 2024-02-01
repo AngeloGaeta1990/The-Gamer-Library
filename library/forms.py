@@ -43,7 +43,7 @@ class EditMobilePlatformForm(EditPlatformForm):
 class AddGameForm(forms.ModelForm):
     class Meta:
         model = Game
-        fields = ('name', 'platform')
+        fields = ('name', 'platform', 'image', 'user_score')
 
     def __init__(self, user, *args, **kwargs):
         super(AddGameForm, self).__init__(*args, **kwargs)

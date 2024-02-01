@@ -6,9 +6,11 @@
 {% block content %}
 <div class="container pd-container" data-platformcolor="{{ platform.box_color }}" data-platformfontcolor="{{ platform.font_color }}">
     <div class="text-center">
-        {% if platform.image %}
-            <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="img-fluid pd-platform-image mb-4">
-        {% endif %}
+        {% if "placeholder" in platform.image.url %}
+        <img src="{% static 'images/library/platform_images/default_platform.jpg' %}" alt="{{ platform.name }} Image" class="platform-image mr-3"> 
+      {% else %}
+        <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="platform-image mr-3">
+      {% endif %}
         <h2 class="mb-4">{{ platform.name }} Games</h2>
     </div>
 
@@ -47,7 +49,7 @@
                         <img src="{{ game.image.url }}" alt="{{ game.name }} Image" class="card-img-top img-fluid pd-game-image">
                     {% endif %}
                     <div class="card-body pd-game-name">
-                        <h5 class="card-title">{{ game.name }}</h5>
+                        <a href="{% url 'game_detail' request.user.id platform.slug game.slug %}" class="no-highlight pd-game-link">{{ game.name }}</a>
                     </div>
                 </div>
             </div>
@@ -56,7 +58,7 @@
 
     <div class="text-center mt-4">
         <div class="btn-group" role="group">
-            <a href="{% url 'edit_platform' request.user.id platform.slug platform.id %}" class="btn btn-primary buttons-spacing"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="{% url 'edit_platform' request.user.id platform.slug %}" class="btn btn-primary buttons-spacing"><i class="fa-solid fa-pen-to-square"></i></a>
             <button class="btn btn-delete btn-danger buttons-spacing" data-platformid="{{ platform.id }}" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa-solid fa-trash"></i></button>
         </div>
     </div>

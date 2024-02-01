@@ -94,8 +94,8 @@ footer {
 }
 
 .platform-image {
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
     margin: 5px;
     padding: 5px;
 }
@@ -178,6 +178,10 @@ footer {
     font-family:'Roboto', sans-serif;
 }
 
+.pd-game-link {
+    font-size: medium;
+}
+
 /*______________________ about.html______________________*/
 
 /* Image Section */
@@ -207,3 +211,5 @@ footer {
     /* height: 40vh;
     width: 100vw;       */
 }
+
+

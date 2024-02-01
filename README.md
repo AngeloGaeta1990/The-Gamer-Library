@@ -543,7 +543,7 @@ keep consitancy
      delete_platform() got an unexpected keyword argument 'slug'
      ```
 
-  **Cause**
+   **Cause**
    Url to delete platform required 'slug' as parameter but slug was removed from delete_platform view
 
    **View**
@@ -552,18 +552,18 @@ keep consitancy
 1. **Error**
   Expand button is expanding on `index.html` is expanding but collapsing
 
-  **Cause**
-  Interference between bootstrap imported in `base.html`
+   **Cause**
+    Interference between bootstrap imported in `base.html`
 
-  ```html
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
-  ```
+    ```html
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+      <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    ```
 
-  **Solution**
-   kept Boostrap bundle which includes popper and Bootstrap and removed lines the other two lines
+    **Solution**
+    kept Boostrap bundle which includes popper and Bootstrap and removed lines the other two lines
 
    ```html
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -595,6 +595,7 @@ keep consitancy
             views.edit_platform, name='edit_platform'),
         path('<int:user_id>/<slug:slug>/delete_platform/<uuid:platform_id>/',
             views.delete_platform, name='delete_platform'),
+    ]
     ```
 
 1. **Error**
@@ -621,22 +622,22 @@ keep consitancy
 
    **Solution**
 
-  ```python
-  @login_required
-  def add_platform(request):
-      if request.method == 'POST':
-          add_platform_form = AddPlatformForm(request.POST, request.FILES)
-          if add_platform_form.is_valid():
-              platform_name = add_platform_form.cleaned_data['name']
-  ```
+    ```python
+    @login_required
+    def add_platform(request):
+        if request.method == 'POST':
+            add_platform_form = AddPlatformForm(request.POST, request.FILES)
+            if add_platform_form.is_valid():
+                platform_name = add_platform_form.cleaned_data['name']
+    ```
 
-  ```html
-    <form method="post" class="white-text" enctype="multipart/form-data" action="{% url 'add_platform' %}">
-      {% csrf_token %}
-      {{ add_platform_form|crispy }}
-      <button type="submit" class="btn btn-primary">Add Platform</button>
-  </form>
-  ```
+    ```html
+      <form method="post" class="white-text" enctype="multipart/form-data" action="{% url 'add_platform' %}">
+        {% csrf_token %}
+        {{ add_platform_form|crispy }}
+        <button type="submit" class="btn btn-primary">Add Platform</button>
+    </form>
+    ```
 
 ## Diary
 
@@ -771,5 +772,14 @@ keep consitancy
 
 - **27/01/2024**
   - removed subclasses from platform model
-  - improved platform_detail.html 
+  - improved platform_detail.html
+
+- **31/01/2024**
+  - reshape user stories
+
+- **01/01/2024**
+  - add image form for game
+  - add game detail view
+  - add game detail template
+  - add game detail url
   

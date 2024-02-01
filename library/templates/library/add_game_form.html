@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<form method="post" class="white-text" action="{% url 'add_game' %}">
+<form method="post" class="white-text"  enctype="multipart/form-data" action="{% url 'add_game' %}">
     {% csrf_token %}
     {{ add_game_form|crispy }}
     <button type="submit" class="btn btn-primary white-text">Add Game</button>

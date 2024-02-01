@@ -7,6 +7,7 @@ from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Platform
+from .models import Game
 from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
                     EditPCPlatformForm, EditConsolePlatformForm,
                     EditServicePlatformForm, EditMobilePlatformForm)
@@ -114,11 +115,11 @@ def edit_platform(request, user_id, slug, platform_id):
                    'platform': platform})
 
 
-def delete_platform(request, user_id, slug, platform_id):
+def delete_platform(request, user_id, slug):
     """
     view to delete platform
     """
-    platform = get_object_or_404(Platform, pk=platform_id)
+    platform = get_object_or_404(Platform,  slug=slug)
     platform.delete()
     messages.add_message(request, messages.SUCCESS, 'Platform deleted!')
     return HttpResponseRedirect(reverse('home'))
@@ -127,13 +128,40 @@ def delete_platform(request, user_id, slug, platform_id):
 def add_game(request):
     add_game_form = AddGameForm(user=request.user)
     if request.method == 'POST':
-        add_game_form = AddGameForm(request.user, request.POST)
+        add_game_form = AddGameForm(request.user, request.POST, request.FILES)
         if add_game_form.is_valid():
             # TODO add videogames database API to get data and fill the form
             add_game_form.save()
             # Add any additional logic or redirect here
             return redirect('home')
+        else:
+            messages.error(request, 'Invalid form submission. Please check the' 
+                           ' form.')
 
     return render(request,
                   'library/add_game_form.html',
                   {'add_game_form': add_game_form})
+
+
+def game_detail(request, user_id, platform_slug, game_slug):
+    """
+    Display an individual :model:`library.Game`.
+
+    **Context**
+
+    ``Game``
+        An instance of :model:`library.Game`.
+
+    **Template:**
+
+    :template:`library/game_detail.html`
+    """
+    user = request.user
+    platform = get_object_or_404(Platform, user=user, slug=platform_slug)
+    game = get_object_or_404(Game, platform=platform, slug=game_slug)
+
+    return render(
+        request,
+        "library/game_detail.html",
+        {"game": game},
+    )
