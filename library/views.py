@@ -10,7 +10,8 @@ from .models import Platform
 from .models import Game
 from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
                     EditPCPlatformForm, EditConsolePlatformForm,
-                    EditServicePlatformForm, EditMobilePlatformForm)
+                    EditServicePlatformForm, EditMobilePlatformForm,
+                    EditGameForm)
 
 
 # Create your views here.
@@ -82,11 +83,11 @@ def add_platform(request):
                   {'add_platform_form': add_platform_form})
 
 
-def edit_platform(request, user_id, slug, platform_id):
+def edit_platform(request, user_id, slug):
     """
     view to edit comments
     """
-    platform = get_object_or_404(Platform, pk=platform_id)
+    platform = get_object_or_404(Platform,  user_id=user_id, slug=slug)
     if platform.category == 'pc':
         form_class = EditPCPlatformForm
     elif platform.category == 'console':
@@ -163,5 +164,34 @@ def game_detail(request, user_id, platform_slug, game_slug):
     return render(
         request,
         "library/game_detail.html",
-        {"game": game},
+        {
+         "platform": platform,
+         "game": game},
     )
+
+
+def edit_game(request, user_id, platform_slug, game_slug):
+    """
+    View to edit game
+    """
+    user = request.user
+    platform = get_object_or_404(Platform, user=user, slug=platform_slug)
+    game = get_object_or_404(Game, platform=platform, slug=game_slug)
+
+    if request.method == 'POST':
+        print("Platform Slug:", platform.slug)
+        edit_game_form = EditGameForm(request.POST, request.FILES,
+                                      instance=game)
+        if edit_game_form.is_valid():
+            edit_game_form.save()
+            messages.success(request, 'Game edited!')
+            return HttpResponseRedirect(reverse('game_detail', args=[user_id,
+                                                platform.slug, game.slug]))
+    else:
+        edit_game_form = EditGameForm(instance=game)
+
+    return render(request, 'library/edit_game.html', {
+        'edit_game_form': edit_game_form,
+        'platform': platform,
+        'game': game,
+    })

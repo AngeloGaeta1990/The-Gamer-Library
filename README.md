@@ -637,7 +637,53 @@ keep consitancy
         {{ add_platform_form|crispy }}
         <button type="submit" class="btn btn-primary">Add Platform</button>
     </form>
+
     ```
+
+1. **Error**
+    When creating the edit game form got error:
+
+    ```cmd
+    from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,)
+    raise FieldError(
+    django.core.exceptions.FieldError: 'completion_date' cannot be specified for Game model form as it is a non-editable field)
+
+    ```
+
+    **Cause**
+    Field `auto_now_add=True` was added to the `Game` model if this is added the field is not editable
+
+    **Solution**
+    Changed `auto_now_add=True` to `default=models.functions.Now` to set current date as default and allow to edit the completion date
+
+1. **Error**
+   got the following error when creating the creating the `edit game` view
+
+   ```cmd
+   NoReverseMatch at /1/games-pass/test2/
+   Reverse for 'edit_game' with arguments '(1, '', 'test2')' not found. 1 pattern(s) tried: ['(?P<user_id>[0-9]+)/(?P<platform_slug>[-a-zA-Z0-9_]+)/(?P<game_slug>[-a-zA-Z0-9_]+)/edit_game/\\Z']
+   ```
+  
+   **Cause**
+   The edit game button is added on the `game_detail.html` and to form the url the platform.slug attribute is required.
+   Nevertheless, the `game_detail` view does not return the instance of the platform
+
+   **Solution**
+   Added the instance of platform in the return of `game_detail` view
+
+   ```python
+    user = request.user
+      platform = get_object_or_404(Platform, user=user, slug=platform_slug)
+      game = get_object_or_404(Game, platform=platform, slug=game_slug)
+
+      return render(
+          request,
+          "library/game_detail.html",
+          {
+          "platform": platform,
+          "game": game},
+      )
+   ```
 
 ## Diary
 
@@ -777,9 +823,12 @@ keep consitancy
 - **31/01/2024**
   - reshape user stories
 
-- **01/01/2024**
+- **01/02/2024**
   - add image form for game
   - add game detail view
   - add game detail template
   - add game detail url
+
+- **01/02/2024**
+
   

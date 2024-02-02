@@ -19,8 +19,9 @@ class Game(models.Model):
     user_review = models.TextField(null=True, blank=True)
     genres = models.CharField(max_length=255, blank=True, null=True)
     release_date = models.DateField(null=True, blank=True)
-    completion_date = models.DateField(null=True, auto_now_add=True,
-                                       blank=True)
+    completion_date = models.DateField(null=True, blank=True,
+                                       default=models.functions.Now,
+                                       )
     hours_spent = models.IntegerField(null=True, blank=True)
     developer = models.CharField(max_length=255, null=True, blank=True)
     platform = models.ForeignKey('Platform', on_delete=models.SET_NULL,

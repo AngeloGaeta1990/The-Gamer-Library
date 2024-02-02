@@ -49,3 +49,11 @@ class AddGameForm(forms.ModelForm):
         super(AddGameForm, self).__init__(*args, **kwargs)
         # Filter platforms based on the current user
         self.fields['platform'].queryset = Platform.objects.filter(user=user)
+
+
+class EditGameForm(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = ('name', 'platform', 'image', 'user_score',
+                  'metacritic_score', 'developer', 'genres', 'release_date',
+                  'completion_date', 'hours_spent',  'user_review')

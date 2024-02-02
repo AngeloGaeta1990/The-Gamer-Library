@@ -19,9 +19,9 @@
     <p>Category: {{ platform.category }}</p>
 
     {% if platform.category == 'pc' %}
-        <p>RAM: {{ platform.ram }}</p>
+        <p>RAM: GB {{ platform.ram }}</p>
         <p>GPU: {{ platform.gpu }}</p>
-        <p>Disk Size: {{ platform.disk_size }}</p>
+        <p>Disk Size: TB {{ platform.disk_size }}</p>
         <!-- Add other PCPlatform attributes as needed -->
     {% elif platform.category == 'console' %}
         <p>Model: {{ platform.model }}</p>
