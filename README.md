@@ -830,5 +830,4 @@ keep consitancy
   - add game detail url
 
 - **01/02/2024**
-
-  
+  - add delete game view, url and javascript

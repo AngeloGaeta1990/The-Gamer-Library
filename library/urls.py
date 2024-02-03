@@ -15,4 +15,6 @@ urlpatterns = [
          views.game_detail, name='game_detail'),
     path('<int:user_id>/<slug:platform_slug>/<slug:game_slug>/edit_game/',
          views.edit_game, name='edit_game'),
+    path('<int:user_id>/<slug:platform_slug>/<slug:game_slug>/delete_game/',
+         views.delete_game, name='delete_game'),
 ]

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views import generic
 from django.db import models
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -136,7 +136,7 @@ def add_game(request):
             # Add any additional logic or redirect here
             return redirect('home')
         else:
-            messages.error(request, 'Invalid form submission. Please check the' 
+            messages.error(request, 'Invalid form submission. Please check the'
                            ' form.')
 
     return render(request,
@@ -195,3 +195,18 @@ def edit_game(request, user_id, platform_slug, game_slug):
         'platform': platform,
         'game': game,
     })
+
+
+def delete_game(request, user_id, platform_slug, game_slug):
+    """
+    view to delete platform
+    """
+    user = request.user
+    platform = get_object_or_404(Platform, user=user, slug=platform_slug)
+    game = get_object_or_404(Game, platform=platform, slug=game_slug)
+    if platform.user != user:
+        return HttpResponseForbidden("You do not have permission to delete"
+                                     " this game.")
+    game.delete()
+    messages.add_message(request, messages.SUCCESS, 'Platform deleted!')
+    return HttpResponseRedirect(reverse('home'))

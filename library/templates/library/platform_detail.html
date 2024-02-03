@@ -7,9 +7,9 @@
 <div class="container pd-container" data-platformcolor="{{ platform.box_color }}" data-platformfontcolor="{{ platform.font_color }}">
     <div class="text-center">
         {% if "placeholder" in platform.image.url %}
-        <img src="{% static 'images/library/platform_images/default_platform.jpg' %}" alt="{{ platform.name }} Image" class="platform-image mr-3"> 
+        <img src="{% static 'images/library/platform_images/default_platform.jpg' %}" alt="{{ platform.name }} Image" class="pd-platform-image mr-3"> 
       {% else %}
-        <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="platform-image mr-3">
+        <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="pd-platform-image mr-3">
       {% endif %}
         <h2 class="mb-4">{{ platform.name }} Games</h2>
     </div>

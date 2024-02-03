@@ -33,6 +33,14 @@ $(document).ready(function () {
         deleteModal.show();
     });
 
-    // // Toggle visibility of game details box
-    
-});
+    // Delete button for game delete
+    const deleteGameModal = new bootstrap.Modal($("#deleteGameModal")[0]);
+    const deleteGameButton = $("#deleteGameButton");
+    const deleteGameConfirm = $("#deleteGameConfirm");
+
+    deleteGameButton.on("click", function (e) {
+        let gameId = $(this).data("gameid");
+        deleteGameConfirm.attr("href", `delete_game/${gameId}`);
+        deleteGameModal.show();
+    });
+})
