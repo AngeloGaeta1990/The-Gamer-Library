@@ -100,6 +100,10 @@ footer {
     padding: 5px;
 }
 
+.platform-font {
+    font-size: x-large;
+}
+
 .platform-name-spacing {
     margin: 5px;
     padding: 5px;
@@ -179,6 +183,10 @@ footer {
 }
 
 .pd-game-link {
+    font-size: medium;
+}
+
+.pd-game-score {
     font-size: medium;
 }
 

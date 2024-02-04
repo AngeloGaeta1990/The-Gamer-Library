@@ -31,7 +31,9 @@ class EditConsolePlatformForm(EditPlatformForm):
 class EditServicePlatformForm(EditPlatformForm):
     class Meta(EditPlatformForm.Meta):
         model = Platform
-        fields = EditPlatformForm.Meta.fields + ('subscription_fee', 'plan')
+        fields = EditPlatformForm.Meta.fields + ('currency',
+                                                 'subscription_fee',
+                                                 'plan')
 
 
 class EditMobilePlatformForm(EditPlatformForm):

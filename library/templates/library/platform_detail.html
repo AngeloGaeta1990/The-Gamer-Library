@@ -11,7 +11,9 @@
       {% else %}
         <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="pd-platform-image mr-3">
       {% endif %}
-        <h2 class="mb-4">{{ platform.name }} Games</h2>
+        <h2 class="mb-4">{{ platform.name }}</h2>
+        <a href="{% url 'edit_platform' request.user.id platform.slug %}" class="btn btn-primary buttons-spacing"><i class="fa-solid fa-pen-to-square"></i></a>
+        <button class="btn btn-delete btn-danger buttons-spacing" data-platformid="{{ platform.id }}" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa-solid fa-trash"></i></button>
     </div>
 
     <h3>Platform Attributes</h3>
@@ -27,7 +29,7 @@
         <p>Model: {{ platform.model }}</p>
         <!-- Add other ConsolePlatform attributes as needed -->
     {% elif platform.category == 'service' %}
-        <p>Subscription Fee: ${{ platform.subscription_fee }}</p>
+        <p>Subscription Fee:  {{ platform.subscription_fee }} {{platform.currency}}</p>
         <p>Plan: {{ platform.plan }}</p>
         <!-- Add other ServicePlatform attributes as needed -->
     {% elif platform.category == 'mobile' %}
@@ -49,19 +51,14 @@
                         <img src="{{ game.image.url }}" alt="{{ game.name }} Image" class="card-img-top img-fluid pd-game-image">
                     {% endif %}
                     <div class="card-body pd-game-name">
-                        <a href="{% url 'game_detail' request.user.id platform.slug game.slug %}" class="no-highlight pd-game-link">{{ game.name }}</a>
+                        <a href="{% url 'game_detail' request.user.id platform.slug game.slug %}" class="no-highlight pd-game-link">{{ game.name }}</a> 
+                        <span class="pd-game-score"> {{game.user_score}} </span>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
 
-    <div class="text-center mt-4">
-        <div class="btn-group" role="group">
-            <a href="{% url 'edit_platform' request.user.id platform.slug %}" class="btn btn-primary buttons-spacing"><i class="fa-solid fa-pen-to-square"></i></a>
-            <button class="btn btn-delete btn-danger buttons-spacing" data-platformid="{{ platform.id }}" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa-solid fa-trash"></i></button>
-        </div>
-    </div>
 
     <!-- Delete confirmation modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

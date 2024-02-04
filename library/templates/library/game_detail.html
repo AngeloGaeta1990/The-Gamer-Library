@@ -13,33 +13,28 @@
                 {% else %}
                     <img src="{{ game.image.url }}" alt="{{ game.name }} Image" class="gd-game-image mr-3">
                 {% endif %}
+                <h2 class="mb-4">{{ game.name }}</h2>
+                <a href="{% url 'edit_game' request.user.id platform.slug game.slug %}" class="btn btn-primary buttons-spacing"><i class="fa-solid fa-pen-to-square"></i></a>
+                <button id="deleteGameButton" class="btn btn-delete btn-danger buttons-spacing" data-bs-toggle="modal" data-bs-target="#deleteGameModal"><i class="fa-solid fa-trash"></i></button>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="d-flex align-items-center  mb-2">
-                <h3 class="mb-0">Game Details</h3>
-                <div class="btn-group" role="group">
-                    <a href="{% url 'edit_game' request.user.id platform.slug game.slug %}" class="btn btn-primary buttons-spacing"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <button id="deleteGameButton" class="btn btn-delete btn-danger buttons-spacing" data-bs-toggle="modal" data-bs-target="#deleteGameModal"><i class="fa-solid fa-trash"></i></button>
-                </div>
-            </div>
-            <div class="col">
+    <div class="row ">
+        <div class="col-lg-6 mx-auto">
+            <div class="col-lg-6 mx-auto">
                 <p>User Score: {{ game.user_score }}</p>
                 <p>Metacritic Score: {{ game.metacritic_score }}</p>
                 <p>Genres: {{ game.genres }}</p>
             </div>
         </div>
-        <div class="col-lg-6">
-            <p>Release Date: {{ game.release_date }}</p>
-            <p>Developer: {{ game.developer }}</p>
-            <p>Completion Date: {{ game.completion_date }}</p>
-            <p>Hours Spent: {{ game.hours_spent }}</p>
+        <div class="col-lg-6 mx-auto">
+            <p class="text-right">Release Date: {{ game.release_date }}</p>
+            <p class="text-right">Developer: {{ game.developer }}</p>
+            <p class="text-right">Completion Date: {{ game.completion_date }}</p>
+            <p class="text-right">Hours Spent: {{ game.hours_spent }}</p>
         </div>
     </div>
-    
 
     <div class="text-center mt-3">
         <label for="userReview">User Review</label>
@@ -64,11 +59,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // Update the delete confirmation link based on the game details
-        document.getElementById('deleteGameConfirm').href = "{% url 'delete_game' request.user.id platform.slug game.slug %}";
-    </script>
 </div>
 
 {% endblock %}

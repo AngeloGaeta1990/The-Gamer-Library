@@ -94,6 +94,12 @@ class Platform(models.Model):
         ('Android', 'Android')
     ]
 
+    CURRENCIES = [
+        ('£', '£'),
+        ('$', '$',),
+        ('€', '€', )
+    ]
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255,)
@@ -116,6 +122,8 @@ class Platform(models.Model):
     # Console exclusive
     model = models.CharField(max_length=255, null=True,  blank=True)
     # Service exclusive
+    currency = models.CharField(max_length=2, null=True, blank=True,
+                                choices=CURRENCIES)
     subscription_fee = models.DecimalField(max_digits=5, decimal_places=2,
                                            null=True,  blank=True)
     plan = models.CharField(max_length=255, null=True,  blank=True)

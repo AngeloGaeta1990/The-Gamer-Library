@@ -9,7 +9,7 @@
       {% if platform.user == request.user %}
         <div class="col-12 col-md-6 col-lg-4">
           <div class="platform-rectangle mt-3 mb-3 p-3 white-text platform-button" data-boxcolor="{{platform.box_color}}" data-fontcolor="{{platform.font_color}}">
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center platform-font">
               {% if "placeholder" in platform.image.url %}
                 <img src="{% static 'images/library/platform_images/default_platform.jpg' %}" alt="{{ platform.name }} Image" class="platform-image mr-3"> 
               {% else %}
