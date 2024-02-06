@@ -208,5 +208,5 @@ def delete_game(request, user_id, platform_slug, game_slug):
         return HttpResponseForbidden("You do not have permission to delete"
                                      " this game.")
     game.delete()
-    messages.add_message(request, messages.SUCCESS, 'Platform deleted!')
+    messages.add_message(request, messages.SUCCESS, 'Game deleted!')
     return HttpResponseRedirect(reverse('home'))

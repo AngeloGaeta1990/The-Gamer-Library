@@ -5,10 +5,23 @@
 
 {% block content %}
 
-<form method="post" class="white-text"  enctype="multipart/form-data" action="{% url 'add_game' %}">
-    {% csrf_token %}
-    {{ add_game_form|crispy }}
-    <button type="submit" class="btn btn-primary white-text">Add Game</button>
-</form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <form method="post" class="white-text"  enctype="multipart/form-data" action="{% url 'add_game' %}">
+                {% csrf_token %}
+                
+                <!-- Adjust the 'col' class for desired width -->
+                <div class="col">
+                    {{ add_game_form|crispy }}
+                </div>
+                
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary white-text">Add Game</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
