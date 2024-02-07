@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Game, WishList, Platform
+from .models import Game, WishListGame, Platform
 
 
 # Register your models here.
@@ -27,11 +27,11 @@ class PlatformAdmin(admin.ModelAdmin):
     list_filter = ['id', 'category', 'user',]
 
 
-@admin.register(WishList)
+@admin.register(WishListGame)
 class WishListAdmin(admin.ModelAdmin):
-    list_display = ('game_name', 'release_date', 'developer', 'get_platform',
+    list_display = ('name', 'release_date', 'developer', 'get_platform',
                     'id')
-    search_fields = ('game_name', 'developer', 'game_platform')
+    search_fields = ('name', 'developer', 'platform')
 
     def get_platform(self, obj):
         return obj.platform.platform_name if obj.platform else None

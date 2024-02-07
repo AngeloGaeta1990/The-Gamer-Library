@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6">
-            <form method="post" class="white-text"  enctype="multipart/form-data" action="{% url 'add_game' %}">
+            <form method="post" class="white-text"  enctype="multipart/form-data" action="{% url 'add_wishlist' %}">
                 {% csrf_token %}
                 
                 <!-- Adjust the 'col' class for desired width -->
@@ -17,7 +17,7 @@
                 </div>
                 
                 <div class="col text-center">
-                    <button type="submit" class="btn btn-primary white-text">+ Add Game</button>
+                    <button type="submit" class="btn btn-primary white-text">+ Add Wishlist</button>
                 </div>
             </form>
         </div>

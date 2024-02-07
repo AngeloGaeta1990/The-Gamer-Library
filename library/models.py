@@ -46,23 +46,42 @@ class Game(models.Model):
         super().save(*args, **kwargs)
 
 
-class WishList(models.Model):
+class WishListGame(models.Model):
+
+    CURRENCIES = [
+        ('£', '£'),
+        ('$', '$',),
+        ('€', '€', )
+    ]
+
+    STORES = [
+        ("Steam", "Steam"),
+        ("Epic", "Epic"),
+        ("Playstation Store", "Playstation Store"),
+        ("Xbox ", "Xbox"),
+        ("Nintendo eshop", "Nintendo eshop")
+    ]
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     slug = models.SlugField(max_length=255, blank=True)
-    game_name = models.CharField(max_length=255)
-    game_image = CloudinaryField('image', null=True, blank=True,
-                                 default='placeholder')
-    game_genres = models.CharField(max_length=255, null=True, blank=True)
-    stores = models.CharField(max_length=255, null=True, blank=True)
+    name = models.CharField(max_length=255)
+    image = CloudinaryField('image', null=True, blank=True,
+                            default='placeholder')
+    genres = models.CharField(max_length=255, null=True, blank=True)
+    store = models.CharField(max_length=255, null=True, blank=True,
+                             choices=STORES)
     release_date = models.DateField(null=True, blank=True)
-    game_platform = models.ForeignKey('Platform', on_delete=models.SET_NULL,
-                                      blank=True, null=True,
-                                      related_name='wishlists')
     developer = models.CharField(max_length=255, null=True,  blank=True)
+    priority = models.IntegerField(null=True, blank=True,)
+    currency = models.CharField(max_length=2, null=True, blank=True,
+                                choices=CURRENCIES)
+    cost = models.IntegerField(null=True, blank=True)
+    platform = models.ForeignKey('Platform', on_delete=models.CASCADE,
+                                 related_name='wishlists')
 
     class Meta:
-        unique_together = ('game_name', 'game_platform')
-        ordering = ["game_name"]
+        unique_together = ('name', 'platform')
+        ordering = ["-priority"]
 
     def __str__(self):
         return self.game_name

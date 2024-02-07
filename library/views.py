@@ -6,12 +6,11 @@ from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Platform
-from .models import Game
+from .models import Platform, Game
 from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
                     EditPCPlatformForm, EditConsolePlatformForm,
                     EditServicePlatformForm, EditMobilePlatformForm,
-                    EditGameForm)
+                    EditGameForm, AddWishlistGameForm)
 
 
 # Create your views here.
@@ -210,3 +209,22 @@ def delete_game(request, user_id, platform_slug, game_slug):
     game.delete()
     messages.add_message(request, messages.SUCCESS, 'Game deleted!')
     return HttpResponseRedirect(reverse('home'))
+
+
+def add_wishlist(request):
+    add_wishlist_form = AddWishlistGameForm(user=request.user)
+    if request.method == 'POST':
+        add_wishlist_form = AddWishlistGameForm(request.user, request.POST,
+                                                request.FILES)
+        if add_wishlist_form.is_valid():
+            # TODO add videogames database API to get data and fill the form
+            add_wishlist_form.save()
+            # Add any additional logic or redirect here
+            return redirect('home')
+        else:
+            messages.error(request, 'Invalid form submission. Please check the'
+                           ' form.')
+
+    return render(request,
+                  'library/add_wishlist_form.html',
+                  {'add_game_form': add_wishlist_form})

@@ -59,6 +59,26 @@
         {% endfor %}
     </div>
 
+    <h3 class="mt-4 mb-3 pd-games-header">Wishlist</h3>
+
+    <div class="row justify-content-center pd-games-container">
+        {% for wishlist in wishlists %}
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                <div class="card">
+                    {% if "placeholder" in wishlist.image.url %}
+                        <img src="{% static 'images/library/game_images/default_game.png' %}" alt="{{ wishlist.name }} Image" class="card-img-top img-fluid pd-game-image">
+                    {% else %}
+                        <img src="{{ wishlist.image.url }}" alt="{{ wishlist.game_name }} Image" class="card-img-top img-fluid pd-game-image">
+                    {% endif %}
+                    <div class="card-body pd-game-name">
+                        <a href="{% url 'wishlist_detail' request.user.id platform.slug wishlist.slug %}" class="no-highlight pd-game-link">{{ wishlist.game_name }}</a> 
+                        <span class="pd-game-score"> {{wishlist.priority}} </span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
 
     <!-- Delete confirmation modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

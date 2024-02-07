@@ -1,5 +1,5 @@
 from django import forms
-from .models import Platform, Game
+from .models import Platform, Game, WishListGame
 
 
 class AddPlatformForm(forms.ModelForm):
@@ -59,3 +59,16 @@ class EditGameForm(forms.ModelForm):
         fields = ('name', 'platform', 'image', 'user_score',
                   'metacritic_score', 'developer', 'genres', 'release_date',
                   'completion_date', 'hours_spent',  'user_review')
+
+
+class AddWishlistGameForm(forms.ModelForm):
+    class Meta:
+        model = WishListGame
+        fields = ('name', 'platform', 'image', 'priority', "currency", "cost",
+                  "store")
+
+    def __init__(self, user, *args, **kwargs):
+        super(AddWishlistGameForm, self).__init__(*args, **kwargs)
+        # Filter platforms based on the current user
+        self.fields['platform'].queryset = Platform.objects.filter(
+            user=user)
