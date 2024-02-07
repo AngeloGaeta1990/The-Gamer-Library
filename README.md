@@ -819,7 +819,7 @@ keep consitancy
 - **27/01/2024**
   - removed subclasses from platform model
   - improved platform_detail.html
- 
+
 - **31/01/2024**
   - reshape user stories
 
@@ -829,9 +829,14 @@ keep consitancy
   - add game detail template
   - add game detail url
 
-- **01/03/2024**
+- **03/02/2024**
   - add delete game view, url and javascript
 
-- **01/04/2024**
+- **04/02/2024**
   - add currency attribute to platform
   - improve general layout of platform detail
+
+- **05/02/204**
+  - fix delete game button
+  - improve forms layout
+  - improve game detail layout

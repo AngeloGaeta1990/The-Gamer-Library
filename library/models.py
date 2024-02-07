@@ -24,8 +24,8 @@ class Game(models.Model):
                                        )
     hours_spent = models.IntegerField(null=True, blank=True)
     developer = models.CharField(max_length=255, null=True, blank=True)
-    platform = models.ForeignKey('Platform', on_delete=models.SET_NULL,
-                                 blank=True, null=True, related_name='games')
+    platform = models.ForeignKey('Platform', on_delete=models.CASCADE,
+                                 related_name='games')
 
     class Meta:
         unique_together = ('name', 'platform')
