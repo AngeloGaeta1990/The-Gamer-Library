@@ -836,7 +836,18 @@ keep consitancy
   - add currency attribute to platform
   - improve general layout of platform detail
 
-- **05/02/204**
+- ### Sprint 5
+
+- **06/02/2024**
   - fix delete game button
   - improve forms layout
   - improve game detail layout
+
+- **07/02/2024**
+  - fix null platform for game
+  - update wishlist model
+  - add wishlist form
+  - C of wishlist crud complete
+
+- **08/02/2024**
+  - add wish list game detail view, url, and template

@@ -3,10 +3,9 @@ from django.views import generic
 from django.db import models
 from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponseForbidden
-from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Platform, Game
+from .models import Platform, Game, WishListGame
 from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
                     EditPCPlatformForm, EditConsolePlatformForm,
                     EditServicePlatformForm, EditMobilePlatformForm,
@@ -41,19 +40,17 @@ def platform_detail(request, user_id, slug):
     :template:`library/platform_detail.html`
     """
     user = request.user
-    queryset = Platform.objects.filter(user=user)
-    platforms = queryset.filter(slug=slug)
+    platform = get_object_or_404(Platform, user=user, slug=slug)
+    games = platform.games.all()
+    wishlist_games = platform.wishlist_games.all()
 
-    if platforms.exists():
-        platform = platforms.first()
-        games = platform.games.all()
-        return render(
-            request,
-            "library/platform_detail.html",
-            {"platform": platform, "games": games},
-        )
-    else:
-        raise Http404("Platform not found")
+    return render(
+        request,
+        "library/platform_detail.html",
+        {"platform": platform,
+         "games": games,
+         "wishlist_games": wishlist_games},
+    )
 
 
 @login_required
@@ -82,6 +79,7 @@ def add_platform(request):
                   {'add_platform_form': add_platform_form})
 
 
+@login_required
 def edit_platform(request, user_id, slug):
     """
     view to edit comments
@@ -115,6 +113,7 @@ def edit_platform(request, user_id, slug):
                    'platform': platform})
 
 
+@login_required
 def delete_platform(request, user_id, slug):
     """
     view to delete platform
@@ -125,6 +124,7 @@ def delete_platform(request, user_id, slug):
     return HttpResponseRedirect(reverse('home'))
 
 
+@login_required
 def add_game(request):
     add_game_form = AddGameForm(user=request.user)
     if request.method == 'POST':
@@ -143,6 +143,7 @@ def add_game(request):
                   {'add_game_form': add_game_form})
 
 
+@login_required
 def game_detail(request, user_id, platform_slug, game_slug):
     """
     Display an individual :model:`library.Game`.
@@ -169,6 +170,7 @@ def game_detail(request, user_id, platform_slug, game_slug):
     )
 
 
+@login_required
 def edit_game(request, user_id, platform_slug, game_slug):
     """
     View to edit game
@@ -196,6 +198,7 @@ def edit_game(request, user_id, platform_slug, game_slug):
     })
 
 
+@login_required
 def delete_game(request, user_id, platform_slug, game_slug):
     """
     view to delete platform
@@ -211,6 +214,7 @@ def delete_game(request, user_id, platform_slug, game_slug):
     return HttpResponseRedirect(reverse('home'))
 
 
+@login_required
 def add_wishlist(request):
     add_wishlist_form = AddWishlistGameForm(user=request.user)
     if request.method == 'POST':
@@ -228,3 +232,30 @@ def add_wishlist(request):
     return render(request,
                   'library/add_wishlist_form.html',
                   {'add_game_form': add_wishlist_form})
+
+
+@login_required
+def wishlist_game_detail(request, user_id, platform_slug, wishlist_game_slug):
+    """
+    Display an individual :model:`library.Game`.
+
+    **Context**
+
+    ``Game``
+        An instance of :model:`library.Game`.
+
+    **Template:**
+
+    :template:`library/game_detail.html`
+    """
+    user = request.user
+    platform = get_object_or_404(Platform, user=user, slug=platform_slug)
+    wishlist_game = get_object_or_404(WishListGame, platform=platform,
+                                      slug=wishlist_game_slug)
+
+    return render(
+        request,
+        "library/wishlist_game_detail.html",
+        {"platform": platform,
+         "wishlist_game": wishlist_game},
+    )

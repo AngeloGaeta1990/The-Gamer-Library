@@ -77,14 +77,25 @@ class WishListGame(models.Model):
                                 choices=CURRENCIES)
     cost = models.IntegerField(null=True, blank=True)
     platform = models.ForeignKey('Platform', on_delete=models.CASCADE,
-                                 related_name='wishlists')
+                                 related_name='wishlist_games')
 
     class Meta:
         unique_together = ('name', 'platform')
         ordering = ["-priority"]
 
     def __str__(self):
-        return self.game_name
+        return self.name
+    
+    def save(self, *args, **kwargs):
+        # Generate or set the UUID when the instance is first created
+        if not self.id:
+            self.id = uuid.uuid4()
+
+        # Generate or set the slug only if it's not already set
+        if not self.slug:
+            self.slug = self.name.lower().replace(' ', '-')
+
+        super().save(*args, **kwargs)
 
 
 class Platform(models.Model):

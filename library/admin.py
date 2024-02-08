@@ -31,9 +31,10 @@ class PlatformAdmin(admin.ModelAdmin):
 class WishListAdmin(admin.ModelAdmin):
     list_display = ('name', 'release_date', 'developer', 'get_platform',
                     'id')
+    prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name', 'developer', 'platform')
 
     def get_platform(self, obj):
-        return obj.platform.platform_name if obj.platform else None
+        return obj.platform.name if obj.platform else None
 
     get_platform.short_description = 'Platform'
