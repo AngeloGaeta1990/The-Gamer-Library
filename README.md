@@ -851,3 +851,8 @@ keep consitancy
 
 - **08/02/2024**
   - add wish list game detail view, url, and template
+
+- **09/02/2024**
+  - add edit game detail view and url
+  - add delete game view and javascript
+  - sort game, wish list and platforms

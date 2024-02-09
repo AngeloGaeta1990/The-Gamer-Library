@@ -72,3 +72,10 @@ class AddWishlistGameForm(forms.ModelForm):
         # Filter platforms based on the current user
         self.fields['platform'].queryset = Platform.objects.filter(
             user=user)
+
+
+class EditWishListGameForm(forms.ModelForm):
+    class Meta:
+        model = WishListGame
+        fields = ('name', 'platform', 'image', 'store', 'priority',
+                  'developer', 'genres', 'release_date', 'currency', 'cost')

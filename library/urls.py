@@ -17,8 +17,14 @@ urlpatterns = [
          views.edit_platform, name='edit_platform'),
     path('<int:user_id>/<slug:platform_slug>/<slug:game_slug>/edit_game/',
          views.edit_game, name='edit_game'),
+    path('<int:user_id>/<slug:platform_slug>/<slug:wishlist_game_slug>/'
+         'edit_wishlist_game/', views.edit_wishlist_game,
+         name='edit_wishlist_game'),
     path('<int:user_id>/<slug:platform_slug>/<slug:game_slug>/delete_game/',
          views.delete_game, name='delete_game'),
     path('<int:user_id>/<slug:slug>/delete_platform/',
          views.delete_platform, name='delete_platform'),
+    path('<int:user_id>/<slug:platform_slug>/<slug:wishlist_game_slug>/'
+         'delete_wishlist_game/', views.delete_wishlist_game,
+         name='delete_wishlist_game'),
 ]

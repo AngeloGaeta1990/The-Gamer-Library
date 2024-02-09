@@ -9,10 +9,9 @@ from .models import Platform, Game, WishListGame
 from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
                     EditPCPlatformForm, EditConsolePlatformForm,
                     EditServicePlatformForm, EditMobilePlatformForm,
-                    EditGameForm, AddWishlistGameForm)
+                    EditGameForm, AddWishlistGameForm, EditWishListGameForm)
 
 
-# Create your views here.
 @method_decorator(login_required(login_url='accounts/login/'), name='dispatch')
 class PlatformList(generic.ListView):
     context_object_name = 'platforms'
@@ -21,11 +20,11 @@ class PlatformList(generic.ListView):
 
     def get_queryset(self):
         # Query all platform instances, including subclasses
-        # return Platform.objects.all()
         return Platform.objects.filter(user=self.request.user).annotate(
-            game_count=models.Count('games')).all()
+            game_count=models.Count('games')).all().order_by("name")
 
 
+@login_required
 def platform_detail(request, user_id, slug):
     """
     Display an individual :model:`library.Library`.
@@ -41,8 +40,8 @@ def platform_detail(request, user_id, slug):
     """
     user = request.user
     platform = get_object_or_404(Platform, user=user, slug=slug)
-    games = platform.games.all()
-    wishlist_games = platform.wishlist_games.all()
+    games = platform.games.all().order_by("name")
+    wishlist_games = platform.wishlist_games.all().order_by("priority")
 
     return render(
         request,
@@ -75,7 +74,7 @@ def add_platform(request):
         add_platform_form = AddPlatformForm()
 
     return render(request,
-                  'library/add_platform.html',
+                  'library/add_platform_form.html',
                   {'add_platform_form': add_platform_form})
 
 
@@ -108,7 +107,7 @@ def edit_platform(request, user_id, slug):
     else:
         edit_platform_form = form_class(instance=platform)
 
-    return render(request, 'library/edit_platform.html',
+    return render(request, 'library/edit_platform_form.html',
                   {'edit_platform_form': edit_platform_form,
                    'platform': platform})
 
@@ -191,7 +190,7 @@ def edit_game(request, user_id, platform_slug, game_slug):
     else:
         edit_game_form = EditGameForm(instance=game)
 
-    return render(request, 'library/edit_game.html', {
+    return render(request, 'library/edit_game_form.html', {
         'edit_game_form': edit_game_form,
         'platform': platform,
         'game': game,
@@ -259,3 +258,52 @@ def wishlist_game_detail(request, user_id, platform_slug, wishlist_game_slug):
         {"platform": platform,
          "wishlist_game": wishlist_game},
     )
+
+
+@login_required
+def edit_wishlist_game(request, user_id, platform_slug, wishlist_game_slug):
+    """
+    View to edit game
+    """
+    user = request.user
+    platform = get_object_or_404(Platform, user=user, slug=platform_slug)
+    wishlist_game = get_object_or_404(WishListGame, platform=platform,
+                                      slug=wishlist_game_slug)
+
+    if request.method == 'POST':
+        print("Platform Slug:", platform.slug)
+        edit_wishlist_game_form = EditWishListGameForm(request.POST,
+                                                       request.FILES,
+                                                       instance=wishlist_game)
+        if edit_wishlist_game_form.is_valid():
+            edit_wishlist_game_form.save()
+            messages.success(request, 'Game in Wishlist edited!')
+            return HttpResponseRedirect(reverse('wishlist_game_detail',
+                                                args=[user_id, platform.slug,
+                                                      wishlist_game.slug]))
+    else:
+        edit_wishlist_game_form = EditWishListGameForm(instance=wishlist_game)
+
+    return render(request, 'library/edit_wishlist_game_form.html', {
+        'edit_wishlist_game_form': edit_wishlist_game_form,
+        'platform': platform,
+        'wishlist_game': wishlist_game,
+    })
+
+
+@login_required
+def delete_wishlist_game(request, user_id, platform_slug, wishlist_game_slug):
+    """
+    view to delete platform
+    """
+    user = request.user
+    platform = get_object_or_404(Platform, user=user, slug=platform_slug)
+    game = get_object_or_404(WishListGame, platform=platform,
+                             slug=wishlist_game_slug)
+    if platform.user != user:
+        return HttpResponseForbidden("You do not have permission to delete"
+                                     " this game in wishlist.")
+    game.delete()
+    messages.add_message(request, messages.SUCCESS, 'Game deleted from'
+                         ' wishlist!')
+    return HttpResponseRedirect(reverse('home'))

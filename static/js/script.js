@@ -35,4 +35,11 @@ $(document).ready(function () {
     deleteGameButton.on("click", function (e) {
         deleteGameModal.show();
     });
+
+    // Delete button for wishlist game delete
+    const deleteWishListGameModal = new bootstrap.Modal($("#deleteWishListGameModal")[0]);
+    const deleteWishListGameButton = $("#deleteWishListGameButton");
+    deleteWishListGameButton.on("click", function (e) {
+        deleteWishListGameModal.show();
+    });
 })

@@ -29,7 +29,7 @@
                 <div class="collapse" id="collapseGames{{ forloop.counter }}">
                   <div class="card card-body">
                     {% if platform.games.all %}
-                      {% for game in platform.games.all %}
+                      {% for game in platform.ordered_games %}
                         <div class="game-details black-text">
                           {% if  "placeholder" in game.image.url %}
                             <img src="{% static 'images/library/game_images/default_game.png' %}" alt="{{ game.name }} Image" class="game-image mr-3"> 

@@ -85,7 +85,7 @@ class WishListGame(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     def save(self, *args, **kwargs):
         # Generate or set the UUID when the instance is first created
         if not self.id:
@@ -181,6 +181,9 @@ class Platform(models.Model):
         if not self.slug:
             self.slug = self.name.lower().replace(' ', '-')
         super().save(*args, **kwargs)
+        
+    def ordered_games(self):
+        return self.games.all().order_by("name")
 
 # class FriendList(models.Model):
 #     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,
