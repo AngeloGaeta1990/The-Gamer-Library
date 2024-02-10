@@ -196,13 +196,10 @@ footer {
 
 /*______________________ login.html______________________*/
 
-.login-background {
-    background-image: url('../images/library/login/mejores-juegos-historia-gq-3030288.webp');
-    background-size: cover; /* or 'contain' depending on your preference */
-    background-repeat: no-repeat;
-    /* Additional properties to control the position and other styles */
-    background-position: center center;
-    background-attachment: fixed; 
-    /* height: 40vh;
-    width: 100vw;       */
+.signup-signin-link {
+    text-decoration: none;
+}
+
+.signup-signin-link:hover {
+    color:#000
 }

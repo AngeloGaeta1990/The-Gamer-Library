@@ -856,3 +856,7 @@ keep consitancy
   - add edit game detail view and url
   - add delete game view and javascript
   - sort game, wish list and platforms
+
+- **10/02/2024**
+  - add intro page
+  - style sign in sign up

@@ -181,7 +181,7 @@ class Platform(models.Model):
         if not self.slug:
             self.slug = self.name.lower().replace(' ', '-')
         super().save(*args, **kwargs)
-        
+
     def ordered_games(self):
         return self.games.all().order_by("name")
 

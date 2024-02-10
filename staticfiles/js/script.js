@@ -25,14 +25,21 @@ $(document).ready(function () {
     // Delete buttons on the library/index.html page
     const deleteModal = new bootstrap.Modal($("#deleteModal")[0]);
     const deleteButtons = $(".btn-delete");
-    const deleteConfirm = $("#deleteConfirm");
-
     deleteButtons.on("click", function (e) {
-        let platformId = $(this).data("platformid");
-        deleteConfirm.attr("href", `delete_platform/${platformId}`);
         deleteModal.show();
     });
 
-    // // Toggle visibility of game details box
-    
-});
+    // Delete button for game delete
+    const deleteGameModal = new bootstrap.Modal($("#deleteGameModal")[0]);
+    const deleteGameButton = $("#deleteGameButton");
+    deleteGameButton.on("click", function (e) {
+        deleteGameModal.show();
+    });
+
+    // Delete button for wishlist game delete
+    const deleteWishListGameModal = new bootstrap.Modal($("#deleteWishListGameModal")[0]);
+    const deleteWishListGameButton = $("#deleteWishListGameButton");
+    deleteWishListGameButton.on("click", function (e) {
+        deleteWishListGameModal.show();
+    });
+})

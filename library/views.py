@@ -12,7 +12,7 @@ from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
                     EditGameForm, AddWishlistGameForm, EditWishListGameForm)
 
 
-@method_decorator(login_required(login_url='accounts/login/'), name='dispatch')
+@method_decorator(login_required(login_url='intro'), name='dispatch')
 class PlatformList(generic.ListView):
     context_object_name = 'platforms'
     template_name = "library/index.html"
@@ -307,3 +307,7 @@ def delete_wishlist_game(request, user_id, platform_slug, wishlist_game_slug):
     messages.add_message(request, messages.SUCCESS, 'Game deleted from'
                          ' wishlist!')
     return HttpResponseRedirect(reverse('home'))
+
+
+def intro(request):
+    return render(request, 'library/intro.html')

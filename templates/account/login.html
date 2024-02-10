@@ -13,7 +13,7 @@
       <p>{% blocktrans %}
         Welcome back to the The-Gamer-Library
         Don't have an account? You can
-        <a class="link white-text" href="{{ signup_url }}">sign up</a>
+        <a class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ signup_url }}">sign up</a>
         here.
       {% endblocktrans %}</p>
     </div>
@@ -28,13 +28,11 @@
         <input type="hidden" name="{{ redirect_field_name }}"
           value="{{ redirect_field_value }}" />
         {% endif %}
-        <button class="btn btn-login right white-text" type="submit">
+        <button class="btn btn-primary right white-text" type="submit">
           {% trans "Login" %} &raquo;</button>
       </form>
     </div>
   </div>
 </div>
-{% comment %} <div class="login-background">
-</div> {% endcomment %}
 
 {% endblock %}

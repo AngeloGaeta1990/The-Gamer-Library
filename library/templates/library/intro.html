@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container mt-5 white-text">
+    <div class="text-center">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="{% static 'images/library/platform_images/platform_intro.jpg' %}" alt="Platform Image" class="img-fluid" />
+                <h1>Keep track of your platforms</h1>
+            </div>
+            <div class="col-md-4">
+                <img src="{% static 'images/library/game_images/game_hero_intro.webp' %}" alt="Games Image" class="img-fluid" />
+                <h1>Keep track of your games</h1>
+            </div>
+            <div class="col-md-4">
+                <img src="{% static 'images/library/wishlist_images/wishlist_game_intro.jpg' %}" alt="Wishlist Image" class="img-fluid" />
+                <h1>Plan your wishlist</h1>
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="{% url 'account_login' %}" class="btn btn-primary">Go to Login</a>
+            <a href="{% url 'account_signup' %}" class="btn btn-success">Go to Sign Up</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
