@@ -11,19 +11,19 @@ class TestLibraryViews(TestCase):
         """
         Creates Bio instance
         """
-        self.bio = Bio(title="About test",
-                       description="About test description")
+        self.bio = Bio(title="Get in touch test",
+                       description="Get in touch test description")
         self.bio.save()
 
-    def test_render_about_page(self):
+    def test_render_get_in_touch_page(self):
         """
         Verifies get request contains bio title and description
         """
         response = self.client.get(reverse(
-            'about', ))
+            'get_in_touch', ))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"About test", response.content)
-        self.assertIn(b"About test description", response.content)
+        self.assertIn(b"Get in touch test", response.content)
+        self.assertIn(b"Get in touch test description", response.content)
 
     def test_collaborate_view(self):
         """

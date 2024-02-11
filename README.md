@@ -860,3 +860,8 @@ keep consitancy
 - **10/02/2024**
   - add intro page
   - style sign in sign up
+
+- **11/02/2024**
+  - add info page
+  - rename about into get in touch
+  - add get in touch form

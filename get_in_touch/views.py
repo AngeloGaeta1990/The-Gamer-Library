@@ -8,13 +8,13 @@ from .forms import CollaborateForm
 # Create your views here.
 def bio(request):
     """
-    Renders the About page
+    Renders the Get in touch page
     """
     bio = Bio.objects.all().order_by('-last_update').first()
 
     return render(
         request,
-        "about/about.html",
+        "get_in_touch/get_in_touch.html",
         {"bio": bio},
     )
 
@@ -33,5 +33,5 @@ def collaborate(request):
                 request, messages.SUCCESS, 'collaboration request sent')
             return redirect('home')
     return render(request,
-                  'about/collaborate.html',
+                  'get_in_touch/collaborate.html',
                   {'collaborate_form': collaborate_form})

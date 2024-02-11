@@ -13,5 +13,5 @@ class TestAddGameForm(TestCase):
 
     def test_form_is_valid(self):
         game_form = AddGameForm({'name': 'Divinity 2 original sin',
-                                 'platform': self.platform.pk})
+                                 'platform': 'PC'})
         self.assertTrue(game_form.is_valid())

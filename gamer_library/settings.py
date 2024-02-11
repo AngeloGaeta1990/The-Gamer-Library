@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'fontawesomefree',
     'colorfield',
-    'about',
+    'get_in_touch',
     'library',
 ]
 

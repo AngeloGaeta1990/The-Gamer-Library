@@ -184,12 +184,3 @@ class Platform(models.Model):
 
     def ordered_games(self):
         return self.games.all().order_by("name")
-
-# class FriendList(models.Model):
-#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,
-#                               related_name='friendship', null=False )
-#     friend = models.ForeignKey(CustomUser, on_delete=models.CASCADE,
-#                                null=False)
-
-#     class Meta:
-#         unique_together = ('user', 'friend')

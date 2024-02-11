@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     # TODO order alphabetically
-    path('about/', include('about.urls'), name='about-urls'),
+    path('get_in_touch/', include('get_in_touch.urls'),
+         name='get_in_touch-urls'),
     path("accounts/", include("allauth.urls")),
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),

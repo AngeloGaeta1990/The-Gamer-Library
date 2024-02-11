@@ -311,3 +311,7 @@ def delete_wishlist_game(request, user_id, platform_slug, wishlist_game_slug):
 
 def intro(request):
     return render(request, 'library/intro.html')
+
+
+def info(request):
+    return render(request, 'library/info.html')

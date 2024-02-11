@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <h1 class="text-center">Welcome to Your Gamer Library!</h1>
+
+        <div class="jumbotron">
+            <p class="lead text-center">
+                Thank you for using Your Gamer Library to manage your gaming collection. Below are instructions on how to use the app:
+            </p>
+
+            <div class="alert alert-info" role="alert">
+                <strong>1. Add a Platform:</strong><br>
+                To add a gaming platform, navigate to the platform section and enter the platform name. Click the "Add Platform" button to include it in your library.
+            </div>
+
+            <div class="alert alert-info" role="alert">
+                <strong>2. Add a Game:</strong><br>
+                In the game section, provide the name of the game you want to add. Click the "Add Game" button to add it to your collection.
+            </div>
+
+            <div class="alert alert-info" role="alert">
+                <strong>3. Add to Wish List:</strong><br>
+                If there's a game you wish to have in the future, use the wish list section. Enter the item details and click "Add to Wish List" to keep track.
+            </div>
+
+            <p class="text-center">
+                Thank you for using Your Gamer Library. Enjoy managing your gaming collection!
+            </p>
+        </div>
+    </div>
+{% endblock %}
