@@ -12,13 +12,16 @@ class TestLibraryViews(TestCase):
             password="myPassword",
             email="test@test.com"
         )
+        self.client.login(username='testuser', password='testpassword')
         self.platform = Platform(name="Test PC", user=self.user,
                                  slug="test-pc", category="PC")
+
         self.platform.save()
 
     def test_render_platform_detail_page(self):
+        self.client.login(username="myUsername", password="myPassword")
         response = self.client.get(reverse(
-            'platform_detail', args=[self.platform.slug]))
+            'platform_detail', args=[self.user.id, self.platform.slug]))
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Test PC", response.content)
         self.assertIn(b"PC", response.content)
@@ -33,10 +36,11 @@ class TestLibraryViews(TestCase):
             "slug": "test-pc",
             "category": "PC"
         }
-        response = self.client.post(reverse(
-            'platform_detail', args=['self.platform.slug']), platform_data)
+        response = self.client.get(reverse(
+            'platform_detail', args=[self.user.id, self.platform.slug]),
+                                    platform_data)
         self.assertEqual(response.status_code, 200)
         self.assertIn(
-            b'new platform added',
+            b'Test PC',
             response.content
         )
