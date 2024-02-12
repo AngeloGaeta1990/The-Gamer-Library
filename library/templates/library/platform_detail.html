@@ -21,8 +21,11 @@
     <p>Category: {{ platform.category }}</p>
 
     {% if platform.category == 'pc' %}
+        <p>Operative System: {{ platform.operative_systems}}</p>
         <p>RAM (GB): {{ platform.ram }}</p>
         <p>GPU: {{ platform.gpu }}</p>
+        <p>CPU: {{ platform.cpu }}</p>
+        <p>Disk Type: {{ platform.disk_type }}</p>
         <p>Disk Size (TB): {{ platform.disk_size }}</p>
         <!-- Add other PCPlatform attributes as needed -->
     {% elif platform.category == 'console' %}

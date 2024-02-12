@@ -1,3 +1,4 @@
+from django.core.validators import FileExtensionValidator, MaxValueValidator
 from django import forms
 from .models import Platform, Game, WishListGame
 
@@ -6,6 +7,12 @@ class AddPlatformForm(forms.ModelForm):
     class Meta:
         model = Platform
         fields = ('name', 'category', 'image')
+
+    image = forms.ImageField(
+        required=False,
+        validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg',
+                                           'jpeg', 'webp', 'gif']),
+                    MaxValueValidator(limit_value=1024 * 1024 * 50)])
 
 
 class EditPlatformForm(forms.ModelForm):
@@ -47,6 +54,12 @@ class AddGameForm(forms.ModelForm):
         model = Game
         fields = ('name', 'platform', 'image', 'user_score')
 
+    image = forms.ImageField(
+        required=False,
+        validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg',
+                                           'jpeg', 'webp', 'gif']),
+                    MaxValueValidator(limit_value=1024 * 1024 * 50)])
+
     def __init__(self, user, *args, **kwargs):
         super(AddGameForm, self).__init__(*args, **kwargs)
         # Filter platforms based on the current user
@@ -66,6 +79,12 @@ class AddWishlistGameForm(forms.ModelForm):
         model = WishListGame
         fields = ('name', 'platform', 'image', 'priority', "currency", "cost",
                   "store")
+
+    image = forms.ImageField(
+        required=False,
+        validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg',
+                                           'jpeg', 'webp', 'gif']),
+                    MaxValueValidator(limit_value=1024 * 1024 * 50)])
 
     def __init__(self, user, *args, **kwargs):
         super(AddWishlistGameForm, self).__init__(*args, **kwargs)
