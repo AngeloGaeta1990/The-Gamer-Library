@@ -866,5 +866,8 @@ keep consitancy
   - rename about into get in touch
   - add get in touch form
 
-- **11/02/2024**
+- **12/02/2024**
   - set restriction for images files
+
+- **13/02/2024**
+  - add tests for all platform views

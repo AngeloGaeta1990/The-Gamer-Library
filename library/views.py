@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views import generic
 from django.db import models
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -99,7 +100,6 @@ def edit_platform(request, user_id, slug):
                                     request.FILES, instance=platform)
 
     if request.method == 'POST':
-
         if edit_platform_form.is_valid():
             edit_platform_form.save()
             messages.add_message(request, messages.SUCCESS, 'Platform edited!')
@@ -117,7 +117,10 @@ def delete_platform(request, user_id, slug):
     """
     view to delete platform
     """
-    platform = get_object_or_404(Platform,  slug=slug)
+    platform = get_object_or_404(Platform, user=request.user, slug=slug)
+    if platform.user != request.user:
+        raise PermissionDenied
+
     platform.delete()
     messages.add_message(request, messages.SUCCESS, 'Platform deleted!')
     return HttpResponseRedirect(reverse('home'))
