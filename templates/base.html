@@ -31,13 +31,13 @@
                 <ul class="navbar-nav mx-auto mb-2 mb-md-0">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'add_platform' %}"><i class="fa-solid fa-plus"></i> add Platform</a>
+                        <a class="nav-link" aria-current="page" href="{% url 'add_platform' %}"><i class="fa-solid fa-plus"></i> add Platform</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'add_game' %}"> <i class="fa-solid fa-plus"></i> add Game</a>
+                        <a class="nav-link" aria-current="page" href="{% url 'add_game' %}"> <i class="fa-solid fa-plus"></i> add Game</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'add_wishlist' %}"><i class="fa-solid fa-plus"></i> add Wishlist</a>
+                        <a class="nav-link" aria-current="page" href="{% url 'add_wishlist' %}"><i class="fa-solid fa-plus"></i> add Wishlist</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
@@ -46,7 +46,7 @@
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'info' %}"> <i class="fa-solid fa-circle-info"></i> Info</a>
+                        <a class="nav-link" aria-current="page" href="{% url 'info' %}"> <i class="fa-solid fa-circle-info"></i> Info</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">

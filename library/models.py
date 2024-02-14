@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from django.core.validators import MaxValueValidator
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 from colorfield.fields import ColorField
 from cloudinary.models import CloudinaryField
 
@@ -41,8 +42,7 @@ class Game(models.Model):
 
         # Generate or set the slug only if it's not already set
         if not self.slug:
-            self.slug = self.name.lower().replace(' ', '-')
-
+            self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
 
@@ -75,7 +75,8 @@ class WishListGame(models.Model):
     priority = models.IntegerField(null=True, blank=True,)
     currency = models.CharField(max_length=2, null=True, blank=True,
                                 choices=CURRENCIES)
-    cost = models.IntegerField(null=True, blank=True)
+    cost = models.DecimalField(max_digits=8, decimal_places=2, null=True,
+                               blank=True)
     platform = models.ForeignKey('Platform', on_delete=models.CASCADE,
                                  related_name='wishlist_games')
 
@@ -93,8 +94,7 @@ class WishListGame(models.Model):
 
         # Generate or set the slug only if it's not already set
         if not self.slug:
-            self.slug = self.name.lower().replace(' ', '-')
-
+            self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
 
@@ -179,7 +179,7 @@ class Platform(models.Model):
             self.id = uuid.uuid4()
         # Generate or set the slug only if it's not already set
         if not self.slug:
-            self.slug = self.name.lower().replace(' ', '-')
+            self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
     def ordered_games(self):

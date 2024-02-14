@@ -685,6 +685,15 @@ keep consitancy
       )
    ```
 
+1. **Error**
+   Platform and Gamer slug does not change after edits and the url use the slug
+
+  **Cause**
+   After instance editing slug attribute does not get updated
+  
+  **Solution**
+  Url use platform, game, and wishlist_game id rather than slug in the urls
+
 ## Diary
 
 - ### Sprint 1
@@ -871,3 +880,8 @@ keep consitancy
 
 - **13/02/2024**
   - add tests for all platform views
+
+- **14/02/2024**
+  - urls use platform.id game.id and wishlist_game.id rather than slugs
+  - add test for game and wishlist game views
+  - add test for Platform, Game and Wishlist forms

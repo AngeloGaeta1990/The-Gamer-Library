@@ -26,7 +26,7 @@ class PlatformList(generic.ListView):
 
 
 @login_required
-def platform_detail(request, user_id, slug):
+def platform_detail(request, user_id, platform_id):
     """
     Display an individual :model:`library.Library`.
 
@@ -40,7 +40,7 @@ def platform_detail(request, user_id, slug):
     :template:`library/platform_detail.html`
     """
     user = request.user
-    platform = get_object_or_404(Platform, user=user, slug=slug)
+    platform = get_object_or_404(Platform, user=user, id=platform_id)
     games = platform.games.all().order_by("name")
     wishlist_games = platform.wishlist_games.all().order_by("priority")
 
@@ -80,11 +80,11 @@ def add_platform(request):
 
 
 @login_required
-def edit_platform(request, user_id, slug):
+def edit_platform(request, user_id, platform_id):
     """
     view to edit comments
     """
-    platform = get_object_or_404(Platform,  user_id=user_id, slug=slug)
+    platform = get_object_or_404(Platform,  user_id=user_id, id=platform_id)
     if platform.category == 'pc':
         form_class = EditPCPlatformForm
     elif platform.category == 'console':
@@ -113,11 +113,11 @@ def edit_platform(request, user_id, slug):
 
 
 @login_required
-def delete_platform(request, user_id, slug):
+def delete_platform(request, user_id, platform_id):
     """
     view to delete platform
     """
-    platform = get_object_or_404(Platform, user=request.user, slug=slug)
+    platform = get_object_or_404(Platform, user=request.user, id=platform_id)
     if platform.user != request.user:
         raise PermissionDenied
 
@@ -146,7 +146,7 @@ def add_game(request):
 
 
 @login_required
-def game_detail(request, user_id, platform_slug, game_slug):
+def game_detail(request, user_id, platform_id, game_id):
     """
     Display an individual :model:`library.Game`.
 
@@ -160,8 +160,8 @@ def game_detail(request, user_id, platform_slug, game_slug):
     :template:`library/game_detail.html`
     """
     user = request.user
-    platform = get_object_or_404(Platform, user=user, slug=platform_slug)
-    game = get_object_or_404(Game, platform=platform, slug=game_slug)
+    platform = get_object_or_404(Platform, user=user, id=platform_id)
+    game = get_object_or_404(Game, platform=platform, id=game_id)
 
     return render(
         request,
@@ -173,23 +173,22 @@ def game_detail(request, user_id, platform_slug, game_slug):
 
 
 @login_required
-def edit_game(request, user_id, platform_slug, game_slug):
+def edit_game(request, user_id, platform_id, game_id):
     """
     View to edit game
     """
     user = request.user
-    platform = get_object_or_404(Platform, user=user, slug=platform_slug)
-    game = get_object_or_404(Game, platform=platform, slug=game_slug)
+    platform = get_object_or_404(Platform, user=user, id=platform_id)
+    game = get_object_or_404(Game, platform=platform, id=game_id)
 
     if request.method == 'POST':
-        print("Platform Slug:", platform.slug)
         edit_game_form = EditGameForm(request.POST, request.FILES,
                                       instance=game)
         if edit_game_form.is_valid():
             edit_game_form.save()
             messages.success(request, 'Game edited!')
             return HttpResponseRedirect(reverse('game_detail', args=[user_id,
-                                                platform.slug, game.slug]))
+                                                platform.id, game.id]))
     else:
         edit_game_form = EditGameForm(instance=game)
 
@@ -201,13 +200,13 @@ def edit_game(request, user_id, platform_slug, game_slug):
 
 
 @login_required
-def delete_game(request, user_id, platform_slug, game_slug):
+def delete_game(request, user_id, platform_id, game_id):
     """
     view to delete platform
     """
     user = request.user
-    platform = get_object_or_404(Platform, user=user, slug=platform_slug)
-    game = get_object_or_404(Game, platform=platform, slug=game_slug)
+    platform = get_object_or_404(Platform, user=user, id=platform_id)
+    game = get_object_or_404(Game, platform=platform, id=game_id)
     if platform.user != user:
         return HttpResponseForbidden("You do not have permission to delete"
                                      " this game.")
@@ -237,7 +236,7 @@ def add_wishlist(request):
 
 
 @login_required
-def wishlist_game_detail(request, user_id, platform_slug, wishlist_game_slug):
+def wishlist_game_detail(request, user_id, platform_id, wishlist_game_id):
     """
     Display an individual :model:`library.Game`.
 
@@ -251,9 +250,9 @@ def wishlist_game_detail(request, user_id, platform_slug, wishlist_game_slug):
     :template:`library/game_detail.html`
     """
     user = request.user
-    platform = get_object_or_404(Platform, user=user, slug=platform_slug)
+    platform = get_object_or_404(Platform, user=user, id=platform_id)
     wishlist_game = get_object_or_404(WishListGame, platform=platform,
-                                      slug=wishlist_game_slug)
+                                      id=wishlist_game_id)
 
     return render(
         request,
@@ -264,17 +263,16 @@ def wishlist_game_detail(request, user_id, platform_slug, wishlist_game_slug):
 
 
 @login_required
-def edit_wishlist_game(request, user_id, platform_slug, wishlist_game_slug):
+def edit_wishlist_game(request, user_id, platform_id, wishlist_game_id):
     """
     View to edit game
     """
     user = request.user
-    platform = get_object_or_404(Platform, user=user, slug=platform_slug)
+    platform = get_object_or_404(Platform, user=user, id=platform_id)
     wishlist_game = get_object_or_404(WishListGame, platform=platform,
-                                      slug=wishlist_game_slug)
+                                      id=wishlist_game_id)
 
     if request.method == 'POST':
-        print("Platform Slug:", platform.slug)
         edit_wishlist_game_form = EditWishListGameForm(request.POST,
                                                        request.FILES,
                                                        instance=wishlist_game)
@@ -282,8 +280,8 @@ def edit_wishlist_game(request, user_id, platform_slug, wishlist_game_slug):
             edit_wishlist_game_form.save()
             messages.success(request, 'Game in Wishlist edited!')
             return HttpResponseRedirect(reverse('wishlist_game_detail',
-                                                args=[user_id, platform.slug,
-                                                      wishlist_game.slug]))
+                                                args=[user_id, platform.id,
+                                                      wishlist_game.id]))
     else:
         edit_wishlist_game_form = EditWishListGameForm(instance=wishlist_game)
 
@@ -295,14 +293,14 @@ def edit_wishlist_game(request, user_id, platform_slug, wishlist_game_slug):
 
 
 @login_required
-def delete_wishlist_game(request, user_id, platform_slug, wishlist_game_slug):
+def delete_wishlist_game(request, user_id, platform_id, wishlist_game_id):
     """
     view to delete platform
     """
     user = request.user
-    platform = get_object_or_404(Platform, user=user, slug=platform_slug)
+    platform = get_object_or_404(Platform, user=user, id=platform_id)
     game = get_object_or_404(WishListGame, platform=platform,
-                             slug=wishlist_game_slug)
+                             id=wishlist_game_id)
     if platform.user != user:
         return HttpResponseForbidden("You do not have permission to delete"
                                      " this game in wishlist.")

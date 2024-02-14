@@ -12,7 +12,7 @@
         <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="pd-platform-image mr-3">
       {% endif %}
         <h2 class="mb-4">{{ platform.name }}</h2>
-        <a href="{% url 'edit_platform' request.user.id platform.slug %}" class="btn btn-primary buttons-spacing"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a href="{% url 'edit_platform' request.user.id platform.id %}" class="btn btn-primary buttons-spacing"><i class="fa-solid fa-pen-to-square"></i></a>
         <button class="btn btn-delete btn-danger buttons-spacing" data-platformid="{{ platform.id }}" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa-solid fa-trash"></i></button>
     </div>
 
@@ -54,7 +54,7 @@
                         <img src="{{ game.image.url }}" alt="{{ game.name }} Image" class="card-img-top img-fluid pd-game-image">
                     {% endif %}
                     <div class="card-body pd-game-name">
-                        <a href="{% url 'game_detail' request.user.id platform.slug game.slug %}" class="no-highlight pd-game-link">{{ game.name }}</a> 
+                        <a href="{% url 'game_detail' request.user.id platform.id game.id %}" class="no-highlight pd-game-link">{{ game.name }}</a> 
                         <span class="pd-game-score"> Score: {{game.user_score}} </span>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                         <img src="{{ wishlist_game.image.url }}" alt="{{ wishlist_game.game_name }} Image" class="card-img-top img-fluid pd-game-image">
                     {% endif %}
                     <div class="card-body pd-game-name">
-                        <a href="{% url 'wishlist_game_detail' request.user.id platform.slug wishlist_game.slug %}" class="no-highlight pd-game-link">{{ wishlist_game.name }}</a> 
+                        <a href="{% url 'wishlist_game_detail' request.user.id platform.id wishlist_game.id %}" class="no-highlight pd-game-link">{{ wishlist_game.name }}</a> 
                         <span class="pd-game-score"> Priority: {{wishlist_game.priority}} </span>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a id="deleteConfirm" href="{% url 'delete_platform' request.user.id platform.slug %}" class="btn btn-danger">Delete</a>
+                    <a id="deleteConfirm" href="{% url 'delete_platform' request.user.id platform.id %}" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         </div>
