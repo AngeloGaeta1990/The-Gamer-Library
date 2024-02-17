@@ -42,4 +42,4 @@ $(document).ready(function () {
     deleteWishListGameButton.on("click", function (e) {
         deleteWishListGameModal.show();
     });
-})
+});

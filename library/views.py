@@ -1,11 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.views import generic
-from django.db import models
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from .models import Platform, Game, WishListGame
 from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
                     EditPCPlatformForm, EditConsolePlatformForm,
@@ -13,16 +10,13 @@ from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
                     EditGameForm, AddWishlistGameForm, EditWishListGameForm)
 
 
-@method_decorator(login_required(login_url='intro'), name='dispatch')
-class PlatformList(generic.ListView):
-    context_object_name = 'platforms'
-    template_name = "library/index.html"
-    # paginate_by = 6
-
-    def get_queryset(self):
-        # Query all platform instances, including subclasses
-        return Platform.objects.filter(user=self.request.user).annotate(
-            game_count=models.Count('games')).all().order_by("name")
+@login_required(login_url='intro')
+def platform_list(request):
+    platforms = Platform.objects.all().order_by("name")
+    for platform in platforms:
+        games = platform.games.all().order_by("name")
+    return render(request, 'library/index.html', {'platforms': platforms,
+                                                  'games': games})
 
 
 @login_required

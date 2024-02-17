@@ -94,10 +94,14 @@ footer {
 }
 
 .platform-image {
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
     margin: 5px;
     padding: 5px;
+}
+
+.platform-font {
+    font-size: x-large;
 }
 
 .platform-name-spacing {
@@ -124,9 +128,9 @@ footer {
   }
 
 .game-image {
-    max-width: 200px;
+    max-width: 150px;
     max-height: 200px;
-    margin-right: 10px;
+    margin: 10px;
   }
 
 .game-info {
@@ -158,7 +162,7 @@ footer {
 }
 
 .pd-platform-image {
-    max-width: 60%;
+    max-width: 80%;
     height: auto;
     margin-bottom: 2rem;
 }
@@ -169,37 +173,62 @@ footer {
 }
 
 .pd-game-image {
-    width: 100%;
-    height: auto
+    width: 600px;
+    height: auto;
 }
 
-.pd-games-header {
-    padding-left: 15px; /* Adjust the padding as needed */
+.pd-game-name {
+    font-size: 40px; /* Adjust the font size as needed */
+    font-family:'Roboto', sans-serif;
 }
 
-/*______________________ about.html______________________*/
+.pd-game-link {
+    font-size: medium;
+}
 
-/* Image Section */
-.about-image-section img {
+.pd-game-score {
+    font-size: medium;
+}
+
+/*______________________ get_in_touch.html______________________*/
+
+.git-image-section img {
     width: 100%;
     height: auto;
     display: block;
+    margin: auto;
 }
 
-/* Text Section */
-.about-text-section {
-    background-color: #141422; /* Black background for the text section */
+.git-text-section {
+    background-color: #141422; 
     color: white;
     padding: 20px;
     text-align: center;
 }
 
+.git-collaborate {
+        padding: 20px;
+        margin: 10px;
+}
+
 /*______________________ login.html______________________*/
 
-.signup-signin-link {
-    text-decoration: none;
+.login-background {
+    background-image: url('../images/library/login/mejores-juegos-historia-gq-3030288.webp');
+    background-size: cover; /* or 'contain' depending on your preference */
+    background-repeat: no-repeat;
+    /* Additional properties to control the position and other styles */
+    background-position: center center;
+    background-attachment: fixed; 
+    /* height: 40vh;
+    width: 100vw;       */
 }
 
-.signup-signin-link:hover {
-    color:#000
+
+/*______________________ game-detail.html______________________*/
+
+.gd-game-image {
+    max-width: 50vh ; 
+    max-height: 50vh ;
 }
+

@@ -1,4 +1,4 @@
-from django.core.validators import FileExtensionValidator, MaxValueValidator
+from django.core.validators import FileExtensionValidator
 from django import forms
 from .models import Platform, Game, WishListGame
 
@@ -8,17 +8,24 @@ class AddPlatformForm(forms.ModelForm):
         model = Platform
         fields = ('name', 'category', 'image')
 
-    image = forms.ImageField(
+    image = forms.FileField(
         required=False,
         validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg',
-                                           'jpeg', 'webp', 'gif']),
-                    MaxValueValidator(limit_value=1024 * 1024 * 50)])
+                                                               'jpeg', 'webp',
+                                                               'gif'])]
+    )
 
 
 class EditPlatformForm(forms.ModelForm):
     class Meta:
         model = Platform
         fields = ('name', 'category', 'image', 'box_color', 'font_color')
+
+    image = forms.FileField(
+        required=False,
+        validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg',
+                                                               'jpeg', 'webp',
+                                                               'gif'])])
 
 
 class EditPCPlatformForm(EditPlatformForm):
@@ -54,11 +61,11 @@ class AddGameForm(forms.ModelForm):
         model = Game
         fields = ('name', 'platform', 'image', 'user_score')
 
-    image = forms.ImageField(
+    image = forms.FileField(
         required=False,
         validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg',
-                                           'jpeg', 'webp', 'gif']),
-                    MaxValueValidator(limit_value=1024 * 1024 * 50)])
+                                                               'jpeg', 'webp',
+                                                               'gif'])])
 
     def __init__(self, user, *args, **kwargs):
         super(AddGameForm, self).__init__(*args, **kwargs)
@@ -73,6 +80,12 @@ class EditGameForm(forms.ModelForm):
                   'metacritic_score', 'developer', 'genres', 'release_date',
                   'completion_date', 'hours_spent',  'user_review')
 
+    image = forms.FileField(
+        required=False,
+        validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg',
+                                                               'jpeg', 'webp',
+                                                               'gif'])])
+
 
 class AddWishlistGameForm(forms.ModelForm):
     class Meta:
@@ -80,11 +93,11 @@ class AddWishlistGameForm(forms.ModelForm):
         fields = ('name', 'platform', 'image', 'priority', "currency", "cost",
                   "store")
 
-    image = forms.ImageField(
+    image = forms.FileField(
         required=False,
         validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg',
-                                           'jpeg', 'webp', 'gif']),
-                    MaxValueValidator(limit_value=1024 * 1024 * 50)])
+                                                               'jpeg', 'webp',
+                                                               'gif'])])
 
     def __init__(self, user, *args, **kwargs):
         super(AddWishlistGameForm, self).__init__(*args, **kwargs)
@@ -98,3 +111,9 @@ class EditWishListGameForm(forms.ModelForm):
         model = WishListGame
         fields = ('name', 'platform', 'image', 'store', 'priority',
                   'developer', 'genres', 'release_date', 'currency', 'cost')
+
+    image = forms.FileField(
+        required=False,
+        validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg',
+                                                               'jpeg', 'webp',
+                                                               'gif'])])

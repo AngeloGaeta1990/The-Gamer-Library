@@ -885,3 +885,6 @@ keep consitancy
   - urls use platform.id game.id and wishlist_game.id rather than slugs
   - add test for game and wishlist game views
   - add test for Platform, Game and Wishlist forms
+
+- **17/02/2024**
+  - improve games expanding on index.html

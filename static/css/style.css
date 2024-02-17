@@ -128,7 +128,7 @@ footer {
   }
 
 .game-image {
-    max-width: 200px;
+    max-width: 150px;
     max-height: 200px;
     margin: 10px;
   }
@@ -190,21 +190,25 @@ footer {
     font-size: medium;
 }
 
-/*______________________ about.html______________________*/
+/*______________________ get_in_touch.html______________________*/
 
-/* Image Section */
-.about-image-section img {
+.git-image-section img {
     width: 100%;
     height: auto;
     display: block;
+    margin: auto;
 }
 
-/* Text Section */
-.about-text-section {
-    background-color: #141422; /* Black background for the text section */
+.git-text-section {
+    background-color: #141422; 
     color: white;
     padding: 20px;
     text-align: center;
+}
+
+.git-collaborate {
+        padding: 20px;
+        margin: 10px;
 }
 
 /*______________________ login.html______________________*/
@@ -227,3 +231,4 @@ footer {
     max-width: 50vh ; 
     max-height: 50vh ;
 }
+
