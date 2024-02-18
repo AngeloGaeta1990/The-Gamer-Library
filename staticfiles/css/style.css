@@ -194,7 +194,7 @@ footer {
 
 .git-image-section img {
     width: 100%;
-    height: auto;
+    max-height: auto;
     display: block;
     margin: auto;
 }

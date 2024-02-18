@@ -1,8 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
-from django.core.exceptions import PermissionDenied
-from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Platform, Game, WishListGame
 from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
                     EditPCPlatformForm, EditConsolePlatformForm,
@@ -12,9 +11,22 @@ from .forms import (AddPlatformForm, EditPlatformForm, AddGameForm,
 
 @login_required(login_url='intro')
 def platform_list(request):
+    """
+    List all platforms in the database.
+
+    **Context**
+
+    ``platforms``
+        An instance of :model:`library.Platform`.
+
+    **Template:**
+
+    :template:`library/index.html`
+    """
     platforms = Platform.objects.all().order_by("name")
+    games = []
     for platform in platforms:
-        games = platform.games.all().order_by("name")
+        games.extend(list(platform.games.all().order_by("name")))
     return render(request, 'library/index.html', {'platforms': platforms,
                                                   'games': games})
 
@@ -49,6 +61,13 @@ def platform_detail(request, user_id, platform_id):
 
 @login_required
 def add_platform(request):
+    """
+    Add a new platform to the database.
+
+    **Template:**
+
+    :template:`library/add_platform_form.html`
+    """
     if request.method == 'POST':
         add_platform_form = AddPlatformForm(request.POST, request.FILES)
         if add_platform_form.is_valid():
@@ -76,7 +95,11 @@ def add_platform(request):
 @login_required
 def edit_platform(request, user_id, platform_id):
     """
-    view to edit comments
+    Edit an existing platform in the database.
+
+    **Template:**
+
+    :template:`library/edit_platform_form.html`
     """
     platform = get_object_or_404(Platform,  user_id=user_id, id=platform_id)
     if platform.category == 'pc':
@@ -109,12 +132,12 @@ def edit_platform(request, user_id, platform_id):
 @login_required
 def delete_platform(request, user_id, platform_id):
     """
-    view to delete platform
+    Delete an existing platform from the database.
     """
     platform = get_object_or_404(Platform, user=request.user, id=platform_id)
     if platform.user != request.user:
-        raise PermissionDenied
-
+        return HttpResponseForbidden("You do not have permission to delete"
+                                     " this platform.")
     platform.delete()
     messages.add_message(request, messages.SUCCESS, 'Platform deleted!')
     return HttpResponseRedirect(reverse('home'))
@@ -122,18 +145,22 @@ def delete_platform(request, user_id, platform_id):
 
 @login_required
 def add_game(request):
+    """
+    Add a new game to the database.
+
+    **Template:**
+
+    :template:`library/add_game_form.html`
+    """
     add_game_form = AddGameForm(user=request.user)
     if request.method == 'POST':
         add_game_form = AddGameForm(request.user, request.POST, request.FILES)
         if add_game_form.is_valid():
-            # TODO add videogames database API to get data and fill the form
             add_game_form.save()
-            # Add any additional logic or redirect here
             return redirect('home')
         else:
             messages.error(request, 'Invalid form submission. Please check the'
                            ' form.')
-
     return render(request,
                   'library/add_game_form.html',
                   {'add_game_form': add_game_form})
@@ -169,7 +196,11 @@ def game_detail(request, user_id, platform_id, game_id):
 @login_required
 def edit_game(request, user_id, platform_id, game_id):
     """
-    View to edit game
+    Edit an existing game in the database.
+
+    **Template:**
+
+    :template:`library/edit_game_form.html`
     """
     user = request.user
     platform = get_object_or_404(Platform, user=user, id=platform_id)
@@ -196,7 +227,7 @@ def edit_game(request, user_id, platform_id, game_id):
 @login_required
 def delete_game(request, user_id, platform_id, game_id):
     """
-    view to delete platform
+    Delete an existing game from the database.
     """
     user = request.user
     platform = get_object_or_404(Platform, user=user, id=platform_id)
@@ -211,14 +242,19 @@ def delete_game(request, user_id, platform_id, game_id):
 
 @login_required
 def add_wishlist(request):
+    """
+    Add a new game to the wishlist.
+
+    **Template:**
+
+    :template:`library/add_wishlist_form.html`
+    """
     add_wishlist_form = AddWishlistGameForm(user=request.user)
     if request.method == 'POST':
         add_wishlist_form = AddWishlistGameForm(request.user, request.POST,
                                                 request.FILES)
         if add_wishlist_form.is_valid():
-            # TODO add videogames database API to get data and fill the form
             add_wishlist_form.save()
-            # Add any additional logic or redirect here
             return redirect('home')
         else:
             messages.error(request, 'Invalid form submission. Please check the'
@@ -232,16 +268,16 @@ def add_wishlist(request):
 @login_required
 def wishlist_game_detail(request, user_id, platform_id, wishlist_game_id):
     """
-    Display an individual :model:`library.Game`.
+    Display an individual :model:`library.WishListGame`.
 
     **Context**
 
-    ``Game``
-        An instance of :model:`library.Game`.
+    'wishlist_game'
+        An instance of :model:`library.WishListGame`.
 
     **Template:**
 
-    :template:`library/game_detail.html`
+    :template:`library/wishlist_game_detail.html`
     """
     user = request.user
     platform = get_object_or_404(Platform, user=user, id=platform_id)
@@ -259,7 +295,11 @@ def wishlist_game_detail(request, user_id, platform_id, wishlist_game_id):
 @login_required
 def edit_wishlist_game(request, user_id, platform_id, wishlist_game_id):
     """
-    View to edit game
+    Edit an existing game in the wishlist.
+
+    **Template:**
+
+    :template:`library/edit_wishlist_game_form.html`
     """
     user = request.user
     platform = get_object_or_404(Platform, user=user, id=platform_id)
@@ -289,7 +329,7 @@ def edit_wishlist_game(request, user_id, platform_id, wishlist_game_id):
 @login_required
 def delete_wishlist_game(request, user_id, platform_id, wishlist_game_id):
     """
-    view to delete platform
+    Delete an existing game from the wishlist.
     """
     user = request.user
     platform = get_object_or_404(Platform, user=user, id=platform_id)
@@ -305,8 +345,22 @@ def delete_wishlist_game(request, user_id, platform_id, wishlist_game_id):
 
 
 def intro(request):
+    """
+    Render the intro page.
+
+    **Template:**
+
+    :template:`library/intro.html`
+    """
     return render(request, 'library/intro.html')
 
 
 def info(request):
+    """
+    Render the info page.
+
+    **Template:**
+
+    :template:`library/info.html`
+    """
     return render(request, 'library/info.html')

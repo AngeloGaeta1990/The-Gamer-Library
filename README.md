@@ -888,3 +888,9 @@ keep consitancy
 
 - **17/02/2024**
   - improve games expanding on index.html
+
+- **18/02/2024**
+  - add overflow to index.html
+  - reduce image size in get_in_touch.html
+  - improve accessibility on index.html
+  - add docstring to all views

@@ -8,7 +8,7 @@
     {% for platform in platforms %}
       {% if platform.user == request.user %}
         <div class="col-12 col-md-6 col-lg-4">
-          <div class="platform-rectangle mt-3 mb-3 p-3 white-text platform-button" data-boxcolor="{{platform.box_color}}" data-fontcolor="{{platform.font_color}}">
+          <div class="platform-rectangle mt-3 mb-3 p-3 white-text platform-button" data-boxcolor="{{platform.background_color}}" data-fontcolor="{{platform.font_color}}">
             <div class="d-flex flex-column align-items-start platform-font">
               {% if "placeholder" in platform.image.url %}
                 <img src="{% static 'images/library/platform_images/default_platform.jpg' %}" alt="{{ platform.name }} Image" class="platform-image mb-3">
@@ -21,21 +21,21 @@
                   <span class="games-count"> {{ platform.games.count }}</span>
                 </div>
                 <div class="mt-auto">
-                  <button class="btn btn-primary btn-sm buttons-spacing" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGames{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseGames{{ forloop.counter }}">
+                  <button class="btn btn-primary btn-sm buttons-spacing" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGames{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseGames{{ forloop.counter }}"  aria-label="Toggle display of games for {{ platform.name }}">
                     <i class="fa-solid fa-caret-down"></i>
                   </button>
-                  <button class="btn btn-danger btn-sm ml-2 delete-button buttons-spacing" data-bs-toggle="modal" data-bs-target="#deletePlatformModal{{ forloop.counter }}">
+                  <button class="btn btn-danger btn-sm ml-2 delete-button buttons-spacing" data-bs-toggle="modal" data-bs-target="#deletePlatformModal{{ forloop.counter }}" aria-label="Delete {{ platform.name }}">
                     <i class="fa-solid fa-trash"></i>
                   </button>
                 </div>
                 <div class="collapse" id="collapseGames{{ forloop.counter }}">
-                  <div class="card card-body overflow-auto">
+                  <div class="card card-body overflow-auto game-expand">
                     {% for game in platform.games.all %}
                       <div class="game-details black-text">
                         {% if  "placeholder" in game.image.url %}
-                          <img src="{% static 'images/library/game_images/default_game.png' %}" alt="{{ game.name }} Image" class="game-image mr-3" >
+                          <img src="{% static 'images/library/game_images/default_game.png' %}" alt="Image for game {{ game.name }} Image" class="game-image mr-3" >
                         {% else %}
-                          <img src="{{game.image.url }}" alt="{{ game.name }} Image" class="game-image mr-2"> 
+                          <img src="{{game.image.url }}" alt="Image for game {{ game.name }} Image" class="game-image mr-2"> 
                         {% endif %}
                         <div class="game-info">
                           <a href="{% url 'game_detail' request.user.id platform.id game.id %}" class="platform-link no-highlight">{{ game.name }}</a>

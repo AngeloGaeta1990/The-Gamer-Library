@@ -4,7 +4,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container pd-container" data-platformcolor="{{ platform.box_color }}" data-platformfontcolor="{{ platform.font_color }}">
+<div class="container pd-container" data-platformcolor="{{ platform.background_color }}" data-platformfontcolor="{{ platform.font_color }}">
     <div class="text-center">
         {% if "placeholder" in platform.image.url %}
         <img src="{% static 'images/library/platform_images/default_platform.jpg' %}" alt="{{ platform.name }} Image" class="pd-platform-image mr-3"> 

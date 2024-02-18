@@ -1,10 +1,12 @@
 import uuid
-from django.db import models
-from django.core.validators import MaxValueValidator
+
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator
+from django.db import models
 from django.utils.text import slugify
-from colorfield.fields import ColorField
+
 from cloudinary.models import CloudinaryField
+from colorfield.fields import ColorField
 
 
 class Game(models.Model):
@@ -12,7 +14,9 @@ class Game(models.Model):
     slug = models.SlugField(max_length=255, blank=True)
     name = models.CharField(max_length=255)
     user_score = models.IntegerField(null=True, blank=True,
-                                     validators=[MaxValueValidator(100)])
+                                     validators=[MaxValueValidator(100)],
+                                     help_text='Enter a number between 0 and'
+                                               ' 100')
     metacritic_score = models.IntegerField(null=True, blank=True,
                                            validators=[MaxValueValidator(100)])
     image = CloudinaryField('image', null=True, blank=True,
@@ -21,8 +25,7 @@ class Game(models.Model):
     genres = models.CharField(max_length=255, blank=True, null=True)
     release_date = models.DateField(null=True, blank=True)
     completion_date = models.DateField(null=True, blank=True,
-                                       default=models.functions.Now,
-                                       )
+                                       default=models.functions.Now)
     hours_spent = models.IntegerField(null=True, blank=True)
     developer = models.CharField(max_length=255, null=True, blank=True)
     platform = models.ForeignKey('Platform', on_delete=models.CASCADE,
@@ -30,17 +33,14 @@ class Game(models.Model):
 
     class Meta:
         unique_together = ('name', 'platform')
-        ordering = ["platform"]
+        ordering = ['platform']
 
     def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
-        # Generate or set the UUID when the instance is first created
         if not self.id:
             self.id = uuid.uuid4()
-
-        # Generate or set the slug only if it's not already set
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
@@ -50,16 +50,16 @@ class WishListGame(models.Model):
 
     CURRENCIES = [
         ('£', '£'),
-        ('$', '$',),
-        ('€', '€', )
+        ('$', '$'),
+        ('€', '€')
     ]
 
     STORES = [
-        ("Steam", "Steam"),
-        ("Epic", "Epic"),
-        ("Playstation Store", "Playstation Store"),
-        ("Xbox ", "Xbox"),
-        ("Nintendo eshop", "Nintendo eshop")
+        ('Steam', 'Steam'),
+        ('Epic', 'Epic'),
+        ('Playstation Store', 'Playstation Store'),
+        ('Xbox', 'Xbox'),
+        ('Nintendo eshop', 'Nintendo eshop')
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -71,8 +71,11 @@ class WishListGame(models.Model):
     store = models.CharField(max_length=255, null=True, blank=True,
                              choices=STORES)
     release_date = models.DateField(null=True, blank=True)
-    developer = models.CharField(max_length=255, null=True,  blank=True)
-    priority = models.IntegerField(null=True, blank=True,)
+    developer = models.CharField(max_length=255, null=True, blank=True)
+    priority = models.IntegerField(null=True, blank=True, help_text='Enter the'
+                                   ' priority of the game in the wishlist.'
+                                   ' The lower the number, the higher the'
+                                   ' priority.')
     currency = models.CharField(max_length=2, null=True, blank=True,
                                 choices=CURRENCIES)
     cost = models.DecimalField(max_digits=8, decimal_places=2, null=True,
@@ -82,17 +85,14 @@ class WishListGame(models.Model):
 
     class Meta:
         unique_together = ('name', 'platform')
-        ordering = ["-priority"]
+        ordering = ['-priority']
 
     def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
-        # Generate or set the UUID when the instance is first created
         if not self.id:
             self.id = uuid.uuid4()
-
-        # Generate or set the slug only if it's not already set
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
@@ -126,20 +126,25 @@ class Platform(models.Model):
 
     CURRENCIES = [
         ('£', '£'),
-        ('$', '$',),
-        ('€', '€', )
+        ('$', '$'),
+        ('€', '€')
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255,)
+    slug = models.SlugField(max_length=255)
     category = models.CharField(max_length=10, choices=PLATFORM_CHOICES,
                                 null=False, blank=False)
     image = CloudinaryField('image', null=True, blank=True,
                             default='placeholder')
-    box_color = ColorField(null=True, blank=True)
-    font_color = ColorField(null=True, blank=True, default='#fafafa')
-    # PC exclusive
+    background_color = ColorField(null=True, blank=True, help_text='Enter hex'
+                                  ' code to set the background color of the'
+                                  ' platform. If left blank, the black color'
+                                  ' will be used.')
+    font_color = ColorField(null=True, blank=True, default='#fafafa',
+                            help_text='Enter hex code to set the font color'
+                            ' for the platform. If left blank,'
+                            ' the white color will be used.')
     operative_systems = models.CharField(max_length=50,
                                          choices=OPERATIVE_SYSTEMS_CHOICES,
                                          null=True, blank=True)
@@ -149,38 +154,32 @@ class Platform(models.Model):
     disk_size = models.IntegerField(null=True, blank=True)
     disk_type = models.CharField(max_length=10, choices=DISK_TYPE_CHOICES,
                                  null=True, blank=True)
-    # Console exclusive
-    model = models.CharField(max_length=255, null=True,  blank=True)
-    # Service exclusive
+    model = models.CharField(max_length=255, null=True, blank=True)
     currency = models.CharField(max_length=2, null=True, blank=True,
                                 choices=CURRENCIES)
     subscription_fee = models.DecimalField(max_digits=5, decimal_places=2,
-                                           null=True,  blank=True)
-    plan = models.CharField(max_length=255, null=True,  blank=True)
-    # Mobile exclusive
-    brand = models.CharField(max_length=255, null=True,  blank=True)
+                                           null=True, blank=True)
+    plan = models.CharField(max_length=255, null=True, blank=True)
+    brand = models.CharField(max_length=255, null=True, blank=True)
     operative_systems = models.CharField(max_length=50,
                                          choices=OPERATIVE_SYSTEMS_CHOICES,
-                                         null=True,  blank=True)
-    # Foreign key
+                                         null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE,
                              related_name='platform')
 
     class Meta:
         unique_together = ('name', 'user')
-        ordering = ["name"]
+        ordering = ['name']
 
     def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
-        # Generate or set the UUID when the instance is first created
         if not self.id:
             self.id = uuid.uuid4()
-        # Generate or set the slug only if it's not already set
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
     def ordered_games(self):
-        return self.games.all().order_by("name")
+        return self.games.all().order_by('name')

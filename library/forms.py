@@ -19,7 +19,8 @@ class AddPlatformForm(forms.ModelForm):
 class EditPlatformForm(forms.ModelForm):
     class Meta:
         model = Platform
-        fields = ('name', 'category', 'image', 'box_color', 'font_color')
+        fields = ('name', 'category', 'image', 'background_color',
+                  'font_color')
 
     image = forms.FileField(
         required=False,
