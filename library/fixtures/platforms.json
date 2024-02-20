@@ -5,63 +5,36 @@
         "pk": 1,
         "fields": {
             "name": "Game pass",
-            "image": "https://res.cloudinary.com/datoqbvx5/image/upload/v1/library/platform_images/game_pass.png",
             "category": "service",
             "slug": "game-pass",
-            "user":1
-        }
-    },
-    {
-        "model": "library.ServicePlatform",
-        "pk": 1,
-        "fields": {
-            "platform_ptr": 1,
+            "user":100,
             "plan": "Ultimate",
-            "subscription_fee": 9.99,
-            "category": "service",
-            "slug": "game-pass-service"
+            "subscription_fee": 9.99
+
         }
     },
+    
     {
         "model": "library.Platform",
         "pk": 2,
         "fields": {
             "name": "Xbox",
-            "image": null,
             "category": "console",
             "slug": "xbox",
-            "user":1
+            "user":100,
+            "model": "Series S"
         }
     },
-    {
-        "model": "library.ConsolePlatform",
-        "pk": 2,
-        "fields": {
-            "platform_ptr": 2,
-            "model": "Series S",
-            "category": "console",
-            "slug": "xbox-console"
-        }
-    },
+  
     {
         "model": "library.Platform",
         "pk": 3,
         "fields": {
             "name": "Playstation 4",
-            "image": null,
             "category": "console",
             "slug": "playstation-4",
-            "user":1
-        }
-    },
-    {
-        "model": "library.ConsolePlatform",
-        "pk": 3,
-        "fields": {
-            "platform_ptr": 3,
-            "model": "Pro",
-            "category": "console",
-            "slug": "playstation-4-console"
+            "user":100,
+            "model": "Pro"
         }
     },
     {
@@ -69,21 +42,10 @@
         "pk": 4,
         "fields": {
             "name": "Nintendo Switch",
-            "image": "library/platform_images/switch.png",
             "category": "console",
             "slug": "nintendo-switch",
-            "user":1
-        }
-    },
-    {
-        "model": "library.ConsolePlatform",
-        "pk": 4,
-        "fields": {
-            "platform_ptr": 4,
-            "model": "OLED",
-            "category": "console",
-            "slug": "nintendo-switch-console"
-            
+            "user":100,
+            "model": "OLED"
         }
     },
     {
@@ -91,19 +53,9 @@
         "pk": 5,
         "fields": {
             "name": "Steam deck",
-            "image": null,
             "category": "pc",
             "slug": "steam-deck",
-            "user":1
-        }
-    },
-    {
-        "model": "library.PCPlatform",
-        "pk": 5,
-        "fields": {
-            "platform_ptr": 5,
-            "category": "pc",
-            "slug": "steam-deck-pc"
+            "user":100
         }
     },
     {
@@ -111,20 +63,10 @@
         "pk": 6,
         "fields": {
             "name": "Desktop gaming PC",
-            "image": null,
             "category": "pc",
             "slug": "desktop-gaming-pc",
-            "user":1
-        }
-    },
-    {
-        "model": "library.PCPlatform",
-        "pk": 6,
-        "fields": {
-            "platform_ptr": 6,
-            "gpu": "Nvidia 3080 RTX",
-            "category": "pc",
-            "slug": "desktop-gaming-pc-pc"
+            "user":100,
+            "gpu": "Nvidia 3080 RTX"
         }
     },
     {
@@ -132,19 +74,9 @@
         "pk": 7,
         "fields": {
             "name": "Steam",
-            "image": null,
             "category": "service",
             "slug": "steam",
-            "user":1
-        }
-    },
-    {
-        "model": "library.ServicePlatform",
-        "pk": 7,
-        "fields": {
-            "platform_ptr": 7,
-            "category": "service",
-            "slug": "steam-service"
+            "user":100
         }
     },
     {
@@ -152,19 +84,9 @@
         "pk": 8,
         "fields": {
             "name": "Epic Games",
-            "image": null,
             "category": "service",
             "slug": "epic-games",
-            "user":1
-        }
-    },
-    {
-        "model": "library.ServicePlatform",
-        "pk": 8,
-        "fields": {
-            "platform_ptr": 8,
-            "category": "service",
-            "slug": "epic-games-service"
+            "user":100
         }
     },
     {
@@ -172,20 +94,9 @@
         "pk": 9,
         "fields": {
             "name": "Playstation Plus",
-            "image": null,
             "category": "service",
             "slug":"playstation-plus",
-            "user":1
-        }
-    },
-    {
-        "model": "library.ServicePlatform",
-        "pk": 9,
-        "fields": {
-            "platform_ptr": 9,
-            "plan": "Premium",
-            "category": "service",
-            "slug":"playstation-plus-service"
+            "user":100
         }
     }
 ]

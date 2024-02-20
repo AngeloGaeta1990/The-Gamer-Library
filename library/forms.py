@@ -111,7 +111,8 @@ class EditWishListGameForm(forms.ModelForm):
     class Meta:
         model = WishListGame
         fields = ('name', 'platform', 'image', 'store', 'priority',
-                  'developer', 'genres', 'release_date', 'currency', 'cost')
+                  'developer', 'genres', 'link', 'release_date', 'currency',
+                  'cost')
 
     image = forms.FileField(
         required=False,

@@ -76,6 +76,9 @@ class WishListGame(models.Model):
                                    ' priority of the game in the wishlist.'
                                    ' The lower the number, the higher the'
                                    ' priority.')
+    link = models.URLField(max_length=200, null=True, blank=True,
+                           help_text='Enter the url of the game you want to'
+                                     ' buy.')
     currency = models.CharField(max_length=2, null=True, blank=True,
                                 choices=CURRENCIES)
     cost = models.DecimalField(max_digits=8, decimal_places=2, null=True,

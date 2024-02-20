@@ -1,10 +1,10 @@
-[{
+[
+    {
     "model": "auth.user",
-    "pk": 1,
+    "pk":100,
     "fields": {
         "username": "mary90",
-        "password": "mary@lib"
+        "password": "pbkdf2_sha256$720000$yhNe2tladSElg9cHoCut7j$ac5EFh/sideK+MDLqHPFWi/5YnFyPHMScUXYsFfsy2E="
+        }
     }
-}
-
 ]

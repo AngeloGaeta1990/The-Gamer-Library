@@ -1,0 +1,88 @@
+[
+    {
+        "model": "library.WishListGame",
+        "pk": 1,
+        "fields": {
+            "slug": "the-witcher-3-wild-hunt",
+            "name": "The Witcher 3: Wild Hunt",
+            "genres": "Action RPG",
+            "store": "Steam",
+            "release_date": "2015-05-19",
+            "developer": "CD Projekt",
+            "priority": 1,
+            "link": "https://store.steampowered.com/app/292030/The_Witcher_3_Wild_Hunt/",
+            "currency": "£",
+            "cost": "7.99",
+            "platform": 3
+        }
+    },
+    {
+        "model": "library.WishListGame",
+        "pk": 2,
+        "fields": {
+            "slug": "baldurs-gate-3",
+            "name": "Baldur's Gate 3",
+            "genres": "RPG",
+            "store": "Steam",
+            "release_date": "2023-08-03",
+            "developer": "Larian Studios",
+            "priority": 2,
+            "link": "https://store.steampowered.com/app/1086940/Baldurs_Gate_3/",
+            "currency": "£",
+            "cost": "59.99",
+            "platform": 3
+        }
+    },
+
+        {
+            "model": "library.WishListGame",
+            "pk": 3,
+            "fields": {
+                "slug": "lies-of-p",
+                "name": "Lies of P",
+                "genres": "Action RPG",
+                "store": "Steam",
+                "release_date": "2023-09-19",
+                "developer": "Neowiz Games",
+                "priority": 3,
+                "link": "https://store.steampowered.com/app/1500090/Lies_of_P/",
+                "currency": "£",
+                "cost": "49.99",
+                "platform": 3
+            }
+        },
+        {
+            "model": "library.WishListGame",
+            "pk": 4,
+            "fields": {
+                "slug": "hi-fi-rush",
+                "name": "Hi-Fi Rush",
+                "genres": "Action",
+                "store": "Steam",
+                "release_date": "2023-09-19",
+                "developer": "Tango Gameworks",
+                "priority": 4,
+                "link": "https://store.steampowered.com/app/1500090/Hi_Fi_Rush/",
+                "currency": "£",
+                "cost": "39.99",
+                "platform": 3
+            }
+        },
+        {
+            "model": "library.WishListGame",
+            "pk": 5,
+            "fields": {
+                "slug": "cyberpunk-2077",
+                "name": "Cyberpunk 2077",
+                "genres": "Action RPG",
+                "store": "Steam",
+                "release_date": "2020-12-10",
+                "developer": "CD Projekt",
+                "priority": 5,
+                "link": "https://store.steampowered.com/app/1091500/Cyberpunk_2077/",
+                "currency": "£",
+                "cost": "49.99",
+                "platform": 3
+            }
+        }
+]
