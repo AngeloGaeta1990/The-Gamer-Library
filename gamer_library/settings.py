@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.herokuapp.com', 'the-gamer-library-a2d80d9a63a6.herokuapp.com', os.environ.get('LOCALHOST'),
+ALLOWED_HOSTS = ['.herokuapp.com', os.environ.get('LOCALHOST'),
                  os.environ.get('GITPOD')]
 
 

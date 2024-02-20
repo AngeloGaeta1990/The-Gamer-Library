@@ -15,6 +15,8 @@ Embark on a new chapter of gaming with The Gamer Library — where your gaming h
 
 Live link to [The Gamer Library](https://the-gamer-library-a2d80d9a63a6.herokuapp.com/)
 
+![intro page](/docs/images/intro_page.PNG)
+
 ## Table of Contents
 
 - [The Gamer Library](#the-gamer-library)
