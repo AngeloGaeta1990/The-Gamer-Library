@@ -5,17 +5,17 @@
 ## Site Overview
 
 ---
-Immerse yourself in your passion for gaming with The Gamer Library, an app meticulously crafted to seamlessly unite your gaming journey across generations and platforms. As a fellow gamer, my own gaming odyssey began with the early days of Sonic 2 on the Sega Mega Drive and has continued, spanning up to the latest adventure in Baldur's Gate III.
+Immerse yourself in your passion for gaming with The Gamer Library, an app meticulously crafted to unite your gaming journey across generations and platforms. As a fellow gamer, my gaming odyssey began with the early days of Sonic 2 on the Sega Mega Drive and has continued, spanning up to the latest adventure in Baldur's Gate III.
 
-Understanding the challenges faced by hardcore gamers in keeping track of their extensive gaming history, The Gamer Library aims to provide a comprehensive solution. In today's digital era, games are available in various formats and scattered across different platforms, each maintaining an independent record. This challenge becomes evident when attempting to reconcile games played on Game Pass with those in the Steam library, or vice versa. With the rise of cloud gaming, titles frequently shift between platforms, making it easy to lose track of your gaming history.
+Understanding the challenges of hardcore gamers in keeping track of their extensive gaming history, The Gamer Library aims to provide a comprehensive solution. In today's digital era, games are available in various formats and scattered across different platforms, each maintaining an independent record. This challenge becomes evident, for example, when attempting to reconcile games played on Game Pass with those in the Steam library. With the rise of cloud gaming, titles frequently shift between platforms, making it easy to lose track of your gaming history.
 
-Adding a game to The Gamer Library goes beyond mere organization; it enhances your gaming satisfaction. There's a unique sense of achievement in conquering the final boss and proudly recording your triumph in the library. Moreover, it takes users on a nostalgic journey, linking specific games to significant moments in their lives. I vividly recall playing Digimon World 3 on PS1 when my sister was born, conquering Ornstein and Smough in Dark Souls during my Master's degree, exploring the City of Tears in Hollow Knight with my first job, and immersing myself in Baldur's Gate III builds while crafting this very project.
+Adding a game to The Gamer Library goes beyond mere organization; it enhances your gaming satisfaction. There's a unique sense of achievement in conquering the final boss and proudly recording your triumph in the library. Moreover, it takes users on a nostalgic journey, linking specific games to significant moments. I vividly recall playing Digimon World 3 on PS1 when my sister was born, conquering Ornstein and Smough in Dark Souls during my Master's degree, exploring the City of Tears in Hollow Knight with my first job, and immersing myself in Baldur's Gate III builds while crafting this very project.
 
-Embark on a new chapter of gaming with The Gamer Library — where your gaming history is celebrated. Join The Gamer Library and redefine the way you experience and share your love for gaming!
+Embark on a new chapter of gaming with The Gamer Library to celebrate your games! Join The Gamer Library and redefine how you experience and share your love for gaming!
 
 Live link to [The Gamer Library](https://the-gamer-library-a2d80d9a63a6.herokuapp.com/)
 
-![intro page](/docs/images/intro_page.PNG)
+![intro page](/docs/images/intro_page.png)
 
 ## Table of Contents
 
@@ -23,8 +23,12 @@ Live link to [The Gamer Library](https://the-gamer-library-a2d80d9a63a6.herokuap
   - [Site Overview](#site-overview)
   - [Table of Contents](#table-of-contents)
   - [Planning phase](#planning-phase)
-    - [Strategy plane](#strategy-plane)
-    - [Scope plane](#scope-plane)
+    - [Strategy plane](#strategy)
+      -[Aims](#aims)
+      -[Opportunities](#opportunities)
+    - [Scope](#scope)
+    - [Structure](#structure)
+      -[User stories](#user-stories)
   - [Bugs](#bugs)
   - [Diary](#diary)
 
@@ -32,57 +36,89 @@ Live link to [The Gamer Library](https://the-gamer-library-a2d80d9a63a6.herokuap
 
 ## Planning phase
 
-### Strategy plane
+---
 
-he Gamer Library, a dynamic web app, distinguishes itself by providing a culturally rich and relevant gaming experience. Users can intuitively track and catalog their gaming journey through a web app interface designed for modern gamers. What sets The Gamer Library apart is the fusion of intuitive tracking features and a user-friendly web app interface, offering more than a traditional game library; it provides a comprehensive gaming experience.
+### Strategy
 
-Tech considerations encompass responsive design, integration capabilities with various gaming platforms, and a robust backend infrastructure for scalability. Its technology aligns seamlessly with the preferences of modern gamers accustomed to web apps.
+---
 
-Users engage with the platform not just for organization but to enhance and cherish their gaming lifestyle. Beyond tracking games, it offers a space where users can connect, share, and immerse themselves in the vast world of gaming.
+#### Aims
 
-Through competitor analysis, gaps and opportunities have been identified, with a focus not only on competition but on excellence. Many existing libraries only consider games purchased on their specific services. For example, on Steam, you can only track games from Steam, and the same applies to Game Pass. Furthermore, when a title leaves the Game Pass service, you lose track of it entirely.
+The Gamer Library efficiently catalogues all played games and the diverse platforms users have experienced. In today's gaming landscape, options include PCs, streaming services, consoles, and cloud gaming platforms.
 
-The primary audience is the diverse gaming community — gamers of all ages, backgrounds, and interests. The platform aims to be the nexus connecting gamers worldwide, providing a space that transcends boundaries and resonates with varied gaming interests. It is especially useful for aged gamers who played on old consoles, where games are challenging to retrieve and catalog, as well as for gamers using a variety of platforms seeking a single place to track all their games.
+The core objective of The Gamer Library is to empower gamers by facilitating meticulous tracking of their gaming history and the corresponding platforms. Beyond this, the platform acknowledges that each gaming service, console, or PC carries its own cost. With The Gamer Library, users can effortlessly monitor the number of games played on each platform, enabling them to evaluate the continued value of associated fees.
 
-In a landscape filled with competitors, The Gamer Library distinguishes itself by offering a holistic experience that goes beyond being a repository of games, making it a unique and indispensable part of the gaming landscape.
+Furthermore, The Gamer Library enhances user experience by offering the ability to curate a wish list. Users can add desired games and even analyze the wish-listed titles on each platform. This functionality aids in strategic decision-making, helping users identify the most convenient platform based on the quantity and priority of wish-listed games.
 
-| Opportunity/Problem                              | Importance | Feasibility/Viability |
-|---------------------------------------------------|------------|-----------------------|
-| Keep track of games                               | 5          | 5                     |
-| Import data from Metacritics and Game database API| 3          | 4                     |
-| Share game list with friends                      | 5          | 1                     |
-| Create wishlists                                  | 3          | 4                     |
+#### Opportunities
+
+In the table and plot below, you'll find a comprehensive list of features that emerged during the brainstorming step.
+
+| Opportunity/Problem                                 | Importance | Feasibility/Viability |
+|-----------------------------------------------------|------------|-----------------------|
+| Keep track of games                                 | 5          | 4                     |
+| Keep track of platforms                             | 5          | 4                     |
+| Create wishlists                                    | 4          | 4                     |
+| Allow user to login                                 | 5          | 5                     |
+| Provide instructions on how to use the app          | 4          | 5                     |
+| Allow other developers to get in touch              | 3          | 5                     |
+| Import data from Metacritics and Game database APIs | 2          | 3                     |
+| Share game, platforms and wish list with friends    | 3          | 2                     |
+| Allow friends users to exchange messages            | 1          | 1                     |
+| Allow friends users to create posts, clips, streams | 2          | 1                     |
 
 ![Strategy plan chart](/docs/images/strategy_plan_plot.png)
 
-### Scope plane
+### Scope
 
-This project harnesses the power of Agile development methodologies. Given the solitary nature of development, GitHub emerges as the platform of choice for efficiently managing user stories, epics, and issues.
+---
 
-**Sprint 1 Objectives**:
-In the inaugural sprint, the focus is on empowering users with fundamental features:
+Due to the limited time available, I will focus on implementing features where Importance (I) + Feasibility (F) has the highest value:
 
-- **User-Friendly Game Addition**:
+- UX **must** address:
+  - Allow user to login  
+  - Keep track of games
+  - Keep track of platforms
 
-    Introduce a seamless form submission process, allowing users to effortlessly add their favorite games to the library.
+- UX **should** address:
+  - Create wishlists
+  - Provide instructions on how to use the app
+  - Allow other developers to get in touch
+  - Allow friends users to exchange messages
 
-- **Relational Database Implementation**:
+- UX **could** address:
+  - Import data from Metacritics and Game database APIs
+  - Share game, platforms and wish list with friends
 
-    Establish the foundation of a robust relational database, meticulously designed to handle user and game data. This step is crucial for laying the groundwork that supports future functionalities and enhances data management.
+- UX **wont** address:
+  - Allow friends users to create posts, clips, streams
+  - Allow friends users to exchange messages
 
-By prioritizing these objectives in the initial sprint, the project sets a strong foundation for subsequent phases, ensuring a streamlined development process and a user-centric gaming experience.
+### Structure
 
-- **Structure plane**
+---
+The graphic below illustrates the steps a user should take to use The Gamer Library app. I created it using `Lucidchart`.
 
-How is the coentent organized in menus
-consinstency in colors, labels,
-apply changes only when releavant
-add error feedback, page not found
-provide link to take user back to safety
-Stucturre non strictly linear
-Information architecture Nested list
+![Strategy plan chart](/docs/images/the_gamer_library_flow_chart.png)
 
-- **Skeleton plane**
+#### User Stories
+
+- As a **User** I can
+  - **log into the app** so that I **can see only my list of platforms and games**
+  - **add a platform to the app** so that I **can keep track of the platforms I use**
+  - **add Games to a Platform** so that I **can keep track of the games played on each platform**
+
+- As a **Developer** I can
+  - **access the project on the cloud** so that I **can view and navigate the app on Heroku, just as I do locally**.
+  - **get in touch with recruiters or other developers** so that I **can receive offers to work on new projects or receive feedback**.
+  - **showcase who I am and my history** so that I **can empathize with the user**
+
+- As a **Admin** I can
+  - **create, read, update, and delete platform instances** so that I **can perform CRUD operations on platforms**.
+  - **create, read, update, and delete games instances** so that I **can perform CRUD operations on games**.
+  - **See the list of platforms added outside the admin panel** so that I **can verify the platform list view and home page perform as expected**
+  - **See the list of games added outside the admin panel** so that I **can verify the game list view and html template perform as expected**
+
 
 DO not put too much elements in one page
 add searching fpr leywprds
@@ -688,11 +724,11 @@ keep consitancy
 1. **Error**
    Platform and Gamer slug does not change after edits and the url use the slug
 
-  **Cause**
-   After instance editing slug attribute does not get updated
-  
-  **Solution**
-  Url use platform, game, and wishlist_game id rather than slug in the urls
+    **Cause**
+    After instance editing slug attribute does not get updated
+    
+    **Solution**
+    Url use platform, game, and wishlist_game id rather than slug in the urls
 
 ## Diary
 
@@ -894,3 +930,10 @@ keep consitancy
   - reduce image size in get_in_touch.html
   - improve accessibility on index.html
   - add docstring to all views
+
+- **20/02/2024**
+  - complete docs intro
+
+- **21/02/2024**
+  - complete docs scope, strategy, structure
+  - add user stories up to sprint 2
