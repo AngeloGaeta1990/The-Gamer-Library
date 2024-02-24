@@ -137,6 +137,10 @@ footer {
     flex-grow: 1;
   }
 
+.game-expand {
+    max-height: 500px;
+}
+
 .no-highlight {
     color: inherit; /* Inherit the font color from the parent element */
     text-decoration: none; /* Remove the underline */
@@ -193,8 +197,8 @@ footer {
 /*______________________ get_in_touch.html______________________*/
 
 .git-image-section img {
-    width: 100%;
-    max-height: auto;
+    width: 80%;
+    max-height: 60vh;
     display: block;
     margin: auto;
 }
@@ -232,3 +236,7 @@ footer {
     max-height: 50vh ;
 }
 
+/*______________________ forms.html______________________*/
+.form-text {
+    color: white;
+}

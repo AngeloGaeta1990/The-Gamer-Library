@@ -15,7 +15,7 @@ Embark on a new chapter of gaming with The Gamer Library to celebrate your games
 
 Live link to [The Gamer Library](https://the-gamer-library-a2d80d9a63a6.herokuapp.com/)
 
-![intro page](/docs/images/intro_page.png)
+![intro page](./docs/images/intro_page.png)
 
 ## Table of Contents
 
@@ -24,11 +24,18 @@ Live link to [The Gamer Library](https://the-gamer-library-a2d80d9a63a6.herokuap
   - [Table of Contents](#table-of-contents)
   - [Planning phase](#planning-phase)
     - [Strategy plane](#strategy)
-      -[Aims](#aims)
-      -[Opportunities](#opportunities)
+      - [Aims](#aims)
+      - [Opportunities](#opportunities)
     - [Scope](#scope)
     - [Structure](#structure)
-      -[User stories](#user-stories)
+      - [User stories](#user-stories)
+    - [Skeleton](#skeleton)
+      - [Wireframes](#wireframes)
+      - [Database schema](#database-schema)
+    - [Surface](#surface)
+      - [Colors](#colors)
+      - [Typography](#typography)
+  - [Features](#features)
   - [Bugs](#bugs)
   - [Diary](#diary)
 
@@ -67,7 +74,7 @@ In the table and plot below, you'll find a comprehensive list of features that e
 | Allow friends users to exchange messages            | 1          | 1                     |
 | Allow friends users to create posts, clips, streams | 2          | 1                     |
 
-![Strategy plan chart](/docs/images/strategy_plan_plot.png)
+![Strategy plan chart](./docs/images/strategy_plan_plot.png)
 
 ### Scope
 
@@ -99,44 +106,145 @@ Due to the limited time available, I will focus on implementing features where I
 ---
 The graphic below illustrates the steps a user should take to use The Gamer Library app. I created it using `Lucidchart`.
 
-![Strategy plan chart](/docs/images/the_gamer_library_flow_chart.png)
+![Strategy plan chart](./docs/images/the_gamer_library_flow_chart.png)
 
 #### User Stories
 
-- As a **User** I can
-  - **log into the app** so that I **can see only my list of platforms and games**
-  - **add a platform to the app** so that I **can keep track of the platforms I use**
-  - **add Games to a Platform** so that I **can keep track of the games played on each platform**
+I developed The Gamer Library project by following Agile principles. I worked in sprints of 2 weeks each, and at the end of each sprint, I introduced new user stories or rescheduled previous user stories following the MoSCoW rules.
 
-- As a **Developer** I can
-  - **access the project on the cloud** so that I **can view and navigate the app on Heroku, just as I do locally**.
-  - **get in touch with recruiters or other developers** so that I **can receive offers to work on new projects or receive feedback**.
-  - **showcase who I am and my history** so that I **can empathize with the user**
+##### Sprint 1
 
-- As a **Admin** I can
-  - **create, read, update, and delete platform instances** so that I **can perform CRUD operations on platforms**.
-  - **create, read, update, and delete games instances** so that I **can perform CRUD operations on games**.
-  - **See the list of platforms added outside the admin panel** so that I **can verify the platform list view and home page perform as expected**
-  - **See the list of games added outside the admin panel** so that I **can verify the game list view and html template perform as expected**
+##### 18/12/2023 - 25/12/2023
 
+- **Must have**
+  - As a **Developer** I can**access the project on the cloud** so that I **can view and navigate the app on Heroku, just as I do locally**.
+  - As a **Admin** I can **create, read, update, and delete platform instances** so that I **can perform CRUD operations on platforms**.
+  - As a **Admin** I can **create, read, update, and delete games instances** so that I **can perform CRUD operations on games**.
 
-DO not put too much elements in one page
-add searching fpr leywprds
-divide content in multiple pages
-nanvigation trough icons
-create wireframe
+- **Should have**
+  - As a **Admin** I can **See the list of platforms added outside the admin panel** so that I **can verify the platform list view and home page perform as expected**.
+  - As a **Admin** I can **See the list of games added outside the admin panel** so that I **can verify the game list view and html template perform as expected**.
 
-![Wireframe](/docs/images/Wireframe.png)
+##### Sprint 2
 
-database schema
+##### 25/12/2023 - 08/01/2024
 
-![Database_schema](/docs/images/gamer_library_database_schema.png)
+- **Must have**
+  - As a **User** I can **add a platform to the app** so that I **can keep track of the platforms I use**.
+  - As a **User** I can**add Games to a Platform** so that I **can keep track of the games played on each platform**.
 
-- **Surface plane**
-font contrast
-contrast font and background
-contrast between different section in colors
-keep consitancy
+- **Should have**
+  - As a **User** I can **log into the app** so that I **can see only my list of platforms and games**.
+  - As a **Developer** I can **showcase who I am and my history** so that I **can empathize with the user**.
+  
+- **Could have**
+  - As a **Developer** I can **get in touch with recruiters or other developers** so that I **can receive offers to work on new projects or receive feedback**.
+
+##### Sprint 3
+
+##### 08/01/2024 - 22/01/2024
+
+- **Must have**
+  - As a **User** I can **edit a platform instance** so that **I can update the platform or correct mistakes added during creation**.
+  - As a **User** I can **delete a platform instance** so that **I can remove platforms from the app**.
+
+- **Could have**
+  - As a **Developer** I can **test that a platform is created and its details are visible** so that **I can perform platform CRUD testing without manual intervention**.
+  - As a **Developer** I can **verify that the 'Get in Touch' content is displayed without manual testing** so that I can **save time during app testing**.
+
+##### Sprint 4
+
+##### 22/01/2024 - 05/02/2024
+
+- **Must have**
+  - As a **User** I can **see game details** so that **I can get information and details on the games I have played**.
+  - As a **User** I can **add images to my games** so that **I can customize the game instances I add**.
+
+- **Should have**
+  - As a **User** I can **edit my game details** so that **I can customize my games instances**.
+  - As a **User** I can **delete a game instance** so that **I can remove unwanted games from my game list**.
+
+##### Sprint 5
+
+##### 05/02/2024 - 19/02/2024
+
+- **Must have**
+  - As an **Admin** I can **add wishlist instances** so that **I can manage and view wishlist items from the admin panel**.
+  - As a **User** I can **add wishlist items** so that **I can plan and keep track of the games I want to buy**.
+
+- **Should have**
+  - As a **User** I can **edit a wishlist item** so that **I can update details such as price and priority**.
+  - As a **User** I can **delete wishlist items** so that **I can remove a game I no longer want to buy**.
+
+- **Could have**
+  - As a **User** I can **access instructions on how to use the app** so that **I do not feel lost when navigating the home page**.
+  - As a **User**, I can **understand what the purpose of the app is** so that **I can decide if it fits my needs**.
+  - As a **Developer** I can **test creating, reading, updating, and deleting Platform instances** so that **I can test Platform CRUD without manual input**.
+  - As a **Developer** I can **test creating, reading, updating, and deleting Game instances** so that **I can test Game CRUD without manual input**.
+  - As a **Developer** I can **test creating, reading, updating and deleting WishListGames instances** so that **I can test WishListGame CRUD without manual input**.
+  - As a Developer I can test forms' validity without manual input so that I can speed up and automate the app testing.
+
+##### Sprint 6
+
+##### 19/02/2024 - 29/02/2024
+
+- **Must have**
+  - As a **User** I can **access all the details on the app's purpose, planning, and functions** so that **I can make an informed decision on whether it meets my needs**.
+
+- **Should have**
+  - As a **Developer** I can **analyze the test coverage percentage for views and forms** so that **I can prioritize manual testing efforts on uncovered areas**.
+
+  - As a **User** I can **seamlessly access the game store directly from the wishlist section of the app** so that **I can conveniently purchase desired games without switching between platforms**.
+
+##### Backlog
+
+- **Wont have**
+  - As a **User** I can **add friends to the app** so that **I can share games, platforms and wishlists with them**.
+  - As a **User** I can **get Metacritic score, released date, developer and genres fields automatically filled** so that **I can speed up the adding game step**.
+  - As a **User** I can **add posts, streams, and game clips** so that **I can share them with friends**.
+
+### Skeleton
+
+---
+
+#### Wireframes
+
+Below are the wireframes I used to create the .html templates for the app.
+![Wireframe home](./docs/images/wireframe_home.png)
+![Wireframe game detail](./docs/images/wireframe_game_detail.png)
+![Wireframe platform detail](./docs/images/wifreframe_platform_detail.png)
+![Wireframe wish list game detail](./docs/images/wifreframe_platform_detail.png)
+
+#### Database schema
+
+Below is the schema I used to implement the main model of The Gamer Library
+![Database_schema](./docs/images/gamer_library_database_schema.png)
+
+### Surface
+
+---
+
+#### Colors
+
+Gamers are the primary target audience for The Gamer Library; therefore, I have chosen colours that immerse users in the gaming world. Indeed, an RGB border surrounds the Navbar that continuously changes colour.
+
+![Navbar blue](./docs/images/navabr_green.png)
+![Navbar_green](./docs/images/navbar_blue.png)
+
+Each gaming console/brand has a distinct colour: red for Nintendo Switch, green for Xbox, and blue for PlayStation 5. Therefore, I allowed the users to personalize the background colour for each platform. This colour choice influences the platform box colour on the home page and serves as the background colour on the platform detail page. If a user selects a dark colour as the background, the font in the platform box and platform detail page will not be visible. Therefore, users can change the font colour for the platform box on the home page and the platform detail page
+
+![Platforms box colors](./docs/images/platforms_box_colors.PNG)
+
+![Platforms background colors](./docs/images/platform_background_color.png)
+For more information, refer to the [Features](#features) section.
+
+#### Typography
+
+As font I chose a font which reminds of gaming `Press Start 2 Play`to create the logo and one which combined accordingly `Roboto` for the main content of the app
+
+---
+
+## Features
 
 ---
 
@@ -726,7 +834,7 @@ keep consitancy
 
     **Cause**
     After instance editing slug attribute does not get updated
-    
+
     **Solution**
     Url use platform, game, and wishlist_game id rather than slug in the urls
 
@@ -931,9 +1039,14 @@ keep consitancy
   - improve accessibility on index.html
   - add docstring to all views
 
+- ### Sprint 6
+
 - **20/02/2024**
   - complete docs intro
 
 - **21/02/2024**
   - complete docs scope, strategy, structure
   - add user stories up to sprint 2
+
+- **23/02/2024**
+  - completed planning phase in docs
