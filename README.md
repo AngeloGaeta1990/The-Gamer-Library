@@ -15,7 +15,7 @@ Embark on a new chapter of gaming with The Gamer Library to celebrate your games
 
 Live link to [The Gamer Library](https://the-gamer-library-a2d80d9a63a6.herokuapp.com/)
 
-![intro page](./docs/images/intro_page.png)
+![intro page](./docs/images/the_gamer_library_viewport.png)
 
 ## Table of Contents
 
@@ -36,6 +36,23 @@ Live link to [The Gamer Library](https://the-gamer-library-a2d80d9a63a6.herokuap
       - [Colors](#colors)
       - [Typography](#typography)
   - [Features](#features)
+    - [Intro](#intro)
+    - [Get in touch](#get-in-touch)
+    - [Info](#info)
+    - [Login](#login)
+    - [Register](#registration)
+    - [Home](#home)
+    - [Add Platform](#add-platform)
+    - [Platform Detail](#platform-detail)
+    - [Edit Platform](#edit-platform)
+    - [Add Game](#add-game)
+    - [Game Detail](#game-detail)
+    - [Edit Game](#edit-game)
+    - [Add Wishlist Game](#add-wishlist-game)
+    - [Wishlist Game detail](#wishlist-game-detail)
+    - [Edit WishList Game](#edit-wishlist-game)
+    - [Delete modals](#delete-modals)
+
   - [Bugs](#bugs)
   - [Diary](#diary)
 
@@ -233,10 +250,10 @@ Gamers are the primary target audience for The Gamer Library; therefore, I have 
 
 Each gaming console/brand has a distinct colour: red for Nintendo Switch, green for Xbox, and blue for PlayStation 5. Therefore, I allowed the users to personalize the background colour for each platform. This colour choice influences the platform box colour on the home page and serves as the background colour on the platform detail page. If a user selects a dark colour as the background, the font in the platform box and platform detail page will not be visible. Therefore, users can change the font colour for the platform box on the home page and the platform detail page
 
-![Platforms box colors](./docs/images/platforms_box_colors.PNG)
+![Platforms box colors](./docs/images/platforms_box_colors.png)
 
 ![Platforms background colors](./docs/images/platform_background_color.png)
-For more information, refer to the [Features](#features) section.
+For more information, refer to the [Edit platform](#edit-platform) section.
 
 #### Typography
 
@@ -247,6 +264,175 @@ As font I chose a font which reminds of gaming `Press Start 2 Play`to create the
 ## Features
 
 ---
+
+### Navbar
+
+#### Logo
+
+The logo bears the name of the web app surrounded by RGB lights. Both the font, `Press Start 2 Play`, and the RGB lights transport users to the gaming world, establishing a strong connection with gamers.
+
+![logo](./docs/images/gamerlibrary_logo.png)
+
+On small screens, the navbar displays as a hamburger menu.
+![hamburger menu](./docs/images/closed_hamburger_menu.png)
+
+When clicked, the hamburger menu shows all the available options.
+![hamburger menu open](./docs/images/open_hamburger_menu.png)
+
+#### Navbar links
+
+The navbar allows not logged-in users to access the following pages:
+
+- [Intro](#intro)
+- [Get in touch](#get-in-touch)
+- [Info](#info)
+- [Login](#login)
+- [Register](#registration)
+
+Logged users instead get access to additional pages:
+
+- [Home](#home)
+- [Add Platform](#add-platform)
+- [Platform Detail](#platform-detail)
+- [Edit Platform](#edit-platform)
+- [Add Game](#add-game)
+- [Game Detail](#game-detail)
+- [Edit Game](#edit-game)
+- [Add Wishlist Game](#add-wishlist-game)
+- [Wishlist Game detail](#wishlist-game-detail)
+- [Edit WishList Game](#edit-wishlist-game)
+- [Delete modals](#delete-modals)
+
+### Intro
+
+Users who are not logged in will be redirected to the intro page initially. The page showcases three hero images illustrating the main purposes of the app: keeping track of platforms, monitoring game activity, and planning the game wish list. At the bottom, there are two buttons allowing the user to either log in or sign up.
+![Intro page](./docs/images/intro_page.png)
+
+### Get in touch
+
+The Get in Touch page contains a brief user description. The description is not hardcoded in the HTML page. Instead, the admin can update and modify the message through the admin panel. Positioned at the centre of the page is a hero image serving as a gateway to the gaming world. At the bottom, a collaboration button enables other developers to contact me or provide feedback on the app.
+
+![Get in touch page](./docs/images/get_in_touch.png)
+
+### Info
+
+The Info page provides instructions on how to use the app. After logging in, the user should initially add a platform. Then, the user can edit or delete it. Additionally, he can add games to their collection or wishlist only if he already added a platform.
+
+![Info page](./docs/images/info.png)
+
+### Login
+
+The login page enables registered users to log in. Once logged in, users can access the main features of the app, including adding, removing, and editing platforms, games, and wish list items. If a user is not already logged in, the login page provides a link to the registration page, which users can also access directly from the navbar.
+
+![Login page](./docs/images/login_page.png)
+
+### Registration
+
+Users can log in only if they have registered first. To register, users need to provide a valid username and password, with the email address being optional. The page also displays the password constraints.
+![Sign up page](./docs/images/register.png)
+
+### Home
+
+Only logged-in users can access the home page. The home page displays a list of added platforms, showcasing each platform's name and the number of associated games. Clicking on a platform's name redirects the user to the platform page. Below the platform details, two buttons are available. The blue button expands the platform details, revealing the list of games added, including the game name, image, and a user-assigned score ranging from 0 to 100. The red button serves as the delete button, allowing the user to remove the platform. Upon clicking, a modal will appear, prompting the user to confirm the deletion, as this action cannot be undone.
+
+![Home page](./docs/images/home.png)
+
+### Add platform
+
+Logged-in users can select the Add Platform link on the navbar to create a new platform. On this page, users can provide a platform name and category, with the image being optional. Both the name and category are mandatory fields. Most of the additional platform details can be edited on the platform detail page.
+Verification is performed on the uploaded image. Only the following formats are supported: .png, .webp, .jpg, .jpeg, and .gif.
+
+![Add platform](./docs/images/add_platform_form.png)
+
+### Platform detail
+
+Once the user adds a platform, it becomes visible on the home page. The user can click on the platform name to be redirected to the platform detail page. On the platform detail page, the platform image is displayed, with a placeholder shown if none has been chosen. Below, there is the platform name, along with two buttons one to edit the platform details (redirecting to the edit platform form) and a delete button that triggers a modal to confirm platform deletion.
+
+Following the platform details, additional information is displayed based on the chosen category. Each category presents different details. Subsequently, the page lists the games and those added to the wish list. In the game list, the game image is shown, with a placeholder displayed if none is available. Below the image, the game name and user-assigned score (ranging from 0 to 100) are presented. Clicking on the game name redirects the user to the game detail page.
+
+In the wish list games list, each entry displays the chosen game image or a placeholder if none has been selected. Additionally, a priority is shown, represented by an integer value where a lower value indicates a higher priority.
+
+![Platform detail part 1](./docs/images/platform_detail_page_part_1.png)
+
+![Platform detail part 1](./docs/images/platform_detail_part_2.png)
+
+### Edit Platform
+
+Logged-in users can click on the blue button to edit platform details, which redirects to a form for editing based on the platform category. Among other options, users can choose a background color and font color. To set both colors, users must enter a HEX code for the selected color.
+
+The background color will determine the color of the platform box on the home page and the background on the platform detail page. By default, the background color is black, and the font color is white. If the user selects a light color as the background, the font might not be visible. Therefore, the form provides the option to change the font color as well. This alteration affects the font color in the platform box on the home page and the platform details on the platform details page.
+
+Furthermore, users have the option to change the category of the platform. However, the attributes of the new category become visible only after saving the new category and clicking the edit button again.
+
+![Edit platform form](./docs/images/edit_platform_form.png)
+
+### Add Game
+
+Logged-in users, after adding a platform, can click on the Add Game link in the navbar to associate a game with a platform. They will be redirected to the Add Game form, where only a few attributes are available: Name, Platform, Image, and User Score. Name and Platform are mandatory, while Image and User Score are optional. If no image is added, a placeholder will be displayed.
+
+![Add game form](./docs/images/add_game_form.png)
+
+### Game Detail
+
+After filling out the "Add Game" form, the game becomes visible on the home page after clicking the expand button, and in the platform details page in the game list section. Both the game name on the home page and the game name in the platform detail, by clicking on them, redirect the user to the game detail page.
+
+The game detail page displays the game image or a placeholder if none is chosen, along with the "Edit Game" and "Delete Game" buttons. Clicking the "Edit Game" button redirects to the edit game form page, while the "Delete Game" button prompts a modal for confirming game deletion. Upon confirmation, the game is deleted.
+
+Below, there is a list of game details, including the game review, where a user can express their opinion on the played game.
+
+![Game Detail](./docs/images/game_detail_page.png)
+
+### Edit Game
+
+On the Game Detail page, the user can click on the Edit Game button to be redirected to the Edit Game page. Here, the user has access to additional attributes such as Developer, Genres, Completion Date, and Hours Spent. Furthermore, there is a text area for the user to write a review for the game.
+
+![Edit game form part 1](./docs/images/edit_game_form_part1.png)
+
+![Edit game form part 2](./docs/images/edit_game_form_part2.png)
+
+### Add Wishlist Game
+
+After adding a platform, the user can also add a Wish List game by clicking on the Add Wishlist button in the navbar. Similar to the Add Game and Add Platform pages, only a few attributes are available on the Add Wishlist Game form. The majority of the attributes are accessible in the Edit Wishlist Game form.
+
+In the Add Wishlist Game form, the following attributes are available: Name, Platform, Image, Priority, Currency Cost, and Store. Only the Platform and Name fields are mandatory.
+
+Wish List games will be visible only on the platform detail page in the Wish List Games section. Details of a Wish List game can be viewed by clicking on the Wish List game name in the platform detail page.
+
+![Add Wishlist game form](./docs/images/add_wishlist_game_form.png)
+
+### Wishlist Game detail
+
+The Wish list game detail will display the image of the wish-listed game; if none is chosen, a placeholder is displayed. Below, there are the game name, and the Edi" and Delete buttons. The Edit button redirects to the Edit Wish List Game page, while the Delete button prompts a modal to confirm the deletion of the game from the wish list. At the bottom, all the wish-listed game attributes are displayed.
+
+![Wishlist game detail page](./docs/images/wish_list_game_detail_page.png)
+
+### Edit Wishlist Game
+
+On the Wish List Game detail page, users can click on the Edit button to modify various attributes associated with a game added to the wishlist. It's important to note that when updating the date attribute, it must follow the Django format 'YYYY-MM-DD'.
+
+The Priority field is specific to wish-listed games, where users input an integer. The lower the value, the higher the priority for the game. Games in the wishlist with lower priority values will be displayed first.
+
+![Wishlist game detail page part1](./docs/images/edit_wishlist_game_part1.png)
+
+![Wishlist game detail page part2](./docs/images/edit_wishlist_game_part2.png)
+
+### Delete Modals
+
+Every delete button once clicked will show a similar modal the one on the picture below and the platform, game or wishlist game will be deleted only if the user selects confirm.
+
+![Delete modals](./docs/images/delete_modal.png)
+
+## Future development
+
+Future development includes user stories that have been left in backlog following agile principles:
+
+- Utilize API integration to fetch data from the video games database IGDB and Metacritics. This approach enables users to pre-fill most of the data when adding a Game or Wishlisted Game by accessing the APIs.
+
+- Implement the capability for users to add friends. Friends will be able to view each other's platforms, games, and wish lists. This feature proves useful when a user wants to purchase the same platform as a friend. They can view their friend's PC build, including GPU, CPU, and RAM, and make informed decisions. Additionally, friends can gift games from the wish list as birthday presents!
+
+- Introduce a messaging system, enabling users to exchange messages. This feature can facilitate setting up multiplayer sessions or simply chatting about their favorite games.
+
+- Enable users to share game clips, game content, and potentially even stream live content. This way, the app could foster a community of gamers, allowing them to connect and engage with each other.
 
 ## Bugs
 
@@ -841,7 +1027,7 @@ As font I chose a font which reminds of gaming `Press Start 2 Play`to create the
 ## Diary
 
 - ### Sprint 1
-  
+
   - **11/12/2023**
     Add user stories template
     add labels
@@ -1050,3 +1236,6 @@ As font I chose a font which reminds of gaming `Press Start 2 Play`to create the
 
 - **23/02/2024**
   - completed planning phase in docs
+
+- **24/02/2024**
+  - completed features in docs
