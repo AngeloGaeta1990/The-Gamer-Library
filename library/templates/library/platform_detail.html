@@ -6,18 +6,17 @@
 {% block content %}
 <div class="container pd-container" data-platformcolor="{{ platform.background_color }}" data-platformfontcolor="{{ platform.font_color }}">
     <div class="text-center">
-        {% if "placeholder" in platform.image.url %}
+        {% if "placeholder" in platform.image_url %}
         <img src="{% static 'images/library/platform_images/default_platform.jpg' %}" alt="{{ platform.name }} Image" class="pd-platform-image mr-3"> 
       {% else %}
-        <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="pd-platform-image mr-3">
+        <img src="{{ platform.image_url }}" alt="{{ platform.name }} Image" class="pd-platform-image mr-3">
       {% endif %}
         <h2 class="mb-4">{{ platform.name }}</h2>
-        <a href="{% url 'edit_platform' request.user.id platform.id %}" class="btn btn-primary buttons-spacing"><i class="fa-solid fa-pen-to-square"></i></a>
-        <button class="btn btn-delete btn-danger buttons-spacing" data-platformid="{{ platform.id }}" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa-solid fa-trash"></i></button>
+        <a href="{% url 'edit_platform' request.user.id platform.id %}" class="btn btn-primary buttons-spacing" aria-label="Edit platform button"><i class="fa-solid fa-pen-to-square"></i></a>
+        <button class="btn btn-delete btn-danger buttons-spacing" data-platformid="{{ platform.id }}" data-bs-toggle="modal" data-bs-target="#deleteModal" aria-label="Delete platform button"><i class="fa-solid fa-trash"></i></button>
     </div>
 
     <h3>Platform Attributes</h3>
-    <h2>{{ coder }}</h2>
     <p>Category: {{ platform.category }}</p>
 
     {% if platform.category == 'pc' %}
@@ -27,31 +26,25 @@
         <p>CPU: {{ platform.cpu }}</p>
         <p>Disk Type: {{ platform.disk_type }}</p>
         <p>Disk Size (TB): {{ platform.disk_size }}</p>
-        <!-- Add other PCPlatform attributes as needed -->
     {% elif platform.category == 'console' %}
         <p>Model: {{ platform.model }}</p>
-        <!-- Add other ConsolePlatform attributes as needed -->
     {% elif platform.category == 'service' %}
         <p>Subscription Fee:  {{ platform.subscription_fee }} {{platform.currency}}</p>
         <p>Plan: {{ platform.plan }}</p>
-        <!-- Add other ServicePlatform attributes as needed -->
     {% elif platform.category == 'mobile' %}
         <p>Brand: {{ platform.brand }}</p>
         <p>Operative Systems: {{ platform.operative_mobile_systems }}</p>
-        <!-- Add other MobilePlatform attributes as needed -->
     {% endif %}
-    <!-- Add more platform attributes as needed -->
-
 
     <h3 class="mt-4 mb-3 pd-games-header">Games</h3>
     <div class="row justify-content-center pd-games-container">
         {% for game in games %}
             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
                 <div class="card">
-                    {% if "placeholder" in game.image.url %}
+                    {% if "placeholder" in game.image_url %}
                         <img src="{% static 'images/library/game_images/default_game.png' %}" alt="{{ game.name }} Image" class="card-img-top img-fluid pd-game-image">
                     {% else %}
-                        <img src="{{ game.image.url }}" alt="{{ game.name }} Image" class="card-img-top img-fluid pd-game-image">
+                        <img src="{{ game.image_url }}" alt="{{ game.name }} Image" class="card-img-top img-fluid pd-game-image">
                     {% endif %}
                     <div class="card-body pd-game-name">
                         <a href="{% url 'game_detail' request.user.id platform.id game.id %}" class="no-highlight pd-game-link">{{ game.name }}</a> 
@@ -67,10 +60,10 @@
         {% for wishlist_game in wishlist_games %}
             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
                 <div class="card">
-                    {% if "placeholder" in wishlist_game.image.url %}
+                    {% if "placeholder" in wishlist_game.image_url %}
                         <img src="{% static 'images/library/game_images/default_game.png' %}" alt="{{ wishlist_game.name }} Image" class="card-img-top img-fluid pd-game-image">
                     {% else %}
-                        <img src="{{ wishlist_game.image.url }}" alt="{{ wishlist_game.game_name }} Image" class="card-img-top img-fluid pd-game-image">
+                        <img src="{{ wishlist_game.image_url }}" alt="{{ wishlist_game.game_name }} Image" class="card-img-top img-fluid pd-game-image">
                     {% endif %}
                     <div class="card-body pd-game-name">
                         <a href="{% url 'wishlist_game_detail' request.user.id platform.id wishlist_game.id %}" class="no-highlight pd-game-link">{{ wishlist_game.name }}</a> 
@@ -81,7 +74,7 @@
         {% endfor %}
     </div>
 
-    <!-- Delete confirmation modal -->
+   
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

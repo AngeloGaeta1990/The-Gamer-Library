@@ -10,10 +10,10 @@
         <div class="col-12 col-md-6 col-lg-4">
           <div class="platform-rectangle mt-3 mb-3 p-3 white-text platform-button" data-boxcolor="{{platform.background_color}}" data-fontcolor="{{platform.font_color}}">
             <div class="d-flex flex-column align-items-start platform-font">
-              {% if "placeholder" in platform.image.url %}
+              {% if "placeholder" in platform.image_url %}
                 <img src="{% static 'images/library/platform_images/default_platform.jpg' %}" alt="{{ platform.name }} Image" class="platform-image mb-3">
               {% else %}
-                <img src="{{ platform.image.url }}" alt="{{ platform.name }} Image" class="platform-image mb-3">
+                <img src="{{ platform.image_url }}" alt="{{ platform.name }} Image" class="platform-image mb-3">
               {% endif %}
               <div class="platform-info">
                 <div class="mr-3 platform-name-spacing">
@@ -32,10 +32,10 @@
                   <div class="card card-body overflow-auto game-expand">
                     {% for game in platform.games.all %}
                       <div class="game-details black-text">
-                        {% if  "placeholder" in game.image.url %}
+                        {% if  "placeholder" in game.image_url %}
                           <img src="{% static 'images/library/game_images/default_game.png' %}" alt="Image for game {{ game.name }} Image" class="game-image mr-3" >
                         {% else %}
-                          <img src="{{game.image.url }}" alt="Image for game {{ game.name }} Image" class="game-image mr-2"> 
+                          <img src="{{game.image_url }}" alt="Image for game {{ game.name }} Image" class="game-image mr-2"> 
                         {% endif %}
                         <div class="game-info">
                           <a href="{% url 'game_detail' request.user.id platform.id game.id %}" class="platform-link no-highlight">{{ game.name }}</a>
@@ -51,7 +51,7 @@
             </div>
           </div>
         </div>
-        <!-- Delete Platform Modal -->
+
       <div class="modal fade" id="deletePlatformModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="deletePlatformModalLabel{{ forloop.counter }}" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

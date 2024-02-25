@@ -1,45 +1,47 @@
 $(document).ready(function () {
-    // Check if we are on the platform_detail.html page
+    // Apply platform color to body
     if ($('.pd-container').length > 0) {
-        // Get platform color attributes
         let platformColor = $('.pd-container').data('platformcolor');
         let platformFontColor = $('.pd-container').data('platformfontcolor');
-
-        // Apply platform color to body
-        $('body').css('background-color', platformColor);
-        $('body').css('color', platformFontColor);
-        // Apply styles to other elements as needed
-        // ...
+        $('body').css({
+            'background-color': platformColor,
+            'color': platformFontColor
+        });
     }
 
-    // Expand buttons on the library/index.html page
-    
-    // Apply styles to platform buttons on the library/index.html page
     $('.platform-button').each(function () {
         let boxColor = $(this).data('boxcolor');
         let fontColor = $(this).data('fontcolor');
-        $(this).css('background-color', boxColor);
-        $(this).css('color', fontColor);
+        $(this).css({
+            'background-color': boxColor,
+            'color': fontColor
+        });
     });
 
     // Delete buttons on the library/index.html page
-    const deleteModal = new bootstrap.Modal($("#deleteModal")[0]);
-    const deleteButtons = $(".btn-delete");
-    deleteButtons.on("click", function (e) {
-        deleteModal.show();
-    });
+    if ($("#deleteModal").length > 0) {
+        const deleteModal = new bootstrap.Modal($("#deleteModal")[0]);
+        const deleteButtons = $(".btn-delete");
+        deleteButtons.on("click", function () {
+            deleteModal.show();
+        });
+    }
 
     // Delete button for game delete
-    const deleteGameModal = new bootstrap.Modal($("#deleteGameModal")[0]);
-    const deleteGameButton = $("#deleteGameButton");
-    deleteGameButton.on("click", function (e) {
-        deleteGameModal.show();
-    });
+    if ($("#deleteGameModal").length > 0) {
+        const deleteGameModal = new bootstrap.Modal($("#deleteGameModal")[0]);
+        const deleteGameButton = $("#deleteGameButton");
+        deleteGameButton.on("click", function () {
+            deleteGameModal.show();
+        });
+    }
 
     // Delete button for wishlist game delete
-    const deleteWishListGameModal = new bootstrap.Modal($("#deleteWishListGameModal")[0]);
-    const deleteWishListGameButton = $("#deleteWishListGameButton");
-    deleteWishListGameButton.on("click", function (e) {
-        deleteWishListGameModal.show();
-    });
+    if ($("#deleteWishListGameModal").length > 0) {
+        const deleteWishListGameModal = new bootstrap.Modal($("#deleteWishListGameModal")[0]);
+        const deleteWishListGameButton = $("#deleteWishListGameButton");
+        deleteWishListGameButton.on("click", function () {
+            deleteWishListGameModal.show();
+        });
+    }
 });

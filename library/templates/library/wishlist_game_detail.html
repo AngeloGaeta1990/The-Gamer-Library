@@ -7,14 +7,14 @@
 <div class="container pd-container white-text">
     <div class="row">
         <div class="col-lg-12 text-center mb-4">
-            {% if "placeholder" in wishlist_game.image.url %}
+            {% if "placeholder" in wishlist_game.image_url %}
                 <img src="{% static 'images/library/game_images/default_game.png' %}" alt="{{ wishlist_game.name }} Image" class="gd-game-image img-fluid"> 
             {% else %}
-                <img src="{{ wishlist_game.image.url }}" alt="{{ wishlist_game.name }} Image" class="gd-game-image img-fluid">
+                <img src="{{ wishlist_game.image_url }}" alt="{{ wishlist_game.name }} Image" class="gd-game-image img-fluid">
             {% endif %}
             <h2 class="mt-3">{{ wishlist_game.name }}</h2>
-            <a href="{% url 'edit_wishlist_game' request.user.id platform.id wishlist_game.id %}" class="btn btn-primary buttons-spacing"><i class="fa-solid fa-pen-to-square"></i></a>
-            <button id="deleteWishListGameButton" class="btn btn-delete btn-danger buttons-spacing" data-bs-toggle="modal" data-bs-target="#deleteWishListGameModal"><i class="fa-solid fa-trash"></i></button>
+            <a href="{% url 'edit_wishlist_game' request.user.id platform.id wishlist_game.id %}" class="btn btn-primary buttons-spacing" aria-label="Edit wishlist game button"><i class="fa-solid fa-pen-to-square"></i></a>
+            <button id="deleteWishListGameButton" class="btn btn-delete btn-danger buttons-spacing" data-bs-toggle="modal" data-bs-target="#deleteWishListGameModal" aria-label= "Delete wishlist game button"><i class="fa-solid fa-trash"></i></button>
             </div>
     </div>
 
@@ -32,7 +32,7 @@
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <p class="card-text"> {{ wishlist_game.link }}</p>
+                    <p class="card-text">Link: <a href='{{ wishlist_game.link }}' target='_blank' aria-label="link to the game in store">{{ wishlist_game.link }}</a></p>
                     <p class="card-text">Release Date: {{ wishlist_game.release_date }}</p>
                     <p class="card-text"> Store : {{ wishlist_game.store }}</p>
                     <p class="card-text"> Cost : {{ wishlist_game.currency }} {{ wishlist_game.cost }}</p>
@@ -41,7 +41,6 @@
         </div>
     </div>
 
-    <!-- Delete game confirmation modal -->
     <div class="modal fade" id="deleteWishListGameModal" tabindex="-1" aria-labelledby="deleteWishListGameModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

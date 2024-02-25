@@ -15,53 +15,56 @@ body {
     font-family:'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Set minimum height to 100% of the viewport height */
-    margin: 0; /* Remove default margin */
+    min-height: 100vh; 
+    margin: 0; 
     background-color: #141422;
 }
 
-
+.h1, h1 {
+    font-size: xx-large;
+}
 
 /*______________________ Base.html______________________*/
 
-
-
 nav {
-    animation: borderAnimation 30s infinite; /* Choose your desired color, #28a745 is Bootstrap's success color */
-    border-radius: 5px; /* Optional: Add border radius for rounded corners */
-    margin-bottom: 20px; /* Optional: Adjust the margin as needed */
+    animation: borderAnimation 30s infinite; 
+    border-radius: 5px; 
+    margin-bottom: 20px;
     border-width: 7px;
     border-style: solid;
     background-color: rgb(24, 0, 72);
     
 }
 
-
 @keyframes borderAnimation {
-    0% { border-color: #ff0000; } /* Red */
-    25% { border-color: #00ff00; } /* Green */
-    50% { border-color: #0000ff; } /* Blue */
-    75% { border-color: #ffff00; } /* Yellow */
-    100% { border-color: #ff00ff; } /* Magenta */
+    0% { border-color: #ff0000; } 
+    25% { border-color: #00ff00; } 
+    50% { border-color: #0000ff; } 
+    75% { border-color: #ffff00; } 
+    100% { border-color: #ff00ff; } 
 }
 
 .white-btn {
     background-color: white;
-    color: black; /* You can adjust the text color as needed */
+    color: black; 
   }
 
 main {
-    flex: 1; /* Allow main content to take remaining height */
+    flex: 1; 
+}
+
+.logo a {
+   text-decoration: none;
+   color: #fafafa;
 }
 
 footer {
     margin-top: 40px;
-    flex-shrink: 0; /* Do not shrink the footer */
-    background-color: #141422; /* Set background color to black */
-    color: #fff; /* Set text color to white */
-    padding: 20px; /* Add padding for better appearance */
+    flex-shrink: 0; 
+    background-color: #141422; 
+    color: #fff; 
+    padding: 20px; 
     font-size: larger;
-
 }
 
 .white-text{
@@ -73,7 +76,7 @@ footer {
 }
 
 .fa-github {
-    margin-right: 30px; /* Adjust the value as needed */
+    margin-right: 30px;
 }
 
 /*______________________ Index.html______________________*/
@@ -86,7 +89,7 @@ footer {
  }
 
 .btn-border {
-    border: 1px solid #000; /* Specify the color and style of the border */
+    border: 1px solid #000; 
 }
 
 .start-to-play-font {
@@ -142,20 +145,20 @@ footer {
 }
 
 .no-highlight {
-    color: inherit; /* Inherit the font color from the parent element */
-    text-decoration: none; /* Remove the underline */
+    color: inherit; 
+    text-decoration: none; 
 }
 
 .no-highlight:hover,
 .no-highlight:focus {
-    text-decoration: none; /* Remove the underline on hover/focus */
-    background-color: transparent !important; /* Remove any background color */
-    color: inherit !important; /* Inherit the font color on hover/focus */
+    text-decoration: none;
+    background-color: transparent !important; 
+    color: inherit !important;
 }
 
 .no-highlight:hover,
 .no-highlight:active {
-    font-weight: bold; /* Set the font weight to bold on click */
+    font-weight: bold; 
 }
 
 /*______________________ Platform_detail.html______________________*/
@@ -166,7 +169,7 @@ footer {
 }
 
 .pd-platform-image {
-    max-width: 80%;
+    max-width: 30vw;
     height: auto;
     margin-bottom: 2rem;
 }
@@ -182,7 +185,7 @@ footer {
 }
 
 .pd-game-name {
-    font-size: 40px; /* Adjust the font size as needed */
+    font-size: 40px; 
     font-family:'Roboto', sans-serif;
 }
 
@@ -215,20 +218,6 @@ footer {
         margin: 10px;
 }
 
-/*______________________ login.html______________________*/
-
-.login-background {
-    background-image: url('../images/library/login/mejores-juegos-historia-gq-3030288.webp');
-    background-size: cover; /* or 'contain' depending on your preference */
-    background-repeat: no-repeat;
-    /* Additional properties to control the position and other styles */
-    background-position: center center;
-    background-attachment: fixed; 
-    /* height: 40vh;
-    width: 100vw;       */
-}
-
-
 /*______________________ game-detail.html______________________*/
 
 .gd-game-image {
@@ -239,4 +228,8 @@ footer {
 /*______________________ forms.html______________________*/
 .form-text {
     color: white;
+}
+
+.invalid-feedback {
+    color: #fafafa;
 }

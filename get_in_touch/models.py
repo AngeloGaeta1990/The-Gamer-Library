@@ -10,6 +10,12 @@ class Bio(models.Model):
                             default='placeholder')
     last_update = models.DateField(null=True, auto_now_add=True,  blank=True)
 
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.build_url(secure=True)
+        return None
+
     def __str__(self):
         return self.title
 

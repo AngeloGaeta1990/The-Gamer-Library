@@ -20,6 +20,10 @@ body {
     background-color: #141422;
 }
 
+.h1, h1 {
+    font-size: xx-large;
+}
+
 /*______________________ Base.html______________________*/
 
 nav {
@@ -49,6 +53,11 @@ main {
     flex: 1; 
 }
 
+.logo a {
+   text-decoration: none;
+   color: #fafafa;
+}
+
 footer {
     margin-top: 40px;
     flex-shrink: 0; 
@@ -67,7 +76,7 @@ footer {
 }
 
 .fa-github {
-    margin-right: 30px; /* Adjust the value as needed */
+    margin-right: 30px;
 }
 
 /*______________________ Index.html______________________*/
@@ -219,4 +228,8 @@ footer {
 /*______________________ forms.html______________________*/
 .form-text {
     color: white;
+}
+
+.invalid-feedback {
+    color: #fafafa;
 }

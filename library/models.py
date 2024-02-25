@@ -35,6 +35,12 @@ class Game(models.Model):
         unique_together = ('name', 'platform')
         ordering = ['platform']
 
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.build_url(secure=True)
+        return None
+
     def __str__(self):
         return self.name
 
@@ -89,6 +95,12 @@ class WishListGame(models.Model):
     class Meta:
         unique_together = ('name', 'platform')
         ordering = ['-priority']
+
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.build_url(secure=True)
+        return None
 
     def __str__(self):
         return self.name
@@ -173,6 +185,12 @@ class Platform(models.Model):
     class Meta:
         unique_together = ('name', 'user')
         ordering = ['name']
+
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.build_url(secure=True)
+        return None
 
     def __str__(self):
         return self.name
