@@ -446,7 +446,7 @@ Testing details are included in this separate file [TESTING.md](./TESTING.md)
 ## Deployment
 
 ---
-Deployment details are included in this separate file [Deployment.md](./DEPLOYMENT.md)
+Deployment details are included in this separate file [DEPLOYMENT.md](./DEPLOYMENT.md)
 
 ## Technologies
 
@@ -500,6 +500,7 @@ Great thanks to:
 - [Code institute](https://codeinstitute.net/) for providing training material
 - [Chatgpt](https://openai.com/blog/chatgpt) for assisting in troubleshooting and proofreading
 - [Figma](https://www.figma.com/) for the creation of wireframes
+- [DraSQL](https://drawsql.app/) for the creation of the database schema
 - This project has been developed using VScode
 - GitHub was used for version control
 - My partner for continuous support and assistance
