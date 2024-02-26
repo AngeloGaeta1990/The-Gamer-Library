@@ -4,6 +4,9 @@ from .models import Platform, Game, WishListGame
 
 
 class AddPlatformForm(forms.ModelForm):
+    """
+    Form for adding a new platform.
+    """
     class Meta:
         model = Platform
         fields = ('name', 'category', 'image')
@@ -17,6 +20,9 @@ class AddPlatformForm(forms.ModelForm):
 
 
 class EditPlatformForm(forms.ModelForm):
+    """
+    Form for editing a platform.
+    """
     class Meta:
         model = Platform
         fields = ('name', 'category', 'image', 'background_color',
@@ -30,6 +36,9 @@ class EditPlatformForm(forms.ModelForm):
 
 
 class EditPCPlatformForm(EditPlatformForm):
+    """
+    Form for editing a PC platform.
+    """
     class Meta(EditPlatformForm.Meta):
         model = Platform
         fields = EditPlatformForm.Meta.fields + ('operative_systems', 'gpu',
@@ -38,12 +47,18 @@ class EditPCPlatformForm(EditPlatformForm):
 
 
 class EditConsolePlatformForm(EditPlatformForm):
+    """
+    Form for editing a console platform.
+    """
     class Meta(EditPlatformForm.Meta):
         model = Platform
         fields = EditPlatformForm.Meta.fields + ('model',)
 
 
 class EditServicePlatformForm(EditPlatformForm):
+    """
+    Form for editing a service platform.
+    """
     class Meta(EditPlatformForm.Meta):
         model = Platform
         fields = EditPlatformForm.Meta.fields + ('currency',
@@ -52,12 +67,18 @@ class EditServicePlatformForm(EditPlatformForm):
 
 
 class EditMobilePlatformForm(EditPlatformForm):
+    """
+    Form for editing a mobile platform.
+    """
     class Meta(EditPlatformForm.Meta):
         model = Platform
         fields = EditPlatformForm.Meta.fields + ('brand', 'operative_systems')
 
 
 class AddGameForm(forms.ModelForm):
+    """
+    Form for adding a new game.
+    """
     class Meta:
         model = Game
         fields = ('name', 'platform', 'image', 'user_score')
@@ -75,6 +96,9 @@ class AddGameForm(forms.ModelForm):
 
 
 class EditGameForm(forms.ModelForm):
+    """
+    Form for editing a game.
+    """
     class Meta:
         model = Game
         fields = ('name', 'platform', 'image', 'user_score',
@@ -89,6 +113,9 @@ class EditGameForm(forms.ModelForm):
 
 
 class AddWishlistGameForm(forms.ModelForm):
+    """
+    Form for adding a new game to the wishlist.
+    """
     class Meta:
         model = WishListGame
         fields = ('name', 'platform', 'image', 'priority', "currency", "cost",
@@ -108,6 +135,9 @@ class AddWishlistGameForm(forms.ModelForm):
 
 
 class EditWishListGameForm(forms.ModelForm):
+    """
+    Form for editing a game in the wishlist.
+    """
     class Meta:
         model = WishListGame
         fields = ('name', 'platform', 'image', 'store', 'priority',

@@ -53,10 +53,8 @@ Live link to [The Gamer Library](https://the-gamer-library-a2d80d9a63a6.herokuap
     - [Edit WishList Game](#edit-wishlist-game)
     - [Delete modals](#delete-modals)
   - [Future development](#future-development)
-  - [Testing Phase]()
-
-  - [Bugs](#bugs)
-  - [Diary](#diary)
+  - [Technologies](#technologies)
+  - [Credits](#credits)
 
 ---
 
@@ -445,218 +443,63 @@ Future development includes user stories that have been left in backlog followin
 ---
 Testing details are included in this separate file [TESTING.md](./TESTING.md)
 
-## Diary
+## Deployment
 
-- ### Sprint 1
+---
+Deployment details are included in this separate file [Deployment.md](./DEPLOYMENT.md)
 
-  - **11/12/2023**
-    - Add user stories template
-    - add labels
-    - add user stories
-    - add sprint 1
-    - add wireframe
-    - update feasibility importance plot
-    - start django project
+## Technologies
 
-  - **12/12/2023**
-    - set up early deployment
-    - documented bugs
-    - created and connected to postgresql
-    - connect to cloudinary
-    - successfull deployment on heroku
+---
 
-  - **15/12/2023**
-    - database schema creation
-    - database implementation
+Python v3.12.0
 
-  - **16/12/2023**
-    - add manytomany relation on database
-    - deletion and recreation of database
+- List of packages available in [requirements.txt](./requirements.txt)
 
-  - **17/12/2023**
-    - changed many to many relation into one to many in the following:
-    - user-games is now one to many
-    - user-wishlists is now one to many
-    - added plaltform table
-    - user-platform is one to many
-    - platform-games is one to many
-    - platform-wishlists os one to many
+Django
 
-  - **19/12/2023**
-    - add basic view and url
-    - allows to see the list of platforms available
-    - added template html to visualize platforms list
+- Django was used as the python framework in the project.
+- Django all auth was used to handle user authentication and related tasks i.e. sign in, sign up, sign out.
 
-  - **20/12/2023**
-    - add summernote
-    - add fixture
+Heroku
 
-  - **21/12/2023**
-    - reshape model adding platform subclasses
+- Used as for early and cloud deployment
 
-  - **25/12/2023**
-    - created base.html
-    - add boostrap
-    - add fontawesome
+Elephant SQL
 
-- ### Sprint 2
+- Used to generate the database used in this project
 
-  - **26/12/2023**
-  - add index.html
-  - add javascript and jquery
+HTML
 
-- **27/12/2023**
-  - add game list to index.html
-  - remove foreign key from platform model
+- Used to generate the templates in the Django framework
 
-- **28/12/2023**
-  - move static files from cloudinary to collectstic
-  - add whitenoise
-  
-- **29/12/2023**
-  - add view function for platform detail.html
-  - add platform detail .html
-  - add slug field to platforms
-  - add style to platform detail.html
-  - updates fixtures
+CSS
 
-- **30/12/2023**
-  - add about app
-  - add about url, views, settings model
-  - add about template
-  - style about template
-  
-- **31/12/2023**
-  - add authentication
-  - add authentication templates
-  - add authentication draft style
+- Used apply style to the HTML templates
 
-- **01/01/2024**
-  - Part C of crud
-  - add form.py
-  - add form templates, urls and views to add platforms and games
-  
-- **02/01/2024**
-  - add User foreign key to platform model
+Javascript
 
-- **06/01/2024**
-  - add collaborate form
+- Used to crete modals to delete modal and change background and font color in specific HTML templates based on user choices
 
-- ### Sprint 3
+Bootstrap 5.3.2
 
-- **09/01/2024**
-  - add edit platform url and view draft
-  
-- **10/01/2024**
-  - allow platform editing
-  - allow platform deleting
+- Used to create preset HTML elements in the Django templates
 
-- **12/01/2024**
-  - add modal for platform deletion
+Fontawesome
 
-- **13/01/2024**
-  - adapt code to pep8
+- Used to add icon to the HTML templates
 
-- **14/01/2024**
-  - add cloudinary for media storage
-  - start draft testing unit
+## Credits
 
-- **17/01/2024**
-  - add unit testing for about and library app
+---
 
-- **18/01/2024**
-  - fix platform addition and deletion after adding user
+Great thanks to:
 
-- **21/01/2024**
-  - reshape index.html
-
-- ### Sprint 4
-  
-- **22/01/2024**
-  - fix delete button on index.html
-  - fix expand button on index.html
-
-- **27/01/2024**
-  - removed subclasses from platform model
-  - improved platform_detail.html
-
-- **31/01/2024**
-  - reshape user stories
-
-- **01/02/2024**
-  - add image form for game
-  - add game detail view
-  - add game detail template
-  - add game detail url
-
-- **03/02/2024**
-  - add delete game view, url and javascript
-
-- **04/02/2024**
-  - add currency attribute to platform
-  - improve general layout of platform detail
-
-- ### Sprint 5
-
-- **06/02/2024**
-  - fix delete game button
-  - improve forms layout
-  - improve game detail layout
-
-- **07/02/2024**
-  - fix null platform for game
-  - update wishlist model
-  - add wishlist form
-  - C of wishlist crud complete
-
-- **08/02/2024**
-  - add wish list game detail view, url, and template
-
-- **09/02/2024**
-  - add edit game detail view and url
-  - add delete game view and javascript
-  - sort game, wish list and platforms
-
-- **10/02/2024**
-  - add intro page
-  - style sign in sign up
-
-- **11/02/2024**
-  - add info page
-  - rename about into get in touch
-  - add get in touch form
-
-- **12/02/2024**
-  - set restriction for images files
-
-- **13/02/2024**
-  - add tests for all platform views
-
-- **14/02/2024**
-  - urls use platform.id game.id and wishlist_game.id rather than slugs
-  - add test for game and wishlist game views
-  - add test for Platform, Game and Wishlist forms
-
-- **17/02/2024**
-  - improve games expanding on index.html
-
-- **18/02/2024**
-  - add overflow to index.html
-  - reduce image size in get_in_touch.html
-  - improve accessibility on index.html
-  - add docstring to all views
-
-- ### Sprint 6
-
-- **20/02/2024**
-  - complete docs intro
-
-- **21/02/2024**
-  - complete docs scope, strategy, structure
-  - add user stories up to sprint 2
-
-- **23/02/2024**
-  - completed planning phase in docs
-
-- **24/02/2024**
-  - completed features in docs
+- [David Bowels](https://github.com/dnlbowers) for mentoring and support.
+- [Lucidchart](https://www.lucidchart.com/pages/) for the generation of the Diagram
+- [Code institute](https://codeinstitute.net/) for providing training material
+- [Chatgpt](https://openai.com/blog/chatgpt) for assisting in troubleshooting and proofreading
+- [Figma](https://www.figma.com/) for the creation of wireframes
+- This project has been developed using VScode
+- GitHub was used for version control
+- My partner for continuous support and assistance

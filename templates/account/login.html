@@ -8,7 +8,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 mt-3 offset-md-2 white-text">
-      <h3>{% trans "Login" %}</h3>
+      <h2>{% trans "Login" %}</h2>
 
       <p>{% blocktrans %}
         Welcome back to the The-Gamer-Library
@@ -28,7 +28,7 @@
         <input type="hidden" name="{{ redirect_field_name }}"
           value="{{ redirect_field_value }}" />
         {% endif %}
-        <button class="btn btn-primary right white-text" type="submit">
+        <button class="btn btn-primary right" type="submit">
           {% trans "Login" %} &raquo;</button>
       </form>
     </div>

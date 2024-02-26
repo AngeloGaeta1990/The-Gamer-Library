@@ -20,10 +20,6 @@ body {
     background-color: #141422;
 }
 
-.h1, h1 {
-    font-size: xx-large;
-}
-
 /*______________________ Base.html______________________*/
 
 nav {
@@ -57,6 +53,11 @@ main {
    text-decoration: none;
    color: #fafafa;
 }
+
+.medium-size{
+    font-size: medium;
+}
+
 
 footer {
     margin-top: 40px;
@@ -200,7 +201,7 @@ footer {
 /*______________________ get_in_touch.html______________________*/
 
 .git-image-section img {
-    width: 80%;
+    width: 60vw;
     max-height: 60vh;
     display: block;
     margin: auto;
@@ -221,7 +222,7 @@ footer {
 /*______________________ game-detail.html______________________*/
 
 .gd-game-image {
-    max-width: 50vh ; 
+    max-width: 50vw ; 
     max-height: 50vh ;
 }
 

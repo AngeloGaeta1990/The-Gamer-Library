@@ -6,6 +6,9 @@ from .forms import EditPlatformForm, EditGameForm, EditWishListGameForm
 
 
 class TestLibraryViews(TestCase):
+    """
+    Test class for the views of the library app.
+    """
 
     def setUp(self):
         self.user = User.objects.create_superuser(
@@ -27,9 +30,15 @@ class TestLibraryViews(TestCase):
         self.wishlist_game.save()
 
     def login(self):
+        """
+        Method to login the user.
+        """
         self.client.login(username="myUsername", password="myPassword")
 
     def test_render_platform_detail_page(self):
+        """
+        Test for rendering the platform detail page.
+        """
         response = self.client.get(reverse(
             'platform_detail', args=[self.user.id, self.platform.id]))
         self.assertEqual(response.status_code, 200)
@@ -37,7 +46,9 @@ class TestLibraryViews(TestCase):
         self.assertIn(b"PC", response.content)
 
     def test_add_platform(self):
-        """Test for posting a platform on a post"""
+        """
+        Test for posting a platform on a post
+        """
         platform_data = {
             "name": "Test PC",
             "user": self.user.id,
@@ -54,6 +65,9 @@ class TestLibraryViews(TestCase):
         )
 
     def test_platform_list_view(self):
+        """
+        Test for rendering the platform list view.
+        """
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'library/index.html')
@@ -62,6 +76,9 @@ class TestLibraryViews(TestCase):
                                  transform=lambda x: x)
 
     def test_edit_platform_view(self):
+        """
+        Test for rendering the edit platform view.
+        """
         response = self.client.get(reverse('edit_platform',
                                            args=[self.user.id,
                                                  self.platform.id]))
@@ -83,6 +100,9 @@ class TestLibraryViews(TestCase):
         self.assertEqual(self.platform.name, 'Updated PC')
 
     def test_delete_platform_view(self):
+        """
+        Test for deleting a platform.
+        """
         response = self.client.post(reverse('delete_platform',
                                             args=[self.user.id,
                                                   self.platform.id]))
@@ -91,6 +111,9 @@ class TestLibraryViews(TestCase):
         self.assertFalse(Platform.objects.filter(pk=self.platform.pk).exists())
 
     def test_render_game_detail_page(self):
+        """
+        Test for rendering the game detail page.
+        """
         response = self.client.get(reverse(
             'game_detail', args=[self.user.id, self.platform.id,
                                  self.game.id]))
@@ -99,6 +122,9 @@ class TestLibraryViews(TestCase):
         self.assertContains(response, "70")
 
     def test_add_game(self):
+        """
+        Test for adding a game.
+        """
         game_data = {
             "name": "New Game",
             "platform": self.platform.id,
@@ -111,6 +137,9 @@ class TestLibraryViews(TestCase):
         self.assertTrue(Game.objects.filter(name="New Game").exists())
 
     def test_edit_game_view(self):
+        """
+        Test for rendering the edit game view.
+        """
         response = self.client.get(reverse('edit_game', args=[self.user.id,
                                                               self.platform.id,
                                                               self.game.id]))
@@ -132,6 +161,9 @@ class TestLibraryViews(TestCase):
         self.assertEqual(self.game.name, 'Updated Game')
 
     def test_render_wishlist_game_detail_page(self):
+        """
+        Test for rendering the wishlist game detail page.
+        """
         response = self.client.get(reverse('wishlist_game_detail',
                                            args=[self.user.id,
                                                  self.platform.id,
@@ -141,6 +173,9 @@ class TestLibraryViews(TestCase):
         self.assertContains(response, "1")
 
     def test_add_wishlist_game(self):
+        """
+        Test for adding a game to the wishlist.
+        """
         wishlist_game_data = {
             "name": "New Wishlist Game",
             "platform": self.platform.id,
@@ -154,6 +189,9 @@ class TestLibraryViews(TestCase):
             name="New Wishlist Game").exists())
 
     def test_edit_wishlist_game_view(self):
+        """
+        Test for rendering the edit wishlist game view.
+        """
         response = self.client.get(reverse('edit_wishlist_game',
                                            args=[self.user.id,
                                                  self.platform.id,
@@ -182,6 +220,9 @@ class TestLibraryViews(TestCase):
         self.assertEqual(self.wishlist_game.name, 'Updated Wishlist Game')
 
     def test_delete_wishlist_game_view(self):
+        """
+        Test for deleting a game from the wishlist.
+        """
         response = self.client.post(reverse('delete_wishlist_game',
                                             args=[self.user.id,
                                                   self.platform.id,

@@ -1,20 +1,22 @@
-# Table of Contents
+# Testing
 
-- [Manual Testing](#manual-testing)
-  - [Bugs and Fixes During the Development Process](#bugs-and-fixes-during-the-development-process)
+## Table of contents
+
+- [Bugs and Fixes](#bugs-and-fixes)
 - [Lighthouse scores](#lighthouse-scores)
 - [Validators](#validators)
   - [HTML](#html)
   - [CSS](#css)
   - [JS](#js)
+  - [Python](#python)
+- [Manual testing](#manual-testing)
+  - [Views manual testing](#views-manual-testing)
+  - [Forms manual testing](#forms-manual-testing)
+- [Fixtures](#fixtures)
 
 ---
 
-## Manual testing
-
----
-
-### Bugs and Fixes During the Development Process
+## Bugs and Fixes
 
 List of bugs and fixes I applied during the development process:
 
@@ -620,51 +622,131 @@ List of bugs and fixes I applied during the development process:
 
 - **intro.html**.
 
- ![Lighthouse score for intro.hml](./docs/images/lighthouse_intro.png)
+  - Desktop.
+  
+  ![Lighthouse score for intro.hml on Desktop](./docs/images/lighthouse_intro.png)
+
+  - Mobile.
+
+  ![Lighthouse score for intro.hml on Mobile](./docs/images/lighthouse_intro_mobile.png)
+
+  The lower score on mobile is mainly due to the size of the images. Choosing smaller images would reduce the loading time on mobile. Unfortunately, I do not have relevant smaller images available, and a performance score of 72 seems to be a good compromise.
 
 - **get_in_touch.html**.
 
-  ![Lighthouse score for get_in_touch.hml](./docs/images/lighthouse_get_in_touch.png)
+  - Desktop.
+
+  ![Lighthouse score for get_in_touch.hml on Desktop](./docs/images/lighthouse_get_in_touch.png)
+
+  - Mobile.
+
+   ![Lighthouse score for get_in_touch.hml on Mobile](./docs/images/lighthouse_get_in_touch_mobile.png)
 
 - **info.html**.
 
-  ![Lighthouse score for info.hml](./docs/images/lighthouse_info.png)
+  - Desktop.
+
+  ![Lighthouse score for info.hml for Desktop](./docs/images/lighthouse_info.png)
+
+  - Mobile.
+
+  ![Lighthouse score for info.hml for Mobile](./docs/images/lighthouse_info_mobile.png)
 
 - **login.html**.
 
- ![Lighthouse score for login.hml](./docs/images/lighthouse_login.png)
+  - Desktop.
+
+  ![Lighthouse score for login.hml on Desktop](./docs/images/lighthouse_login.png)
+  
+  - Mobile.
+
+  ![Lighthouse score for login.hml on Mobile](./docs/images/lighthouse_login_mobile.png)
   
 - **signup.html**.
 
-![Lighthouse score for signup.hml](./docs/images/lighthouse_signup.png)
+  - Desktop.
+
+  ![Lighthouse score for signup.hml on Desktop](./docs/images/lighthouse_signup.png)
+
+  - Mobile.
+
+  ![Lighthouse score for signup.hml on Desktop](./docs/images/lighthouse_signup_mobile.png)
 
 - **index.html**.
 
-![Lighthouse score for index.hml](./docs/images/lighthouse_index.png)
+  - Desktop.
+
+  ![Lighthouse score for index.hml on Desktop](./docs/images/lighthouse_index.png)
+
+  - Mobile.
+
+  ![Lighthouse score for index.hml on Mobile](./docs/images/lighthouse_index_mobile.png)
+
+  The lower score on mobile is mainly due to the size of the images. Choosing smaller images would reduce the loading time on mobile. Unfortunately, I do not have relevant smaller images available, and a performance score of 77 seems to be a good compromise.
 
 - **add_platform_form.html**.
 
-![Lighthouse score for add_platform_form.hml](./docs/images/lighthouse_add_platform.png)
+  - Desktop.
+
+  ![Lighthouse score for add_platform_form.hml on Desktop](./docs/images/lighthouse_add_platform.png)
+
+  - Mobile.
+
+  ![Lighthouse score for add_platform_form.hml on Mobile](./docs/images/lighthouse_add_platform_mobile.png)
 
 - **platform_detail.html**.
 
-![Lighthouse score for platform_detail.html](./docs/images/lighthouse_platform_detail.png)
+  - Desktop.
+
+  ![Lighthouse score for platform_detail.html on Desktop](./docs/images/lighthouse_platform_detail.png)
+
+  - Mobile.
+
+  ![Lighthouse score for platform_detail.html on Mobile](./docs/images/lighthouse_platform_detail_mobile.png)
+
+  The lower score on mobile is mainly due to the size of the images. Choosing smaller images would reduce the loading time on mobile. Unfortunately, I do not have relevant smaller images available, and a performance score of 73 seems to be a good compromise.
 
 - **add_game_form.html**.
 
-![Lighthouse score for add_game_form.html](./docs/images/lighthouse_add_game.png)
+  - Desktop.
+
+  ![Lighthouse score for add_game_form.html on Desktop](./docs/images/lighthouse_add_game.png)
+
+  - Mobile.
+
+  ![Lighthouse score for add_game_form.html on Mobile](./docs/images/lighthouse_add_game_mobile.png)
 
 - **game_detail.html**.
 
-![Lighthouse score for game_detail.html](./docs/images/lighthouse_game_detail.png)
+  - Desktop.
+
+  ![Lighthouse score for game_detail.html on Desktop](./docs/images/lighthouse_game_detail.png)
+
+  - Mobile.
+
+  ![Lighthouse score for game_detail.html on Mobile](./docs/images/lighthouse_game_detail_mobile.png)
+
+  The lower score on mobile is mainly due to the size of the images. Choosing smaller images would reduce the loading time on mobile. Unfortunately, I do not have relevant smaller images available, and a performance score of 74 seems to be a good compromise.
 
 - **add_wishlist_form.html**.
 
-![Lighthouse score for add_wishlist_form.html](./docs/images/lighthouse_add_wishlist_game.png)
+  - Desktop.
+  
+  ![Lighthouse score for add_wishlist_form.html on Desktop](./docs/images/lighthouse_add_wishlist_game.png)
+
+  - Mobile.
+
+  ![Lighthouse score for add_wishlist_form.html on Mobile](./docs/images/lighthouse_add_wishlist_game_mobile.png)
 
 - **wishlist_game_detail.html**.
 
-![Lighthouse score for wishlist_game_detail.html](./docs/images/lighthouse_wishlistgame_detail.png)
+  - Desktop.
+
+  ![Lighthouse score for wishlist_game_detail.html on Desktop](./docs/images/lighthouse_wishlistgame_detail.png)
+
+  - Mobile.
+
+  ![Lighthouse score for wishlist_game_detail.html on Mobile](./docs/images/lighthouse_wishlistgame_detail_mobile.png)
 
 ## Validators
 
@@ -674,18 +756,19 @@ List of bugs and fixes I applied during the development process:
 
 ---
 Due to the nature of Django templates, which may not strictly adhere to W3C validation standards, I initially viewed the pages in Chrome. Subsequently, I used the 'View Page Source' option to obtain the complete .html files. I then input these files into the W3C HTML validator. I tested the pages:
-    - **including intro.html**
-    - **info.html**
-    - **get_in_touch.html**
-    - **index.html**
-    - **add_platform_form.html**
-    - **platform_detail.html**
-    - **add_game_form.html**
-    - **game_detail.html**
-    - **add_wishlist_game_form.html**
-    - **wishlist_game_detail.html**
-    - **login.html**
-    - **signup.html**
+
+- **including intro.html**
+- **info.html**
+- **get_in_touch.html**
+- **index.html**
+- **add_platform_form.html**
+- **platform_detail.html**
+- **add_game_form.html**
+- **game_detail.html**
+- **add_wishlist_game_form.html**
+- **wishlist_game_detail.html**
+- **login.html**
+- **signup.html**
 
 Employing the aforementioned method. Fortunately, no errors or warnings were identified for any of these pages.
 
@@ -708,3 +791,179 @@ The validator flagged the following warnings:
 - One undefined variable at line 41 for 'bootstrap'.
 
 These warnings are due to the external Bootstrap library used in the script, which the validator is not aware of.
+
+### Python
+
+---
+I used the AutoPEP8 and Flake8 extensions in Visual Studio Code to ensure that the Python code adheres to PEP8 rules. The only exceptions found by Flake8 are in:
+
+- `Settings.py`
+
+  ```python
+    AUTH_PASSWORD_VALIDATORS = [
+      {
+          'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+      },
+      {
+          'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+      },
+      {
+          'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+      },
+      {
+          'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+      },
+  ]
+  ```
+
+  These lines are set by default in the settings.py file by Django
+
+- `test.py` is automatically created by Django in both the get_in_touch and library apps and contains only:
+
+   ```python
+   from django.test import TestCase
+   ```
+
+The tests I implemented for both Django apps are in `test_views.py` and `test_forms.py`.
+
+---
+
+## Manual testing
+
+I set up automated tests for both the get_in_touch and library apps, achieving a coverage of 88%. I measured the coverage by running the command coverage report after installing the coverage library version 7.4.1.
+
+![Coverage score for automated tests](./docs/images/coverage.png)
+
+### Views manual testing
+
+| Test Description                                  | User | Admin |
+|---------------------------------------------------|------|-------|
+| Render platform detail page after login           |  X   |   ✓   |
+| Sign up                                           |  ✓   |  ✓    |
+| Login after sign up                               |  ✓   |   ✓   |
+| Add a new platform after login                    |  ✓   |   ✓   |
+| View platform list after login                    |  ✓   |   ✓   |
+| Edit platform details after login                 |  ✓   |   ✓   |
+| Delete a platform after login                     |  ✓   |   ✓   |
+| Render game detail page after login               |  ✓   |   ✓   |
+| Add a new game after login                        |  ✓   |   ✓   |
+| Edit game details after login                     |  ✓   |   ✓   |
+| Render wishlist game detail page after login      |  ✓   |   ✓   |
+| Add a new game to the wishlist after login        |  ✓   |   ✓   |
+| Edit wishlist game details after login            |  ✓   |   ✓   |
+| Delete a game from the wishlist after login       |  ✓   |   ✓   |
+| Add a new platform without login                  |  X   |   X   |
+| View platform list without login                  |  X   |   X   |
+| Edit platform details without login               |  X   |   X   |
+| Delete a platform without login                   |  X   |   X   |
+| Render game detail without login                  |  X   |   X   |
+| Add a new game without login                      |  X   |   X   |
+| Edit game details without login                   |  X   |   X   |
+| Render wishlist game detail page without login    |  X   |   X   |
+| Add a new game to the wishlist without login      |  X   |   X   |
+| Edit wishlist game details without login          |  X   |   X   |
+| Delete a game from the wishlist without login     |  X   |   X   |
+| See other users                                   |  X   |   ✓   |
+| See other users platforms                         |  X   |   ✓   |
+| See other users game                              |  X   |   ✓   |
+| See other users wishlist games                    |  X   |   ✓   |
+| Add a bio for get in touch app                    |  X   |   ✓   |
+| Edit a bio for get in touch app                   |  X   |   ✓   |
+| Delete a bio for get in touch app                 |  X   |   ✓   |
+| Delete other users platforms                      |  X   |   ✓   |
+| Delete other users games                          |  X   |   ✓   |
+| Delete other users wish list games                |  X   |   ✓   |
+| Add platform for other users                      |  X   |   ✓   |
+| Add games for other users                         |  X   |   ✓   |
+| Add wishlist games for other users                |  X   |   ✓   |
+| Edit platform for other users                     |  X   |   ✓   |
+| Edit games for other users                        |  X   |   ✓   |
+| Edit wishlist games for other users               |  X   |   ✓   |
+| View navigation bar                               |  ✓   |   ✓   |
+| click footer buttons                              |  ✓   |   ✓   |
+
+### Forms manual testing
+
+#### `AddPlatformForm`
+
+| Test Description                              | Test Data                                          | Result                         |
+|-----------------------------------------------|----------------------------------------------------|-----------------------------------------|
+| Add a new platform with valid data             | Name: Test PC, Category: PC, Image: [Valid Image]  | Successful addition, platform listed    |
+| Try adding a platform without an image         | Name: Test Console, Category: Console, Image: None  | Successful addition, platform listed    |
+| Try adding a platform with invalid image type  | Name: Invalid Platform, Category: Invalid, Image: file.exe | Error message, File extension “exe” is not allowed. Allowed extensions are: png, jpg, jpeg, webp, gif. |
+| Try adding a platform with the same name | Name: Nintendo Switch, Category: Console, Image: None | Error message, this platform already exists |
+
+#### `EditPlatform`
+
+| Test Description                            | Test Data                                                   | Result                           |
+|---------------------------------------------|-------------------------------------------------------------|-------------------------------------------|
+| Edit platform details with valid data        | Name: Updated PC, Category: Updated, Image: [Valid Image]    | Successful update, platform details changed |
+| Edit platform details without changing image | Name: Updated Console, Category: Updated, Image: [Same Image] | Successful update, only text fields changed |
+| Try editing platform with invalid image type | Name: Invalid Update, Category: Invalid, Image: file.exe | Error message, File extension “exe” is not allowed. Allowed extensions are: png, jpg, jpeg, webp, gif. |
+| Try editing platform with invalid hex code | Name: Game Pass, Category: Service, Font Color: string | Error message, Enter a valid hex color |
+| Try editing platform with subscription fee with 7 digits | Name: Game Pass, Category: Service, Subscription fee: 1000000 | Error message, Ensure that there are no more than 5 digits in total. |
+| Try editing platform with Plan containing an integer | Name: Game Pass, Category: Service, Plan: 300 | platform edited |
+| Try editing platform with Model containing an integer | Name: Game Pass, Category: Service, model: 300 | platform edited |
+| Try editing platform with Disk size containing 30 digits | Name: Game Pass, Category: Service, Disk size: 300000000000000000000000000000 | Error, Ensure this value is less than or equal to 2147483647 |
+
+#### `AddGameForm`
+
+| Test Description                          | Test Data                                        | Result                       |
+|-------------------------------------------|--------------------------------------------------|---------------------------------------|
+| Add a new game with valid data             | Name: New Game, Platform: Test PC, User Score: 90  | Successful addition, game listed      |
+| Try adding a game with invalid platform    | Name: Invalid Game, Platform: Invalid, User Score: 80 | Error message, please select an item in the list|
+| Try adding a game with invalid image type  | Name: Invalid Image Game, Platform: Test Console, Image: file.exe, User Score: 75 |  File extension “exe” is not allowed. Allowed extensions are: png, jpg, jpeg, webp, gif.  |
+| Try adding a game with no name | Name: none, Platform: None, Image: None, User Score: 75 | Error message, Please fill in this field |
+| Try adding a game with no Platform | Name: Test, Platform: None, Image: None, User Score: 75 | Error message, Please select an item in the list |
+| Try adding a game with user score > 100 | Name: Test, Platform: Desktop PC, Image: None, User Score: 150 | Error message, Please ensure this value is less than or equal to 100|
+| Try adding a game with the same name and platform | Name: Test, Platform: Desktop PC, Image: None, | Error message, Game with this Name and Platform already exists|
+
+#### `EditGameForm`
+
+| Test Description                          | Test Data                                              | Result                       |
+|-------------------------------------------|--------------------------------------------------------|---------------------------------------|
+| Edit game details with valid data          | Name: Updated Game, Platform: Test PC, User Score: 85   | Successful update, game details changed|
+| Edit game details without changing image   | Name: Another Game, Platform: Test Console, User Score: 88, Image: [Same Image]| Successful update, only text fields changed |
+| Try editing game with invalid image type   | Name: Invalid Update Game, Platform: Test PC, User Score: 92, Image: file.exe | Error message, File extension “exe” is not allowed. Allowed extensions are: png, jpg, jpeg, webp, gif. |
+| Try editing a game with invalid date | Name: Test, Platform: Desktop PC, Completion date: 26/02/2023, | Error message, Enter a valid date.|
+| Try editing a game with valid Hours spent | Name: Test, Platform: Desktop PC, Hours spent: 300, | Game edited|
+| Try editing game with Hours spent containing 7 digits | Name: Lies of P, Hours spent: 300000000000000000000000000000 | Error, Ensure this value is less than or equal to 2147483647 |
+| Try editing a game with very long text as User Review | Name: Test, Platform: Desktop PC, User Review: very long test, | Game edited|
+
+#### `AddWishlistGameForm`
+
+| Test Description                                  | Test Data                                                | Result                       |
+|---------------------------------------------------|----------------------------------------------------------|---------------------------------------|
+| Add a new game to the wishlist with valid data      | Name: New Wishlist Game, Platform: Test PC, Priority: 1    | Successful addition, wishlist game listed |
+| Try adding a wishlist game with invalid platform    | Name: Invalid Wishlist Game, Platform: , Priority: 2| Error message, please select an item in the list|
+| Try adding a wishlist game with invalid image type  | Name: Invalid Image Wishlist Game, Platform: Test Console, Image: file.exe , Priority: 3 | Error message, File extension “exe” is not allowed. Allowed extensions are: png, jpg, jpeg, webp, gif. |
+| Try adding a wishlist game with very high cost  | Name: Test game, Platform: Test Console, currency: £, cost:500000000000000, Priority: 3 | Error message, Ensure that there are no more than 8 digits in total.|
+
+#### `EditWishListGameForm`
+
+| Test Description                               | Test Data                                                     | Result                          |
+|------------------------------------------------|---------------------------------------------------------------|------------------------------------------|
+| Edit wishlist game details with valid data      | Name: Updated Wishlist Game, Platform: Test PC, Priority: 5   | Successful update, wishlist game details changed |
+| Edit wishlist game details without changing image| Name: Another Wishlist Game, Platform: Test Console, Priority: 4, Image: [Same Image] | Successful update, only text fields changed |
+| Try editing wishlist game with invalid image type | Name: Invalid Update Wishlist Game, Platform: Test PC, Priority: 3, Image: file.exe | Error message,  File extension “exe” is not allowed. Allowed extensions are: png, jpg, jpeg, webp, gif. |
+| Try editing wishlist game with invalid link | Name: Invalid Update Wishlist Game, Platform: Test PC, Priority: 3, Link: string | Error message, Please enter a URL |
+| Try editing a wishlist game with invalid date | Name: Test, Platform: Desktop PC, Release date: 26/02/2023, | Error message, Enter a valid date.|
+| Try editing a wishlist game with date in the future | Name: Test, Platform: Desktop PC, Release date: 2025-03-25, | Successful update.|
+
+---
+
+## Fixtures
+
+In the `fixtures` folder, there are fixtures to create a new user and add games, wishlist game and platforms. The user is a mock user, not an admin, created for testing purposes. The password for the mock user is generated using the script `hashpassword.py` contained in the `fixtures` folder.
+
+To load the fixtures run:
+
+```cmd
+python manage.py loaddata users.json
+python manage.py loaddata platforms.json
+python manage.py loaddata games.json
+python manage.py loaddata wishlist_games.json
+```
+
+---
+Back to [README.md](./README.md)

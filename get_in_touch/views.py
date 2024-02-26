@@ -5,10 +5,26 @@ from .models import Bio
 from .forms import CollaborateForm
 
 
-# Create your views here.
 def bio(request):
     """
-    Renders the Get in touch page
+    View function for rendering the bio page.
+
+    **Context:**
+
+    ``bio``
+        An instance of :model:`your_app_name.Bio`.
+
+    **Template:**
+
+    :template:`get_in_touch/get_in_touch.html`
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered HTML response containing the 'get_in_touch.html'
+        template with the retrieved 'bio' object.
+
     """
     bio = Bio.objects.all().order_by('-last_update').first()
 
@@ -21,14 +37,30 @@ def bio(request):
 
 def collaborate(request):
     """
-    add collaboration form
+    View function for handling collaboration requests.
+
+    **Context:**
+
+    ``collaborate_form``
+        An instance of :form:`your_app_name.CollaborateForm`.
+
+    **Template:**
+
+    :template:`get_in_touch/collaborate.html`
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: Rendered HTML response containing the 'collaborate.html'
+        template with the collaboration form.
+
     """
     collaborate_form = CollaborateForm()
     if request.method == 'POST':
         collaborate_form = CollaborateForm(data=request.POST)
         if collaborate_form.is_valid():
             collaborate_form.save()
-            # Add any additional logic or redirect here
             messages.add_message(
                 request, messages.SUCCESS, 'collaboration request sent')
             return redirect('home')

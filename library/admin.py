@@ -6,6 +6,9 @@ from .models import Game, WishListGame, Platform
 # Register your models here.
 @admin.register(Game)
 class GameAdmin(SummernoteModelAdmin):
+    """
+    Admin class for Game model.
+    """
     list_display = ('name', 'user_score', 'metacritic_score', "id",
                     'release_date', 'completion_date', 'developer',
                     'get_platform')
@@ -21,6 +24,9 @@ class GameAdmin(SummernoteModelAdmin):
 
 @admin.register(Platform)
 class PlatformAdmin(admin.ModelAdmin):
+    """
+    Admin class for Platform model.
+    """
     list_display = ('name', 'slug', 'category', 'id', 'user')
     search_fields = ['name']
     prepopulated_fields = {'slug': ('name',)}
@@ -29,6 +35,9 @@ class PlatformAdmin(admin.ModelAdmin):
 
 @admin.register(WishListGame)
 class WishListAdmin(admin.ModelAdmin):
+    """
+    Admin class for WishListGame model.
+    """
     list_display = ('name', 'release_date', 'developer', 'get_platform',
                     'id')
     prepopulated_fields = {'slug': ('name',)}

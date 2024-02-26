@@ -7,6 +7,9 @@ from .models import Platform, Game, WishListGame
 
 
 class TestAddPlatformForm(TestCase):
+    """
+    Test class for the AddPlatformForm form.
+    """
 
     def setUp(self):
         self.user = User.objects.create_superuser(
@@ -17,6 +20,9 @@ class TestAddPlatformForm(TestCase):
         self.client.login(username='myUsername', password='myPassword')
 
     def test_form_is_valid(self):
+        """
+        Test validity of add platform form.
+        """
         platform_form = AddPlatformForm(data={
             'name': 'PC',
             'category': 'pc',
@@ -25,7 +31,9 @@ class TestAddPlatformForm(TestCase):
 
 
 class TestEditPlatformForm(TestCase):
-
+    """
+    Test class for the EditPlatformForm form.
+    """
     def setUp(self):
         self.user = User.objects.create_superuser(
             username="myUsername",
@@ -37,6 +45,9 @@ class TestEditPlatformForm(TestCase):
                                                 slug='pc', user=self.user)
 
     def test_form_is_valid(self):
+        """
+        Test validity of edit platform form.
+        """
         updated_data = {
             'name': 'Updated PC',
             'category': 'pc',
@@ -56,6 +67,9 @@ class TestEditPlatformForm(TestCase):
 
 
 class TestAddGameForm(TestCase):
+    """
+    Test class for the AddGameForm form.
+    """
 
     def setUp(self):
         self.user = User.objects.create_superuser(
@@ -68,6 +82,9 @@ class TestAddGameForm(TestCase):
                                                 slug='pc', user=self.user)
 
     def test_form_is_valid(self):
+        """
+        Test validity of add game form.
+        """
         game_form = AddGameForm(user=self.user, data={
             'name': 'Divinity 2 original sin',
             'platform': self.platform.id,
@@ -76,6 +93,9 @@ class TestAddGameForm(TestCase):
 
 
 class TestEditGameForm(TestCase):
+    """
+    Test class for the EditGameForm form.
+    """
 
     def setUp(self):
         self.user = User.objects.create_superuser(
@@ -91,6 +111,9 @@ class TestEditGameForm(TestCase):
                                         slug='test-game', user_score=70)
 
     def test_form_is_valid(self):
+        """
+        Test validity of edit game form.
+        """
         updated_data = {
             'name': 'Updated Game',
             'platform': self.platform.id,
@@ -108,6 +131,9 @@ class TestEditGameForm(TestCase):
 
 
 class TestAddWishlistGameForm(TestCase):
+    """
+    Test class for the AddWishlistGameForm form.
+    """
 
     def setUp(self):
         self.user = User.objects.create_superuser(
@@ -120,6 +146,9 @@ class TestAddWishlistGameForm(TestCase):
                                                 slug='pc', user=self.user)
 
     def test_form_is_valid(self):
+        """
+        Test validity of add wishlist game form.
+        """
         wishlist_game_form = AddWishlistGameForm(user=self.user, data={
             'name': 'New Wishlist Game',
             'platform': self.platform.id,
@@ -129,6 +158,9 @@ class TestAddWishlistGameForm(TestCase):
 
 
 class TestEditWishListGameForm(TestCase):
+    """
+    Test class for the EditWishListGameForm form.
+    """
 
     def setUp(self):
         self.user = User.objects.create_superuser(
@@ -149,6 +181,9 @@ class TestEditWishListGameForm(TestCase):
         )
 
     def test_form_is_valid(self):
+        """
+        Test validity of edit wishlist game form.
+        """
         edit_wishlist_game_form = EditWishListGameForm(data={
             'name': 'Updated Wishlist Game',
             'platform': self.platform.id,

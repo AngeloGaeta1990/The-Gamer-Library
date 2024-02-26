@@ -6,6 +6,10 @@ from .models import Bio, CollaborateRequest
 # Register your models here.
 @admin.register(Bio)
 class BioAdmin(SummernoteModelAdmin):
+    """
+    Admin class for Bio model.
+    """
+
     list_display = ('description', 'title')
     search_fields = ['title']
     summernote_fields = ('description',)
@@ -13,5 +17,8 @@ class BioAdmin(SummernoteModelAdmin):
 
 @admin.register(CollaborateRequest)
 class CollaborateRequestAdmin(admin.ModelAdmin):
+    """
+    Admin class for CollaborateRequest model.
+    """
 
     list_display = ('message', 'read',)

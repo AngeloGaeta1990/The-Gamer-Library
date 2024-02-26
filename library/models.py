@@ -1,15 +1,16 @@
 import uuid
-
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
 from django.db import models
 from django.utils.text import slugify
-
 from cloudinary.models import CloudinaryField
 from colorfield.fields import ColorField
 
 
 class Game(models.Model):
+    """
+    Model for games. It has a many to one relationship with the Platform model.
+    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     slug = models.SlugField(max_length=255, blank=True)
     name = models.CharField(max_length=255)
@@ -23,9 +24,13 @@ class Game(models.Model):
                             default='placeholder')
     user_review = models.TextField(null=True, blank=True)
     genres = models.CharField(max_length=255, blank=True, null=True)
-    release_date = models.DateField(null=True, blank=True)
+    release_date = models.DateField(null=True, blank=True,
+                                    help_text='Enter the date in the format'
+                                    ' YYYY-MM-DD')
     completion_date = models.DateField(null=True, blank=True,
-                                       default=models.functions.Now)
+                                       default=models.functions.Now,
+                                       help_text='Enter the date in the format'
+                                       ' YYYY-MM-DD')
     hours_spent = models.IntegerField(null=True, blank=True)
     developer = models.CharField(max_length=255, null=True, blank=True)
     platform = models.ForeignKey('Platform', on_delete=models.CASCADE,
@@ -53,6 +58,10 @@ class Game(models.Model):
 
 
 class WishListGame(models.Model):
+    """
+    Model for the wishlist games. It has a many to one relationship with the
+    platform model.
+    """
 
     CURRENCIES = [
         ('£', '£'),
@@ -76,7 +85,8 @@ class WishListGame(models.Model):
     genres = models.CharField(max_length=255, null=True, blank=True)
     store = models.CharField(max_length=255, null=True, blank=True,
                              choices=STORES)
-    release_date = models.DateField(null=True, blank=True)
+    release_date = models.DateField(null=True, blank=True, help_text='Enter'
+                                    ' the date in the format YYYY-MM-DD')
     developer = models.CharField(max_length=255, null=True, blank=True)
     priority = models.IntegerField(null=True, blank=True, help_text='Enter the'
                                    ' priority of the game in the wishlist.'
@@ -114,6 +124,9 @@ class WishListGame(models.Model):
 
 
 class Platform(models.Model):
+    """
+    Model for the platforms. It has a many to one relationship with the User
+    """
 
     PLATFORM_CHOICES = [
         ('console', 'Console'),

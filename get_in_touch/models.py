@@ -4,6 +4,9 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Bio(models.Model):
+    """
+    Model for the bio of the website.
+    """
     description = models.TextField(null=True,  blank=True)
     title = models.CharField(max_length=255)
     image = CloudinaryField('image', null=True, blank=True,
@@ -21,6 +24,9 @@ class Bio(models.Model):
 
 
 class CollaborateRequest(models.Model):
+    """
+    Model for collaboration requests.
+    """
     name = models.CharField(max_length=200)
     email = models.EmailField()
     message = models.TextField()
