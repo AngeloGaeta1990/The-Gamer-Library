@@ -1,6 +1,6 @@
 import uuid
 from django.contrib.auth.models import User
-from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
@@ -15,14 +15,16 @@ class Game(models.Model):
     slug = models.SlugField(max_length=255, blank=True)
     name = models.CharField(max_length=255)
     user_score = models.IntegerField(null=True, blank=True,
-                                     validators=[MaxValueValidator(100)],
+                                     validators=[MinValueValidator(0),
+                                                 MaxValueValidator(100)],
                                      help_text='Enter a number between 0 and'
                                                ' 100')
     metacritic_score = models.IntegerField(null=True, blank=True,
-                                           validators=[MaxValueValidator(100)])
+                                           validators=[MinValueValidator(0),
+                                                       MaxValueValidator(100)])
     image = CloudinaryField('image', null=True, blank=True,
                             default='placeholder')
-    user_review = models.TextField(null=True, blank=True)
+    user_review = models.TextField(max_length=2000, null=True, blank=True)
     genres = models.CharField(max_length=255, blank=True, null=True)
     release_date = models.DateField(null=True, blank=True,
                                     help_text='Enter the date in the format'
@@ -31,10 +33,13 @@ class Game(models.Model):
                                        default=models.functions.Now,
                                        help_text='Enter the date in the format'
                                        ' YYYY-MM-DD')
-    hours_spent = models.IntegerField(null=True, blank=True)
+    hours_spent = models.IntegerField(null=True, blank=True, validators=[
+        MinValueValidator(0)])
     developer = models.CharField(max_length=255, null=True, blank=True)
     platform = models.ForeignKey('Platform', on_delete=models.CASCADE,
-                                 related_name='games')
+                                 related_name='games',
+                                 help_text='Make sure you added at lest one'
+                                 ' platform before adding a game')
 
     class Meta:
         unique_together = ('name', 'platform')
@@ -88,19 +93,25 @@ class WishListGame(models.Model):
     release_date = models.DateField(null=True, blank=True, help_text='Enter'
                                     ' the date in the format YYYY-MM-DD')
     developer = models.CharField(max_length=255, null=True, blank=True)
-    priority = models.IntegerField(null=True, blank=True, help_text='Enter the'
-                                   ' priority of the game in the wishlist.'
+    priority = models.IntegerField(null=True, blank=True,
+                                   validators=[MinValueValidator(1),
+                                               MaxValueValidator(10)],
+                                   help_text='Enter a'
+                                   ' value between 1 and 10 the'
                                    ' The lower the number, the higher the'
-                                   ' priority.')
+                                   ' priority')
     link = models.URLField(max_length=200, null=True, blank=True,
                            help_text='Enter the url of the game you want to'
-                                     ' buy.')
+                                     ' buy')
     currency = models.CharField(max_length=2, null=True, blank=True,
                                 choices=CURRENCIES)
     cost = models.DecimalField(max_digits=8, decimal_places=2, null=True,
-                               blank=True)
+                               blank=True, validators=[MinValueValidator(0)])
     platform = models.ForeignKey('Platform', on_delete=models.CASCADE,
-                                 related_name='wishlist_games')
+                                 related_name='wishlist_games',
+                                 help_text='Make sure you added at lest one'
+                                 ' platform before adding a game to the'
+                                 ' wishlist.')
 
     class Meta:
         unique_together = ('name', 'platform')
@@ -168,25 +179,31 @@ class Platform(models.Model):
     background_color = ColorField(null=True, blank=True, help_text='Enter hex'
                                   ' code to set the background color of the'
                                   ' platform. If left blank, the black color'
-                                  ' will be used.')
+                                  ' will be used')
     font_color = ColorField(null=True, blank=True, default='#fafafa',
                             help_text='Enter hex code to set the font color'
                             ' for the platform. If left blank,'
-                            ' the white color will be used.')
+                            ' the white color will be used')
     operative_systems = models.CharField(max_length=50,
                                          choices=OPERATIVE_SYSTEMS_CHOICES,
                                          null=True, blank=True)
     gpu = models.CharField(max_length=255, null=True, blank=True)
     cpu = models.CharField(max_length=255, null=True, blank=True)
-    ram = models.IntegerField(null=True, blank=True)
-    disk_size = models.IntegerField(null=True, blank=True)
+    ram = models.IntegerField(null=True, blank=True, validators=[
+        MinValueValidator(0), MaxValueValidator(100)])
+    disk_size = models.IntegerField(null=True, blank=True, validators=[
+        MinValueValidator(0), MaxValueValidator(100)],
+                                    help_text='Enter the size in GB')
     disk_type = models.CharField(max_length=10, choices=DISK_TYPE_CHOICES,
                                  null=True, blank=True)
     model = models.CharField(max_length=255, null=True, blank=True)
     currency = models.CharField(max_length=2, null=True, blank=True,
                                 choices=CURRENCIES)
     subscription_fee = models.DecimalField(max_digits=5, decimal_places=2,
-                                           null=True, blank=True)
+                                           null=True, blank=True,
+                                           validators=[MinValueValidator(0)],
+                                           help_text='Enter the cost per'
+                                           ' month')
     plan = models.CharField(max_length=255, null=True, blank=True)
     brand = models.CharField(max_length=255, null=True, blank=True)
     operative_systems = models.CharField(max_length=50,

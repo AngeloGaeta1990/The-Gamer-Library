@@ -905,6 +905,7 @@ I set up automated tests for both the get_in_touch and library apps, achieving a
 | Try editing platform with Plan containing an integer | Name: Game Pass, Category: Service, Plan: 300 | platform edited |
 | Try editing platform with Model containing an integer | Name: Game Pass, Category: Service, model: 300 | platform edited |
 | Try editing platform with Disk size containing 30 digits | Name: Game Pass, Category: Service, Disk size: 300000000000000000000000000000 | Error, Ensure this value is less than or equal to 2147483647 |
+| Try editing platform with negative subscription fee| Name: Game Pass, Category: Service, Subscription fee: -1  | Error, Ensure this value is greater than or equal to 0|
 
 #### `AddGameForm`
 
@@ -928,7 +929,8 @@ I set up automated tests for both the get_in_touch and library apps, achieving a
 | Try editing a game with invalid date | Name: Test, Platform: Desktop PC, Completion date: 26/02/2023, | Error message, Enter a valid date.|
 | Try editing a game with valid Hours spent | Name: Test, Platform: Desktop PC, Hours spent: 300, | Game edited|
 | Try editing game with Hours spent containing 7 digits | Name: Lies of P, Hours spent: 300000000000000000000000000000 | Error, Ensure this value is less than or equal to 2147483647 |
-| Try editing a game with very long text as User Review | Name: Test, Platform: Desktop PC, User Review: very long test, | Game edited|
+| Try editing a game with very long text as User Review | Name: Test, Platform: Desktop PC, User Review: very long test, | Error, Ensure this value has at most 2000 characters (it has 2037).|
+| Try editing a game with Metacritic >100 | Name: Test, Platform: Desktop PC, Meatacritic score: 150, | Error, Ensure this values is less than or equal 100 |
 
 #### `AddWishlistGameForm`
 
@@ -938,6 +940,8 @@ I set up automated tests for both the get_in_touch and library apps, achieving a
 | Try adding a wishlist game with invalid platform    | Name: Invalid Wishlist Game, Platform: , Priority: 2| Error message, please select an item in the list|
 | Try adding a wishlist game with invalid image type  | Name: Invalid Image Wishlist Game, Platform: Test Console, Image: file.exe , Priority: 3 | Error message, File extension “exe” is not allowed. Allowed extensions are: png, jpg, jpeg, webp, gif. |
 | Try adding a wishlist game with very high cost  | Name: Test game, Platform: Test Console, currency: £, cost:500000000000000, Priority: 3 | Error message, Ensure that there are no more than 8 digits in total.|
+| Try adding a wishlist game with no name  | Name: , Platform: , | Error message, Please fill in this field.|
+| Try adding a wishlist game with no platform  | Name: The last of us , Platform: , | Error message, Please select an item in the list.|
 
 #### `EditWishListGameForm`
 
@@ -949,6 +953,8 @@ I set up automated tests for both the get_in_touch and library apps, achieving a
 | Try editing wishlist game with invalid link | Name: Invalid Update Wishlist Game, Platform: Test PC, Priority: 3, Link: string | Error message, Please enter a URL |
 | Try editing a wishlist game with invalid date | Name: Test, Platform: Desktop PC, Release date: 26/02/2023, | Error message, Enter a valid date.|
 | Try editing a wishlist game with date in the future | Name: Test, Platform: Desktop PC, Release date: 2025-03-25, | Successful update.|
+| Try editing a wishlist game with priority 0 | Name: Test, Platform: Desktop PC, Priority: 0, | Error, Ensure this value is greater than or equal to 1.|
+| Try editing a wishlist game with negative priority | Name: Test, Platform: Desktop PC, Priority: -1, | Error, Ensure this value is greater than or equal to 1.|
 
 ---
 
